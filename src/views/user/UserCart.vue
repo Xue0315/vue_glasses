@@ -1,0 +1,329 @@
+<template>
+    <router-view></router-view>
+    
+<div class="bg-light">
+  <pageLoading :active="isLoading"/>
+  <div class="cartBanner position-relative" v-if="!checkOutstatus">
+        <div class="cart-title bg-dark bg-opacity-50 w-100 position-absolute bottom-0 d-flex align-items-center h-100">
+            <h1 class="text-white fw-bold mx-auto">購物車</h1>
+        </div>
+  </div>
+  
+  <div class="checkout-page container position-relative w-100" v-if="checkOutstatus">
+    <TimeLine></TimeLine>
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <div class="checklist text-center">
+                <span class="mb-5 fs-3">清單明細</span>
+            </div>
+            <hr>
+            <table class="table  table-borderless">
+                <thead>
+                    <th class="text-center" width="700">商品</th>
+                    <th class="text-center" width="120">單價</th>
+                    <th class="text-center" width="100">數量</th>
+                    <th width="200" class="text-end">總計</th>   
+                </thead>
+                <tbody>
+                    <tr v-for="cart in carts.carts" :key="cart.id" class="align-middle">
+                        <td class="d-flex align-items-center">
+                            <div style="height:120px; width: 100px; background-size:cover; background-position: center;" 
+                                :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
+                            </div>
+                            <span class="text-center mx-3 ">{{ cart.product.title }}</span>
+                        </td>
+                            <td class="text-center"><span>${{ $filter.currency(cart.product.price) }}</span></td>
+                        <td class="text-center">
+                            <span >{{ cart.qty }}</span>
+                        </td>
+                        <td class="text-end" v-if="cart.final_total !== cart.total"><span class="text-warning fs-6">${{ $filter.currency(carts.final_total) }}</span></td>
+                        <td class="text-end" v-else><span class="fs-6">NT${{ $filter.currency(cart.final_total) }}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"  class="text-start fs-5">總金額</td>
+                        <td class="text-end" v-if="carts.final_total !== carts.total"><span class="text-warning fs-6">NT${{ $filter.currency(carts.final_total) }}</span></td>
+                        <td class="text-end" v-else><span class="fs-6">NT${{ $filter.currency(carts.final_total) }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <Form class="col-md-6 mb-5" v-slot="{ errors }" @submit="addOrder">
+            <div class="customer-data text-center">
+                <span class="mb-5 fs-3">顧客資訊</span>
+            </div>
+            <hr>
+            <div class="mb-3">
+                <div class="mb-1">
+                    <label for="email" class="form-label">Email</label>
+                </div>
+                <Field type="email" id="email" name="email"  class="form-control" placeholder="請輸入Email" rules="email|required" 
+                :class="{ 'is-invalid': errors['email'] }" v-model="form.user.email"></Field>
+                <ErrorMessage name="email" class="invalid-feedback" ></ErrorMessage>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1">
+                    <label for="name" class="form-label">收件人姓名</label>
+                </div>
+                <Field type="text" id="name" name="姓名"  class="form-control" placeholder="請輸入姓名" rules="required"
+                :class="{ 'is-invalid': errors['姓名'] }" v-model="form.user.name"></Field>
+                <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1">
+                    <label for="tel" class="form-label">收件人電話</label>
+                </div>
+                <Field type="text" id="tel" name="電話" class="form-control" placeholder="請輸入電話" rules="required"
+                :class="{ 'is-invalid': errors['電話'] }" v-model="form.user.tel"></Field>
+                <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1">
+                    <label for="address" class="form-label">收件人地址</label>
+                </div>
+                <Field type="text" id="address" name="地址"  class="form-control" placeholder="請輸入地址" rules="required"
+                :class="{ 'is-invalid': errors['地址'] }" v-model="form.user.address"></Field>
+                <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="mb-3">
+                <div class="mb-1">
+                    <label for="message">備註</label>
+                </div>
+                <textarea type="text" id="message" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
+            </div>
+            <div class="text-end mt-3">
+                <button class="btn btn-info" @click.stop="addOrder">送出訂單</button>
+            </div>
+        </Form>
+    </div>
+  </div>
+  <div class="container cart-list" v-if="!checkOutstatus" >
+    <h3 class="fw-bold w-100 text-center my-5" v-if="cartNum>=1">購物清單</h3>
+    <div class="row" v-if="cartNum>=1">
+        <div class="col-9 mx-auto bg-light">
+            <table class="table table-light table-borderless">
+                <thead>
+                    <th class="text-start" width="90">刪除</th>
+                    <th class="text-center" width="400">商品</th>
+                    <th class="text-center" width="120">單價</th>
+                    <th class="text-center" width="160">數量</th>
+                    <th width="100" class="text-end">總計</th>   
+                </thead>
+                <tbody>
+                    <tr v-for="cart in carts.carts" :key="cart.id" class="align-middle">
+                        <td><button type="button" class="btn btn-outline-danger" @click="deleteCart(cart.id)"><i class="fa-solid fa-trash"></i></button></td>
+                        <td class="d-flex align-items-center">
+                            <div style="height:120px; width: 100px; background-size:cover; background-position: center;" 
+                                :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
+                            </div>
+                            <span class="text-center mx-3 ">{{ cart.product.title }}</span>
+                        </td>
+                            <td class="text-center"><span>${{ $filter.currency(cart.product.price) }}</span></td>
+                        <td class="text-center">
+                            <button class="btn mx-2" @click="changeAmount(cart,-1)"><i class="fa-solid fa-minus"></i></button>
+                            <span >{{ cart.qty }}</span>
+                            <button class="btn mx-2" @click="changeAmount(cart,1)"><i class="fa-solid fa-plus"></i></button>
+                        </td>
+                        <td class="text-end"  v-if="!cart.coupon"><span>${{ $filter.currency(cart.total) }}</span></td>
+                        <td class="text-end"  v-if="cart.coupon"><span class="text-warning">${{ $filter.currency(cart.final_total) }}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-start fs-5">總金額</td>
+                        <td class="text-end" v-if="carts.final_total !== carts.total"><span class="text-warning fs-5">NT${{ $filter.currency(carts.final_total) }}</span></td>
+                        <td class="text-end" v-else><span class="fs-5">NT${{ $filter.currency(carts.final_total) }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="a d-flex">
+                <div class="clean-all">
+                    <button class="btn btn-outline-danger text-start" @click="deleteAllCart">清空購物車</button>
+                </div>
+                <div class="input-group mb-3 d-flex w-50 ms-auto">
+                    <input type="text" class="form-control " placeholder="請輸入您的優惠碼" v-model="code">
+                    <button class="btn btn-outline-secondary" @click="checkCode">套用優惠碼</button>
+                </div>
+            </div>
+           
+            <div class="checkout w-100 text-end">
+                <button type="button" class="btn btn-secondary" @click="changeStatus">結帳</button>
+            </div>
+        </div>
+    </div>
+    <div class="nothing text-center w-100 my-5 d-flex flex-column justify-content-center align-items-center" v-if="!cartNum">
+        
+        <img src="https://www.svgrepo.com//show/533045/cart-xmark.svg" alt="xmark" width="80" height="80">
+        <p class="fw-bold fs-2 text-info ">購物車無商品</p>
+        <button class="btn btn-outline-info fw-bold my-3 p-2 fs-4" @click="proceedPage">前往商品頁面</button>
+    </div>
+   
+  </div>
+
+</div>
+<ScrollTop/>
+<SocialMedia/>
+<Footer></Footer>
+    
+
+
+</template>
+
+<script>
+import Footer from '@/components/Footer.vue'
+import ScrollTop from '@/components/ScrollTop.vue' 
+import TimeLine from '@/components/TimeLine.vue'
+import SocialMedia from '@/components/SocialMedia.vue';
+export default {
+    data(){
+        return {
+            carts:[],
+            cartNum:0,
+            checkOutstatus:false,
+            status:{
+                loadingItem:''
+            },
+            form:{
+                user:{
+                    email:'',
+                    name:'',
+                    tel:'',
+                    address:''
+                },
+                message:''
+            },
+            isLoading:false,
+            code:'',
+            codeStatus:false,
+            tempOrderId:''
+        }
+    },
+    inject:['emitter'],
+    methods:{
+        getCart(){
+                const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+                this.isLoading = true;
+                this.$http.get(api).then(res=>{
+                    this.carts = res.data.data;
+                    this.cartNum = res.data.data.carts.length;
+                    console.log(res);
+                    this.isLoading = false;
+                })
+        },
+        updateCart(item){
+                const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+                const product = {
+                    product_id:item.id,
+                    qty:item.qty
+                }
+                this.$http.put(api,{data:product}).then(res=>{
+                    this.getCart();
+                    console.log(res);
+                })
+        },
+        deleteCart(id){
+                const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`;
+                this.status.loadingItem = id;
+                this.$http.delete(api)
+                    .then(res=>{
+                        console.log(res);
+                        this.getCart();
+                        this.$pushMessage(res,'刪除產品');
+                        this.emitter.emit('update-cart');
+                })
+        },
+        deleteAllCart(){
+                const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`;
+                this.$http.delete(api)
+                        .then(res=>{
+                            if(res.success){
+                                console.log(res);
+                                this.getCart();
+                                this.$pushMessage(res,'全部產品刪除');
+                            }else{
+                                this.getCart();
+                                this.$pushMessage(res,'刪除');
+                            }
+                            this.emitter.emit('update-cart');
+                        })
+        },
+        proceedPage(){
+                this.$router.push('/products')
+        },
+        changeStatus(){
+                this.checkOutstatus = true;
+        },
+        changeAmount(item,num){
+                if(num > 0){
+                    item.qty += 1
+                }else{
+                    item.qty -= 1
+                }
+                this.updateCart(item);
+        },
+        checkCode(){
+                const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
+                const coupon_code ={
+                    code:this.code
+                }
+                this.$http.post(api,{data:coupon_code})
+                    .then(res=>{
+                        if(res.data.success){
+                            console.log(res);
+                            this.$pushMessage(res,'套用優惠券')
+                            this.code = '';
+                            this.codeStatus = true;
+                            this.getCart();
+                        }else{
+                            this.$pushMessage(res,'套用優惠券')
+                        }
+                    }
+                )
+        },
+        addOrder(){
+                const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
+                this.isLoading = true;
+                const order = this.form
+                this.$http.post(api,{data:order}).then(res=>{
+                    if(res.data.success){
+                        this.tempOrderId = res.data.orderId;
+                        this.emitter.emit('update-cart');
+                        this.$router.push(`/order/${this.tempOrderId}`);
+                        this.isLoading = false;
+                    }
+                })
+        }
+    },
+    components:{TimeLine,Footer,ScrollTop,SocialMedia},
+    mounted(){
+        this.getCart();
+    },
+}
+</script>
+
+<style lang="scss">
+.cartBanner{
+    background-image: url('https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-position: center ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+
+    .cart-title{
+        h1{
+            position: relative;
+            top: 40px;
+        }
+    }
+}
+.checkout {
+    .btn{
+        padding: 5px 36px 5px 36px;
+    }
+}
+.total{
+    &.active{
+        color: #20bb72;
+    }
+}
+.cart-list{
+    padding: 100px;
+}
+</style>

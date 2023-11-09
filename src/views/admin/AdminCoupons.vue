@@ -1,0 +1,139 @@
+<template>
+    <Loading :active="isLoading"></Loading>
+   <div class="row">
+     <div class="col">
+         <div class="text-end mt-4">
+             <button type="button" class="btn btn-primary" @click="openModal(true)">建立新的優惠券</button>
+         </div>
+         <table class="table mt-4">
+             <thead>
+                 <tr>
+                     <th style="width: 400px;">名稱</th>
+                     <th style="width: 400px;">折扣百分比</th>
+                     <th style="width: 400px;">到期日</th>
+                     <th style="width: 400px;">是否啟用</th>
+                     <th>編輯</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr v-for="item in coupons" :key="item.id">
+                     <td>{{ item.title }}</td>
+                     <td>{{ item.percent }}%</td>
+                     <td>{{ $filter.date(item.due_date) }}</td>
+                     <td>
+                         <div v-if="item.is_enabled" class="text-success">已啟用</div>
+                         <div v-else class="text-muted">未啟用</div>
+                     </td>
+                     <td>
+                         <div class="btn-group btn-group-sm">
+                             <button type="button" class="btn btn-outline-primary" @click="openModal(false,item)">編輯</button>
+                             <button type="button" class="btn btn-outline-danger" @click="openDelModel(item)">刪除</button>
+                         </div>
+                     </td>
+                 </tr>
+             </tbody>
+         </table>
+     </div>
+   </div>
+   <CouponModal ref="couponmodal" :coupon="tempCoupons" @update-coupon="updateCoupon"></CouponModal>
+   <DelModal :product="tempCoupons" ref="delmodal" @delete-product="deleteCoupon"></DelModal>
+   <Pagination :pages="pages" @update-page="getCoupons"></Pagination>
+ </template>
+ 
+ <script>
+ import CouponModal from '@/components/CouponModal.vue'
+ import DelModal from '@/components/DelModal.vue';
+ import Pagination from '@/components/Pagination.vue';
+ export default {
+     components: { CouponModal,DelModal,Pagination },
+     data(){
+         return {
+             isNew:false,
+             coupons:[],
+             tempCoupons:{
+                 title:'',
+                 is_enabled:1,
+                 percent:80,
+                 code:''
+             },
+             isLoading:false,
+             pages:{}
+         }
+     },
+     methods:{
+         openModal(isNew,item){
+             const CouponModal = this.$refs.couponmodal;
+             this.isNew = isNew;
+             if(isNew){
+                 this.tempCoupons={
+                     due_date: new Date().getTime() / 1000
+                 }
+             }else{
+                 this.tempCoupons = {...item}
+             }
+             CouponModal.showModal();
+         },
+         openDelModel(item){
+             const DelModal = this.$refs.delmodal;
+             this.tempCoupons = {...item}
+             DelModal.showModal();
+         },
+         getCoupons(page=1){
+             const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`;
+             this.isLoading = true;
+             this.$http.get(api)
+                 .then(res=>{
+                     this.coupons = res.data.coupons;
+                     this.pages = res.data.pagination;
+                     console.log(res);
+                     this.isLoading = false;
+                 })
+         },
+         updateCoupon(item){
+             let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`;
+             let httpMethod = 'post';
+             this.isLoading = true;
+             const CouponModal = this.$refs.couponmodal;
+             if(!this.isNew){
+                 httpMethod = 'put';
+                 api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${item.id}`;
+             }
+             CouponModal.hideModal();
+             this.$http[httpMethod](api,{data:item})
+                 .then(res=>{
+                     if(res.data.success){
+                         if(httpMethod === 'put'){
+                             this.$pushMessage(res,'優惠券更新');
+                         }else{
+                             this.$pushMessage(res,'優惠券建立');
+                         }  
+                         this.isLoading = false;
+                         this.getCoupons();
+                         console.log(res);
+                     }
+                 }) 
+         },
+         deleteCoupon(id){
+             const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${id}`;
+             const DelModal = this.$refs.delmodal;
+             this.isLoading = true;
+             DelModal.hideModal();
+             this.$http.delete(api)
+                 .then(res=>{
+                     this.isLoading = false;
+                     this.getCoupons();
+                     console.log(res);
+                 })
+         },
+         
+     },
+     created(){
+         this.getCoupons();
+     }
+     
+ }
+ </script>
+ 
+ <style>
+ 
+ </style>

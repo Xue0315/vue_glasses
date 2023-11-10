@@ -1,33 +1,28 @@
 <template>
-  <router-view></router-view>
-  <div class="homeBanner position-relative w-100 bg-light">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="position-absolute h-100 w-50 d-flex align-items-center">
-                <p class="fs-4 text-center fw-bold mx-auto">尊重每位客人的時間，享受配鏡過程的每一刻。</p>
-            </div>
+  <div class="homeBanner position-relative w-100 bg-light bg-opacity-25">
+        <div class="position-absolute h-100 w-100 d-flex align-items-center bg-dark bg-opacity-25">
+            <p class="fs-4 text-center fw-bold mx-auto text-white">尊重每位客人的時間，享受配鏡過程的每一刻。</p>
         </div>
-        <div class="readmore w-100 text-center" v-if= "height < 10"  @click="gotoScroll()">
+        <div class="readmore text-center w-100" v-if= "height < 10"  @click="gotoScroll()">
             <i class="fa fa-angle-double-down fs-1" aria-hidden="true"></i>
             <h6 class="my-3 fw-bold">往下閱讀更多</h6>
         </div>
-    </div>
   </div> 
-  <div class="bg-light main">
-      <div class="saleTitle text-center container" data-aos="fade-left"  data-aos-duration="2000">
-          <h2 class="my-5 fw-bold">促銷商品</h2>
-          <ProductOnsale/>
-      </div>
+  <div class="bg-light">
+    <div class="container">
+      <ProductOnsale  data-aos="fade-right"  data-aos-duration="2000"/>
+    </div>
+         
       <div class="container recommend text-center bg-light" data-aos="fade-right" data-aos-duration="2000">
           <div class="title">
-              <h2 class="fw-bold my-5">老薛為您推薦</h2>
+              <h1 class="fw-bold my-5">老薛為您推薦</h1>
           </div>
           <RecommendProduct/>
       </div>
       <CouponBanner :info="couponBanner" />
       <News/>
       <div class="problem" data-aos="zoom-in" data-aos-duration="2000">
-        <h2 class="text-center my-5 fw-bold">常見問題</h2>
+        <h1 class="text-center my-5 fw-bold">常見問題</h1>
           <div class="row w-100">
             <div class="col-lg-6 mx-auto">
               <div class="accordion " id="accordionExample">
@@ -129,8 +124,8 @@ export default {
         this.height =  document.body.scrollTop || document.documentElement.scrollTop;
       },
       gotoScroll(){
-            document.body.scrollTop = 2261;
-            document.documentElement.scrollTop = 2261;
+            document.body.scrollTop = 2290;
+            document.documentElement.scrollTop = 2290;
       }
     },
     mounted(){
@@ -184,7 +179,7 @@ export default {
     }
     .problem{
       height: 420px;
-      h2 {
+      h1 {
         position: relative;
         &::after{
           content:''; 
@@ -196,10 +191,15 @@ export default {
           top: 60px;
           left: 40.5%;
         }
+        @media(max-width:1919px){
+            &::after{
+                display: none;
+            }
+        }
       }
     }
-    .saleTitle,.recommend{
-      h2 {
+    .recommend{
+      h1 {
         position: relative;
         &::after{
           content:''; 
@@ -210,6 +210,11 @@ export default {
           bottom: 0;
           top: 60px;
           left: 36.5%;
+        }
+        @media(max-width:1919px){
+            &::after{
+                display: none;
+            }
         }
       }
     }

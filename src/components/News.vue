@@ -1,6 +1,6 @@
 <template>
   <div class="news container w-100" data-aos="flip-left" data-aos-duration="2000">
-        <h2 class="text-center my-5 fw-bold" >最新消息</h2>
+        <h1 class="text-center my-5 fw-bold" >最新消息</h1>
         <div class="row">
           <div class="col-6">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" ref="Carousel" >
@@ -28,7 +28,7 @@
                 </div>
               </div>
           </div>
-          <div class="col-6 ">
+          <div class="col-6 col-md-6 col-sm-12">
             <ul class="list-group" v-for="item in articles.slice(0,5)" :key="item.id">
               <li class="list-group-item my-1 bg-light p-4 border-top-0 border-start-0 border-end-0" aria-current="true"><a href="#" class="text-decoration-none" @click.prevent="articleDetail(item.id)">{{ item.title}}</a></li>
             </ul>
@@ -71,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
  .news{
-    h2 {
+    h1 {
       position: relative;
       &::after{
         content:''; 
@@ -83,6 +83,11 @@ export default {
         top: 60px;
         left: 36.5%;
       }
+      @media(max-width:1919px){
+            &::after{
+                display: none;
+            }
+        }
     }
     .carousel{
       .carousel-item{

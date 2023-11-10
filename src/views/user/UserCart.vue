@@ -1,6 +1,4 @@
 <template>
-    <router-view></router-view>
-    
 <div class="bg-light">
   <pageLoading :active="isLoading"/>
   <div class="cartBanner position-relative" v-if="!checkOutstatus">

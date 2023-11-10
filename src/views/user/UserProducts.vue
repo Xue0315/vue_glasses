@@ -10,8 +10,9 @@
       <div class="bg-light">
         <div class="container">
             <div class="row mt-5">
-                <div class="col-lg-3  my-5">
-                    <ul class="list-unstyled w-75 product-category">
+                <div class="col-lg-3 my-5 ">
+                    <div class="col-sm-12 d-flex justify-content-center align-items-center">
+                        <ul class="list-unstyled w-75 product-category">
                         <li><a href="" class="d-block list text-decoration-none fs-5 py-2 " @click.prevent="category = ''" :class="{'active' :category === ''}">
                             <i class="fa fa-bolt px-2" aria-hidden="true"></i>所有產品</a></li>
                         <li><a href="#" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '一般眼鏡'" :class="{'active':category === '一般眼鏡'}">
@@ -21,15 +22,17 @@
                         <li><a href="#" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '太陽眼鏡'" :class="{'active':category === '太陽眼鏡'}">
                             <i class="fa fa-fire px-2" aria-hidden="true"></i>太陽眼鏡</a></li>
                     </ul>
+                    </div>
+                   
                 </div>
-                <div class="col-lg-9 d-flex product-list flex-wrap ">
+                <div class="col-lg-9 d-flex product-list flex-wrap justify-content-center">
                     <ul v-for="product in filterProducts" :key="product.id" class="list-unstyled">
                         <li>
                             <div class="card h-100 ms-2 " style="width: 19.5rem;">
                                 <a href="#" class="stretched-link " @click.prevent="productDetail(product.id)">
                                     <div class="card-img overflow-hidden">
                                         
-                                        <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 fw-bold">
+                                        <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 w-100 fw-bold">
                                             查看更多</button>
                                         <img :src="product.imageUrl" class="card-img-top product-img position-relative">
                                         <span class="discount position-absolute d-flex justify-content-center align-items-center text-white fw-bold" 
@@ -178,7 +181,6 @@ export default {
             &:hover{
                 .btn.bg-dark{
                     opacity: 1;
-                    width: 310px;
                     height: 350px;
                 }
                 img{

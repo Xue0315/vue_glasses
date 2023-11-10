@@ -1,33 +1,35 @@
 <template>
- <div class="d-flex product-list flex-nowrap justify-content-around" data-aos="fade-left"  data-aos-duration="2000">
-    <ul v-for="product in products" :key="product.id">
-        <li class="list-unstyled">
-            <div class="card h-100 " style="width: 18rem;">
-                <div class="control-img overflow-hidden ">
-                    <a href="#" class="stretched-link" @click.prevent="productDetail(product.id)">
-                        <button type="button" class="btn bg-dark bg-opacity-25 position-absolute start-0 text-white fs-3 fw-bold">查看更多</button>
-                        <div style=" height: 200px ;background-size: cover; background-repeat: no-repeat; background-position: center;"
-                        :style="{backgroundImage:`url(${product.imageUrl})`}" class="product-img"></div>
-                        <span class="discount position-absolute d-flex justify-content-center align-items-center text-white fw-bold" 
-                        v-if="product.price !== product.origin_price"> {{((1-(product.price/product.origin_price).toFixed(2)).toFixed(2))*100}}%OFF</span>
-                    </a>
-                </div>
-                <div class="card-body text-center">
-                    <h5 class="card-title fw-bold">{{ product.title }}</h5>
-                    <div class="product-price d-flex justify-content-center">
-                        <div class="card-text fw-bold"><h5 class="mx-2">NT${{ $filter.currency(product.price) }}</h5></div>
-                        <del class="card-text fw-bold"><small >NT${{ $filter.currency(product.origin_price) }}</small></del>
+         
+ <div class="row product-list justify-content-center">
+    <h1 class="my-5 fw-bold text-center w-100">促銷商品</h1>
+        <div class="col-lg-12 product d-flex flex-wrap justify-content-center">
+            <template v-for="product in products" :key="product.id">
+                <div class="card mx-2 mb-3" >
+                        <div class="control-img overflow-hidden ">
+                            <a href="#" class="stretched-link" @click.prevent="productDetail(product.id)">
+                                <button type="button" class="btn bg-dark bg-opacity-25 position-absolute start-0 w-100 text-white fs-3 fw-bold">查看更多</button>
+                                <div style=" height: 200px ;background-size: cover; background-repeat: no-repeat; background-position: center;"
+                                :style="{backgroundImage:`url(${product.imageUrl})`}" class="product-img"></div>
+                                <span class="discount position-absolute d-flex justify-content-center align-items-center text-white fw-bold" 
+                                v-if="product.price !== product.origin_price"> {{((1-(product.price/product.origin_price).toFixed(2)).toFixed(2))*100}}%OFF</span>
+                            </a>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">{{ product.title }}</h5>
+                            <div class="product-price d-flex justify-content-center">
+                                <div class="card-text fw-bold"><h5 class="mx-2">NT${{ $filter.currency(product.price) }}</h5></div>
+                                <del class="card-text fw-bold"><small >NT${{ $filter.currency(product.origin_price) }}</small></del>
+                            </div>
+                            <button type="button" class="btn btn-primary text-light w-75 position-relative z-2"  @click="addCart(product.id)">
+                                <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === product.id"></span>
+                                <span class="visually-hidden" v-if="status.loadingItem === product.id">Loading...</span>加入購物車
+                            </button>
+                        </div>
                     </div>
+            </template>
                     
-                    <button type="button" class="btn btn-primary text-light w-75 position-relative z-2"  @click="addCart(product.id)">
-                        <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === product.id"></span>
-                        <span class="visually-hidden" v-if="status.loadingItem === product.id">Loading...</span>加入購物車
-                    </button>
-                </div>
-            </div>
-        </li>
-    </ul>
-  </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -95,6 +97,7 @@ export default {
 
 <style lang="scss" scoped>
  .card{
+    width: 18rem;
         cursor: pointer;
             &:hover{
                 .btn.bg-dark{
@@ -107,7 +110,6 @@ export default {
                     transition: .5s;
                 }
             }
-            max-width: 286px;
 
         .btn.bg-dark{
             opacity: 0;
@@ -120,5 +122,53 @@ export default {
         width: 80px;
         height: 30px;
         background-color: #ff4d4d;
+    }
+    .product-list{
+        
+        h1 {
+        position: relative;
+        &::after{
+          content:''; 
+          position: absolute;
+          display: inline-block;
+          width: 350px;
+          border-bottom: 3px solid #000;
+          bottom: 0;
+          top: 60px;
+          left: 36.5%;
+        }
+      }
+      @media(max-width:1919px){
+            h1{
+                &::after{
+                    display: none;
+                }
+            }
+        }
+    }
+    .product{
+        @media (max-width: 1400px){
+            width: 800px;
+            .card{
+                width: 23rem;
+                    &:hover{
+                    .btn.bg-dark{
+                        opacity: 1;
+                        height: 200px;
+                    }
+                }
+            }
+        }
+        @media (max-width: 990px) {
+            .card{
+                width: 28rem;
+                    &:hover{
+                    .btn.bg-dark{
+                        opacity: 1;
+                        height: 200px;
+                    }
+                }
+            }
+        }
     }
 </style>

@@ -37,7 +37,6 @@
             <button class="btn btn-outline-info fw-bold my-3 p-2 fs-4" @click="proceedPage">前往商品頁面</button>
         </div>
         <div class="saleTitle text-center" data-aos="fade-left"  data-aos-duration="2000">
-            <h2 class="my-5 fw-bold" >促銷商品</h2>
             <ProductOnsale/>
         </div>
     </div>
@@ -148,19 +147,5 @@ export default {
     .nothing{
         height: 500px;
     }
-    .saleTitle {
-        h2 {
-        position: relative;
-        &::after{
-          content:''; 
-          position: absolute;
-          display: inline-block;
-          width: 350px;
-          border-bottom: 3px solid #000;
-          bottom: 0;
-          top: 60px;
-          left: 36.5%;
-        }
-}
-    }
+    
 </style>

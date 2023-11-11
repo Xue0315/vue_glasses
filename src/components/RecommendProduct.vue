@@ -16,10 +16,10 @@
     >
     <template v-for="product in products" :key="product.id">
       <swiper-slide>
-          <a href="#" class="product-rd d-block d-flex  w-100 justify-content-center align-items-center mb-5 rounded-pill fs-3 fw-bold" 
+          <a href="#" class="product-rd d-block d-flex justify-content-center align-items-center mb-5 fw-bold" 
             :style="{ backgroundImage: `url(${product.imageUrl})`}" @click.prevent="productDetail(product.id)">
-            <div class="product-title bg-dark bg-opacity-25 w-100 h-100 d-flex justify-content-center align-items-center rounded-pill">
-                {{ product.title }}
+            <div class="product-title bg-dark bg-opacity-25 w-100 h-100 d-flex justify-content-center align-items-center ">
+                <span>{{ product.title }}</span>
             </div>
           </a>
       </swiper-slide>
@@ -95,7 +95,7 @@
   <style lang="scss">
     .swiper-pagination {
       position: relative;
-     margin-top: 20px;
+      margin-top: 20px;
     }
     .swiper-pagination-bullet-active{
       padding:0 8px;
@@ -103,11 +103,13 @@
       transition:0.3s ;
     }
       .product-rd{
-      height:350px; 
+      height:350px;
+      font-size: 22px; 
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       text-decoration: none;
+      border-radius: 50%;
       color: #fff;
         &:hover{
           .product-title{
@@ -115,10 +117,30 @@
           }
         }
       @media (max-width: 1220px) {
-        height:250px; 
-
+        height:300px;
+        border-radius: 50%;
+      }
+      @media (max-width: 992px) {
+        font-size: 11px; 
+        height:200px;
+        border-radius: 50%;
+      }
+      @media (max-width: 576px) {
+        height:150px;
+        border-radius: 75%;
+        .product-title{
+          span{
+            display: none;
+          }
+          
+        }
       }
     }
-   
+      .product-title{
+        border-radius: 50%;
+        @media (max-width: 1220px) {
+          border-radius: 50%;
+      }
+      }
   </style>
   

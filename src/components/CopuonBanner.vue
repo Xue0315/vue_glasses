@@ -3,8 +3,8 @@
         <div class="bg-opacity-50 bg-black mx-auto h-100 my-5">
             <div class="d-flex align-items-center h-100">   
                 <h2 class="h2 text-white mx-auto text-center fw-bold">{{ info.title }}
-                    <p class="fs-4 my-4 text-white mx-auto">{{ info.text }}</p>
-                    <button class="btn btn-outline-primary text-white fs-4 p-2 z-2 fw-bold border-white" @click.stop="copyCoupon">領取優惠券</button>
+                    <p class="my-4 text-white mx-auto">{{ info.text }}</p>
+                    <button class="btn btn-outline-primary text-white p-2 z-2 fw-bold border-white" @click.stop="copyCoupon">領取優惠券</button>
                 </h2>
             </div>
         </div>
@@ -33,6 +33,13 @@ export default {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+
+        p{
+            font-size: 24px;
+            @media (max-width:768px) {
+                font-size: 13px;
+            }
+        }
     }
     .bg-attachment{
         background-attachment: fixed;

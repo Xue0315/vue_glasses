@@ -1,7 +1,7 @@
 <template>
   <div class="homeBanner position-relative w-100 bg-light bg-opacity-25">
         <div class="position-absolute h-100 w-100 d-flex align-items-center bg-dark bg-opacity-25">
-            <p class="fs-4 text-center fw-bold mx-auto text-white">尊重每位客人的時間，享受配鏡過程的每一刻。</p>
+            <p class="text-center fw-bold mx-auto text-white">尊重每位客人的時間，享受配鏡過程的每一刻。</p>
         </div>
         <div class="readmore text-center w-100" v-if= "height < 10"  @click="gotoScroll()">
             <i class="fa fa-angle-double-down fs-1" aria-hidden="true"></i>
@@ -21,11 +21,11 @@
       </div>
       <CouponBanner :info="couponBanner" />
       <News/>
-      <div class="problem" data-aos="zoom-in" data-aos-duration="2000">
+      <div class="problem container" data-aos="zoom-in" data-aos-duration="2000">
         <h1 class="text-center my-5 fw-bold">常見問題</h1>
-          <div class="row w-100">
+          <div class="row">
             <div class="col-lg-6 mx-auto">
-              <div class="accordion " id="accordionExample">
+              <div class="accordion justify-content-center" id="accordionExample">
                 <div class="accordion-item">
                   <h3 class="accordion-header" id="headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -124,7 +124,7 @@ export default {
         this.height =  document.body.scrollTop || document.documentElement.scrollTop;
       },
       gotoScroll(){
-            document.body.scrollTop = 2290;
+            document.body.scrollTop = 4000;
             document.documentElement.scrollTop = 2290;
       }
     },
@@ -145,9 +145,13 @@ export default {
         p{
           color:#55312b;
           width: 100%;
+          font-size: 25px;
           white-space: nowrap;
           overflow: hidden;
           animation: typing 4s steps(24);
+          @media(max-width:576px){
+              font-size: 18px;;
+          }
         }
     }   
     .readmore{
@@ -189,7 +193,7 @@ export default {
           border-bottom: 3px solid #000;
           bottom: 0;
           top: 60px;
-          left: 40.5%;
+          left: 36.5%;
         }
         @media(max-width:1919px){
             &::after{

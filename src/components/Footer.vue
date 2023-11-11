@@ -15,5 +15,14 @@ export default {
     .footer{
         background-color: #4DA0B0;
         height: 100px;
+        span {
+            @media (max-width:768px) {
+                font-size: 12px;
+            }
+            @media (max-width:576px) {
+                font-size: 8.5px;
+            }
+        }
+        
     }
 </style>

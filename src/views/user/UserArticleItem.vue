@@ -5,7 +5,7 @@
     <div class="article-title container">
       <h3 class="mb-3">{{ tempArticle.title }}</h3>
     </div>
-    <div class="container position-relative article-item">
+    <div class="container position-relative article-item d-flex flex-column justify-content-center">
         <img :src="articleImage" class="article-img mb-3">
         <div class="article-content">
           <p class="lh-lg text-secondary">{{ tempArticle.content }}</p>
@@ -55,14 +55,20 @@ export default {
   
   .article-item{
     .article-img{
-    width: 100%;
-    height: 700px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+      height: 700px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      @media (max-width:768px) {
+        height: 350px;
+      }
     }
     .article-content{
       width: 470px;
+      @media (max-width:768px) {
+        font-size: 10px;;
+        width: 300px;
+      }
     }
   }
 }

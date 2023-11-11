@@ -7,16 +7,15 @@
         </div>
   </div>
 <div class="bg-light" >
-  <div class="articles-Purpose mx-auto w-75 "  data-aos="fade-up"
-     data-aos-anchor-placement="bottom-bottom" data-aos-duration="2000">
+  <div class="articles-Purpose mx-auto w-75 "  data-aos="fade-up" data-aos-duration="2000">
     <a href="#" v-for="item in Articles" :key="item.id" class="text-decoration-none" @click.prevent="articleDetail(item.id)">
       <div class="row align-items-center border-bottom mb-5">
-        <div class="col-4">
-            <h3>{{ item.title }}</h3>
+        <div class="col-md-4 ">
+            <h3 class="rwd-fs my-3 fw-bold">{{ item.title }}</h3>
         </div>
-        <div class="col-8">
+        <div class="col-md-8 ">
           <div class="d-flex justify-content-between">
-            <h5 class="w-75">{{ item.description }}</h5>
+            <h5 class="w-50 mx-auto rwd-fs">{{ item.description }}</h5>
             <span class="align-items-end d-flex date">{{ $filter.date(item.create_at) }}</span>
           </div>
         </div>
@@ -80,4 +79,14 @@ export default {
         }
       }
     }
+    .rwd-fs{
+        @media (max-width:1650px) {
+            font-size: 16px;
+        }
+        @media (max-width:992px) {
+            font-size: 12px;
+        }
+        @media (max-width:768px) {
+        }
+      }
 </style>

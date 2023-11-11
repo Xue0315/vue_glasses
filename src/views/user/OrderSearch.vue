@@ -9,7 +9,7 @@
         <div class="search-title text-center">
             <h2>請輸入您的訂單編號</h2>
         </div>
-        <div class="input-group mb-3 d-flex w-50 mx-auto my-5">
+        <div class="input-group mb-3 d-flex w-75 mx-auto my-5">
             <input type="text" class="form-control " placeholder="請輸入您的訂單編號" v-model="orderCode">
             <button class="btn btn-outline-secondary" @click="getOrder">搜尋</button>
         </div>
@@ -62,8 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="saleTitle text-center container my-5 py-2" data-aos="fade-left"  data-aos-duration="2000">
-            <h2 class="my-5 fw-bold">促銷商品</h2>
+        <div class="saleTitle text-center container my-5 py-2" data-aos="fade-right" data-aos-duration="2000">
             <ProductOnsale/>
         </div>
   </div>
@@ -112,21 +111,6 @@ export default {
         h1{
             position: relative;
             top: 40px;
-        }
-    }
-}
-.saleTitle{
-    h2 {
-        position: relative;
-        &::after{
-          content:''; 
-          position: absolute;
-          display: inline-block;
-          width: 350px;
-          border-bottom: 3px solid #000;
-          bottom: 0;
-          top: 60px;
-          left: 36.5%;
         }
     }
 }

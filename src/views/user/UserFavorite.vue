@@ -36,7 +36,7 @@
             <p class="fw-bold fs-2 text-info  ">目前沒有收藏商品</p>
             <button class="btn btn-outline-info fw-bold my-3 p-2 fs-4" @click="proceedPage">前往商品頁面</button>
         </div>
-        <div class="saleTitle text-center" data-aos="fade-left"  data-aos-duration="2000">
+        <div class="saleTitle text-center" data-aos="fade-right" data-aos-duration="2000">
             <ProductOnsale/>
         </div>
     </div>

@@ -97,20 +97,20 @@
   <div class="container cart-list" v-if="!checkOutstatus" >
     <h3 class="fw-bold w-100 text-center my-5" v-if="cartNum>=1">購物清單</h3>
     <div class="row" v-if="cartNum>=1">
-        <div class="col-9 mx-auto bg-light">
+        <div class="col-lg-12 bg-light">
             <table class="table table-light table-borderless">
                 <thead>
                     <th class="text-start" width="90">刪除</th>
-                    <th class="text-center" width="400">商品</th>
+                    <th class="text-center" width="200">商品</th>
                     <th class="text-center" width="120">單價</th>
-                    <th class="text-center" width="160">數量</th>
-                    <th width="100" class="text-end">總計</th>   
+                    <th class="text-center" width="200">數量</th>
+                    <th class="text-end" width="100" >總計</th>   
                 </thead>
                 <tbody>
-                    <tr v-for="cart in carts.carts" :key="cart.id" class="align-middle">
+                    <tr v-for="cart in carts.carts" :key="cart.id" class="align-middle justify-content-around">
                         <td><button type="button" class="btn btn-outline-danger" @click="deleteCart(cart.id)"><i class="fa-solid fa-trash"></i></button></td>
                         <td class="d-flex align-items-center">
-                            <div style="height:120px; width: 100px; background-size:cover; background-position: center;" 
+                            <div class="product-img" style="height:120px; width: 100px; background-size:cover; background-position: center;" 
                                 :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
                             </div>
                             <span class="text-center mx-3 ">{{ cart.product.title }}</span>
@@ -323,5 +323,10 @@ export default {
 }
 .cart-list{
     padding: 100px;
+}
+.product-img{
+    @media (max-width:1200px) {
+        display: none;
+    }
 }
 </style>

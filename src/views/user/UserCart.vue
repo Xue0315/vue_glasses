@@ -95,52 +95,57 @@
     </div>
   </div>
   <div class="container cart-list" v-if="!checkOutstatus" >
-    <h3 class="fw-bold w-100 text-center my-5" v-if="cartNum>=1">購物清單</h3>
+    <h3 class="fw-bold text-center my-5" v-if="cartNum>=1">購物清單</h3>
     <div class="row" v-if="cartNum>=1">
-        <div class="col-lg-12 bg-light">
-            <table class="table table-light table-borderless">
+        <div class="col-lg-12 bg-light mx-auto">
+            <table class="table table-light table-borderless align-middle ">
                 <thead>
-                    <th class="text-start" width="90">刪除</th>
-                    <th class="text-center" width="200">商品</th>
-                    <th class="text-center" width="120">單價</th>
-                    <th class="text-center" width="200">數量</th>
-                    <th class="text-end" width="100" >總計</th>   
+                    <th class="text-center" width="60">刪除</th>
+                    <th class="text-center">商品</th>
+                    <th class="text-center d-none d-lg-table-cell">單價</th>
+                    <th class="text-center" width="20">數量</th>
+                    <th class="text-end px-0 d-none d-sm-table-cell" width="120">總計</th>   
                 </thead>
                 <tbody>
-                    <tr v-for="cart in carts.carts" :key="cart.id" class="align-middle justify-content-around">
+                    <tr v-for="cart in carts.carts" :key="cart.id">
                         <td><button type="button" class="btn btn-outline-danger" @click="deleteCart(cart.id)"><i class="fa-solid fa-trash"></i></button></td>
-                        <td class="d-flex align-items-center">
-                            <div class="product-img" style="height:120px; width: 100px; background-size:cover; background-position: center;" 
+                        <td class="d-xl-flex align-items-center px-0 text-center">
+                            <div class="product-img" style="height:100px; width: 100px; background-size:cover; background-position: center;" 
                                 :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
                             </div>
-                            <span class="text-center mx-3 ">{{ cart.product.title }}</span>
+                            <span class="product-title text-center align-items-center">{{ cart.product.title }}</span>
                         </td>
-                            <td class="text-center"><span>${{ $filter.currency(cart.product.price) }}</span></td>
-                        <td class="text-center">
-                            <button class="btn mx-2" @click="changeAmount(cart,-1)"><i class="fa-solid fa-minus"></i></button>
-                            <span >{{ cart.qty }}</span>
-                            <button class="btn mx-2" @click="changeAmount(cart,1)"><i class="fa-solid fa-plus"></i></button>
+                            <td class="d-none d-lg-table-cell text-center "><span>${{ $filter.currency(cart.product.price) }}</span></td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <button class="btn " @click="changeAmount(cart,-1)"><i class="fa-solid fa-minus"></i></button>
+                                <span>{{ cart.qty }}</span>
+                                <button class="btn " @click="changeAmount(cart,1)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
                         </td>
-                        <td class="text-end"  v-if="!cart.coupon"><span>${{ $filter.currency(cart.total) }}</span></td>
-                        <td class="text-end"  v-if="cart.coupon"><span class="text-warning">${{ $filter.currency(cart.final_total) }}</span></td>
+                        <td class="text-end d-none d-sm-table-cell"  v-if="!cart.coupon"><span>${{ $filter.currency(cart.total) }}</span></td>
+                        <td class="text-end d-none d-sm-table-cell"  v-if="cart.coupon"><span class="text-warning">${{ $filter.currency(cart.final_total) }}</span></td>
                     </tr>
-                    <tr>
-                        <td colspan="4" class="text-start fs-5">總金額</td>
-                        <td class="text-end" v-if="carts.final_total !== carts.total"><span class="text-warning fs-5">NT${{ $filter.currency(carts.final_total) }}</span></td>
-                        <td class="text-end" v-else><span class="fs-5">NT${{ $filter.currency(carts.final_total) }}</span></td>
-                    </tr>
+                   
                 </tbody>
             </table>
-            <div class="a d-flex">
-                <div class="clean-all">
-                    <button class="btn btn-outline-danger text-start" @click="deleteAllCart">清空購物車</button>
+            <table class="table table-light table-borderless ">
+                <thead>
+                    <tr>
+                        <th class="text-start fs-6">總金額</th>
+                            <th class="text-end px-2" v-if="carts.final_total !== carts.total"><span class="text-warning fs-6">NT${{ $filter.currency(carts.final_total) }}</span></th>
+                            <th class="text-end px-2" v-else><span class="fs-6">NT${{ $filter.currency(carts.final_total) }}</span></th>
+                        
+                    </tr>
+                </thead>
+            </table>
+                <div class="clean-all d-flex">
+                    <button class="btn btn-outline-danger d-none d-sm-block" @click="deleteAllCart">清空購物車</button>
+                    <div class="input-group mb-3 ms-auto  ">
+                        <input type="text" class="form-control ms-auto" placeholder="請輸入您的優惠碼" v-model="code" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="checkCode">套用優惠碼</button>
+                    </div>
                 </div>
-                <div class="input-group mb-3 d-flex w-50 ms-auto">
-                    <input type="text" class="form-control " placeholder="請輸入您的優惠碼" v-model="code">
-                    <button class="btn btn-outline-secondary" @click="checkCode">套用優惠碼</button>
-                </div>
-            </div>
-           
             <div class="checkout w-100 text-end">
                 <button type="button" class="btn btn-secondary" @click="changeStatus">結帳</button>
             </div>
@@ -322,7 +327,18 @@ export default {
     }
 }
 .cart-list{
-    padding: 100px;
+    padding: 100px 0 100px 0;
+    .product-title{
+        @media(max-width:405px){
+            font-size: 12px;
+        }
+    }
+    .input-group{
+        max-width: 50%;
+        @media (max-width:992px) {
+            max-width: 75%;
+        }
+    }
 }
 .product-img{
     @media (max-width:1200px) {

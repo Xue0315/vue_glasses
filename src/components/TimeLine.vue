@@ -1,5 +1,5 @@
 <template>
-   <div class="checkoutstatus-image my-5">
+   <div class="checkoutstatus-image my-5 ">
         <ul class="list-unstyled d-flex justify-content-around align-middle">
             <li class="fs-5 rounded-circle text-white default"><span class="position-relative z-5">1</span></li>
             <li class="fs-5 rounded-circle text-white " :class="order?.id ? 'active' : ''"><span>2</span></li>
@@ -50,8 +50,8 @@ export default {
             content: '';
             position: absolute;
             top: 25%;
-            transform: translateX(-110%);
-            width: 28.5%;
+            transform: translateX(-108%);
+            width: 29%;
             height: 2px;
             background-color: #ccc;
             z-index: 0;

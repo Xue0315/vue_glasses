@@ -10,43 +10,45 @@
   <div class="checkout-page container position-relative w-100" v-if="checkOutstatus">
     <TimeLine></TimeLine>
     <div class="row">
-        <div class="col-md-6 mb-5">
-            <div class="checklist text-center">
+        <div class="col-xl-6 mb-5 checklist">
+            <div class="text-center">
                 <span class="mb-5 fs-3">清單明細</span>
             </div>
             <hr>
             <table class="table  table-borderless">
                 <thead>
                     <th class="text-center" width="700">商品</th>
-                    <th class="text-center" width="120">單價</th>
+                    <th class="text-center d-none d-sm-table-ceil" width="120">單價</th>
                     <th class="text-center" width="100">數量</th>
                     <th width="200" class="text-end">總計</th>   
                 </thead>
                 <tbody>
                     <tr v-for="cart in carts.carts" :key="cart.id" class="align-middle">
                         <td class="d-flex align-items-center">
-                            <div style="height:120px; width: 100px; background-size:cover; background-position: center;" 
+                            <div class="d-none d-xxl-flex" style="height:120px; width: 100px; background-size:cover; background-position: center;" 
                                 :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
                             </div>
                             <span class="text-center mx-3 ">{{ cart.product.title }}</span>
                         </td>
-                            <td class="text-center"><span>${{ $filter.currency(cart.product.price) }}</span></td>
+                            <td class="text-center d-none d-sm-table-ceil"><span>${{ $filter.currency(cart.product.price) }}</span></td>
                         <td class="text-center">
                             <span >{{ cart.qty }}</span>
                         </td>
                         <td class="text-end" v-if="cart.final_total !== cart.total"><span class="text-warning fs-6">${{ $filter.currency(carts.final_total) }}</span></td>
                         <td class="text-end" v-else><span class="fs-6">NT${{ $filter.currency(cart.final_total) }}</span></td>
                     </tr>
-                    <tr>
-                        <td colspan="3"  class="text-start fs-5">總金額</td>
-                        <td class="text-end" v-if="carts.final_total !== carts.total"><span class="text-warning fs-6">NT${{ $filter.currency(carts.final_total) }}</span></td>
-                        <td class="text-end" v-else><span class="fs-6">NT${{ $filter.currency(carts.final_total) }}</span></td>
-                    </tr>
                 </tbody>
             </table>
+            <table class="table table-borderless">
+                <tr>
+                    <td colspan="3"  class="text-start fs-5">總金額</td>
+                    <td class="text-end" v-if="carts.final_total !== carts.total"><span class="text-warning fs-6">NT${{ $filter.currency(carts.final_total) }}</span></td>
+                    <td class="text-end" v-else><span class="fs-6">NT${{ $filter.currency(carts.final_total) }}</span></td>
+                </tr>
+            </table>
         </div>
-        <Form class="col-md-6 mb-5" v-slot="{ errors }" @submit="addOrder">
-            <div class="customer-data text-center">
+        <Form class="col-xl-6 mb-5 customer-data" v-slot="{ errors }" @submit="addOrder">
+            <div class="text-center">
                 <span class="mb-5 fs-3">顧客資訊</span>
             </div>
             <hr>
@@ -347,5 +349,13 @@ export default {
     @media (max-width:1200px) {
         display: none;
     }
+}
+.checklist{
+    @media (max-width: 576px) {
+        font-size: 12px;
+    }
+}
+.checklist,.customer-data{
+    margin: 5% 0;
 }
 </style>

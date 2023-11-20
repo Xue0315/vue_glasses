@@ -1,9 +1,9 @@
 <template>
-   <div class="checkoutstatus-image my-5 position-relative">
+   <div class="checkoutstatus-image my-5">
         <ul class="list-unstyled d-flex justify-content-around align-middle">
-            <li class="fs-2 rounded-circle text-white default"><span class="position-relative z-5">1</span></li>
-            <li class="fs-2 rounded-circle text-white z-5" :class="order?.id ? 'active' : ''"><span class="position-relative z-5">2</span></li>
-            <li class="fs-2 rounded-circle text-white" :class="order?.is_paid ? 'active' : ''"><span class="position-relative z-5">3</span></li>
+            <li class="fs-5 rounded-circle text-white default"><span class="position-relative z-5">1</span></li>
+            <li class="fs-5 rounded-circle text-white " :class="order?.id ? 'active' : ''"><span>2</span></li>
+            <li class="fs-5 rounded-circle text-white" :class="order?.is_paid ? 'active' : ''"><span>3</span></li>
         </ul>
         <ul class="checkoutstatus-title list-unstyled justify-content-around d-flex">
             <li class="defaultstatus"><span>填寫資訊</span></li>
@@ -21,6 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .checkoutstatus-image{
+    position: relative;
     top: 50px;
     .rounded-circle{
         background-color:#ccc;
@@ -48,9 +49,9 @@ export default {
         &::after {
             content: '';
             position: absolute;
-            top: 30%;
-            transform: translateX(-112%);
-            width: 28%;
+            top: 25%;
+            transform: translateX(-110%);
+            width: 28.5%;
             height: 2px;
             background-color: #ccc;
             z-index: 0;

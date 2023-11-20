@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <table class="table container w-50 mb-3">
+        <table class="table container w-50 mb-3 aa">
                 <tbody v-if="order.user">
                     <tr>
                         <th>訂單編號</th>
@@ -144,5 +144,16 @@ export default {
 }
 .success-message{
     padding: 115px;
+}
+.accordion-item,.aa{
+    @media (max-width:1400px) {
+        font-size: 12px;;
+    }
+    @media (max-width:1200px) {
+        font-size: 10px;;
+    }
+    @media (max-width:1000px) {
+        font-size: 6px;;
+    }
 }
 </style>

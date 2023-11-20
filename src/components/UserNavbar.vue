@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light p-0 bg-light position-fixed top-0 w-100 z-3 ">
+    <nav class="navbar navbar-expand-lg navbar-light p-0 bg-light position-fixed top-0 w-100 z-3 px-2">
         <a class="navbar-brand p-0" href="#">
             <img src="@/assets/images/glasses.png" width="80" height="80">
             <img src="@/assets/images/glasses-brand.png" width="120" height="80">    

@@ -1,11 +1,11 @@
 <template>
    <div class="checkoutstatus-image my-5 position-relative">
-        <ul class="list-unstyled d-flex justify-content-around">
-            <li class="fs-2 rounded-circle text-white px-3 default">1</li>
-            <li class="fs-2 rounded-circle text-white px-3" :class="order?.id ? 'active' : ''">2</li>
-            <li class="fs-2 rounded-circle text-white px-3" :class="order?.is_paid ? 'active' : ''">3</li>
+        <ul class="list-unstyled d-flex justify-content-around align-middle">
+            <li class="fs-2 rounded-circle text-white default"><span class="position-relative z-5">1</span></li>
+            <li class="fs-2 rounded-circle text-white z-5" :class="order?.id ? 'active' : ''"><span class="position-relative z-5">2</span></li>
+            <li class="fs-2 rounded-circle text-white" :class="order?.is_paid ? 'active' : ''"><span class="position-relative z-5">3</span></li>
         </ul>
-        <ul class="checkoutstatus-title list-unstyled w-100 justify-content-around d-flex">
+        <ul class="checkoutstatus-title list-unstyled justify-content-around d-flex">
             <li class="defaultstatus"><span>填寫資訊</span></li>
             <li :class="order?.id ? 'confirm' : ''"><span>確認訂單</span></li>
             <li :class="order?.is_paid ? 'confirm' : ''"><span>完成訂單</span></li>
@@ -19,53 +19,47 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .checkoutstatus-image{
     top: 50px;
-    height:150px;
     .rounded-circle{
         background-color:#ccc;
+        padding: 1% 2% 1% 2%;
         &.default{
             background-color: #ff4d4d;
         }
     }
+
     .defaultstatus{ 
         span{
             color:#ff4d4d;
         }
     }
     li{
+      
         &.confirm{
             span{
                 color: #ff4d4d;
             }
         }
     }
-    li+li{
-        &::before{
+    .rounded-circle:nth-child(2),
+    .rounded-circle:nth-child(3) {
+        &::after {
             content: '';
             position: absolute;
-            width: 360px;
-            height: 3px;
+            top: 30%;
+            transform: translateX(-112%);
+            width: 28%;
+            height: 2px;
             background-color: #ccc;
-            top: -100px;
-            bottom: 0;
-            margin: auto;
-            transform: translateX(-375px);
+            z-index: 0;
         }
-        &.active{
-            background-color:#ff4d4d;
-            &::before{
-                content: '';
-                position: absolute;
-                width: 385px;
-                height: 3px;
+        &.active {
                 background-color: #ff4d4d;
-                top: -100px;
-                z-index: 1;
-                bottom: 0;
-                margin: auto;
-                transform: translateX(-400px);
+            &::after {
+                background-color: #ff4d4d;
+                z-index: 0;
             }
         }
     }

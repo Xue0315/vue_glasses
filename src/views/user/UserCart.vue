@@ -96,7 +96,7 @@
   </div>
   <div class="container cart-list" v-if="!checkOutstatus" >
     <h3 class="fw-bold text-center my-5" v-if="cartNum>=1">購物清單</h3>
-    <div class="row" v-if="cartNum>=1">
+    <div class="row w-100" v-if="cartNum>=1">
         <div class="col-lg-12 bg-light mx-auto">
             <table class="table table-light table-borderless align-middle ">
                 <thead>
@@ -109,7 +109,7 @@
                 <tbody>
                     <tr v-for="cart in carts.carts" :key="cart.id">
                         <td><button type="button" class="btn btn-outline-danger" @click="deleteCart(cart.id)"><i class="fa-solid fa-trash"></i></button></td>
-                        <td class="d-xl-flex align-items-center px-0 text-center">
+                        <td class="d-xl-flex align-items-center px-0">
                             <div class="product-img" style="height:100px; width: 100px; background-size:cover; background-position: center;" 
                                 :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
                             </div>
@@ -139,13 +139,15 @@
                     </tr>
                 </thead>
             </table>
-                <div class="clean-all d-flex">
+            <div class="d-flex">
+                <div class="clean-all">
                     <button class="btn btn-outline-danger d-none d-sm-block" @click="deleteAllCart">清空購物車</button>
-                    <div class="input-group mb-3 ms-auto  ">
+                </div>
+                <div class="input-group mb-3 ms-auto ">
                         <input type="text" class="form-control ms-auto" placeholder="請輸入您的優惠碼" v-model="code" aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="checkCode">套用優惠碼</button>
-                    </div>
                 </div>
+            </div>
             <div class="checkout w-100 text-end">
                 <button type="button" class="btn btn-secondary" @click="changeStatus">結帳</button>
             </div>
@@ -334,9 +336,10 @@ export default {
         }
     }
     .input-group{
-        max-width: 50%;
+        
+        width: 50%;
         @media (max-width:992px) {
-            max-width: 75%;
+           width: 75%;
         }
     }
 }

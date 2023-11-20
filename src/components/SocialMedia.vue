@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .ig-btn{
         bottom: 400px;
         right: -320px;

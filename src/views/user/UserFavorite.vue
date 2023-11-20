@@ -8,10 +8,10 @@
     </div>  
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 d-flex flex-wrap ">
+            <div class="col-sm-12 d-flex flex-wrap justify-content-center ">
                 <ul v-for="item in favorite" :key="item.id" class="list-unstyled ">
                     <li>
-                        <div class="card h-100 ms-2 " style="width: 19.5rem;" >
+                        <div class="card h-100 ms-2 " style="width: 21rem;" >
                             <a href="#" class="stretched-link" @click.prevent="productDetail(item.id)">
                                 <div class="control-img overflow-hidden ">
                                     <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 fw-bold">
@@ -91,7 +91,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .favorite-banner{
         height: 300px;
         background-image: url('https://images.unsplash.com/photo-1581022295087-35e593704911?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
@@ -111,7 +111,7 @@ export default {
         &:hover{
             .btn.bg-dark{
                 opacity: 1;
-                width: 310px;
+                width: 100%;
                 height: 350px;
             }
             img{

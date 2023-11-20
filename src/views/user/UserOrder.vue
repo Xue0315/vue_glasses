@@ -1,14 +1,14 @@
 <template>
   <router-view></router-view>
   <PageLoading :active="isLoading" />
-  <div class="checkout-page container position-relative w-100">
+  <div class="checkout-page container position-relative">
     <TimeLine :order="order"></TimeLine>
-    <div class="checkout-purpose container" v-if="!order.is_paid">
+    <div class="checkout-purpose" v-if="!order.is_paid">
         <div class="checkout-title text-center mb-4">
             <h3>訂單明細</h3>
             <hr class="w-50 mx-auto">
-            <div class="accordion accordion-flush w-50 mx-auto" id="accordionFlushExample">
-                <div class="accordion-item container">
+            <div class="accordion accordion-flush mx-auto" id="accordionFlushExample">
+                <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                         商品資訊
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <table class="table container w-50 mb-3 aa">
+        <table class="table container mb-3">
                 <tbody v-if="order.user">
                     <tr>
                         <th>訂單編號</th>
@@ -79,17 +79,22 @@
         </div>
         
     </div>
-    <div class="success-message text-center" v-if="order.is_paid">
-        <i class="fa-solid fa-circle-check fa-2xl fs-1 text-primary mb-5"></i>
-        <h2 class="mb-5">付款成功</h2>
-        <p class="fs-5">感謝您的訂購</p>
-        <p class="fs-5">商品預計於三個工作天內寄送（不含週休及國定例假日）再請留意簡訊通知</p>
-        <p>訂單建立於<strong class="fs-3">{{$filter.date(order.create_at)}}</strong></p>
-        <button class="btn btn-outline-primary mt-3 w-25" @click="proceedPage">繼續購物</button>
-    </div>
   </div>
+  <SocialMedia/>
+  <div class="success-message text-center" v-if="order.is_paid">
+        <i class="fa-solid fa-circle-check fa-2xl fs-1 text-primary mb-5"></i>
+        <h4 class="mb-5 fw-bold">付款成功</h4>
+        <p>感謝您的訂購</p>
+        <div class="">
+            <p>商品預計於三個工作天內寄送（不含週休及國定例假日）再請留意簡訊通知</p>
+            <p >訂單建立於<strong >{{$filter.date(order.create_at)}}</strong></p>
+        </div>
+   
+        <button class="btn btn-outline-primary mt-3" @click="proceedPage">繼續購物</button>
+    </div>
 <Footer></Footer>
-<SocialMedia/>
+
+
 </template>
 
 <script>
@@ -141,19 +146,12 @@ export default {
 
 .checkout-purpose{
     height: 1000px;
+    margin-top: 100px;
 }
 .success-message{
-    padding: 115px;
-}
-.accordion-item,.aa{
-    @media (max-width:1400px) {
-        font-size: 12px;;
-    }
-    @media (max-width:1200px) {
-        font-size: 10px;;
-    }
-    @media (max-width:1000px) {
-        font-size: 6px;;
+    padding: 160px 0px;
+    @media (max-width:850px) {
+        font-size: 12px;
     }
 }
 </style>

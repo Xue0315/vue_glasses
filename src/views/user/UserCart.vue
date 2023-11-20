@@ -17,7 +17,7 @@
             <hr>
             <table class="table  table-borderless">
                 <thead>
-                    <th class="text-center" width="700">商品</th>
+                    <th class="text-center" width="1000">商品</th>
                     <th class="text-center d-none d-sm-table-ceil" width="120">單價</th>
                     <th class="text-center" width="100">數量</th>
                     <th width="200" class="text-end">總計</th>   
@@ -34,8 +34,8 @@
                         <td class="text-center">
                             <span >{{ cart.qty }}</span>
                         </td>
-                        <td class="text-end" v-if="cart.final_total !== cart.total"><span class="text-warning fs-6">${{ $filter.currency(carts.final_total) }}</span></td>
-                        <td class="text-end" v-else><span class="fs-6">NT${{ $filter.currency(cart.final_total) }}</span></td>
+                        <td class="text-end" v-if="cart.final_total !== cart.total"><span class="text-warning ">${{ $filter.currency(carts.final_total) }}</span></td>
+                        <td class="text-end" v-else><span >NT${{ $filter.currency(cart.final_total) }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -305,7 +305,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .cartBanner{
     background-image: url('https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-position: center ;
@@ -322,7 +322,7 @@ export default {
 }
 .checkout {
     .btn{
-        padding: 5px 36px 5px 36px;
+        padding: 5px 36px;
     }
 }
 .total{

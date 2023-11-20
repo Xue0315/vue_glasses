@@ -92,7 +92,7 @@
       }
     };
   </script>
-  <style lang="scss">
+  <style lang="scss" scoped>
     .swiper-pagination {
       position: relative;
       margin-top: 20px;

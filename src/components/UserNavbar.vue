@@ -4,7 +4,8 @@
             <img src="@/assets/images/glasses.png" width="80" height="80">
             <img src="@/assets/images/glasses-brand.png" width="120" height="80">    
         </a>
-        <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" 
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -19,7 +20,7 @@
                     <router-link to="/ordersearch" class="nav-link px-4 py-3">訂單查詢</router-link>
                 </li>
                 <li class="d-block nav-item d-lg-none">
-                    <router-link to="/favorite" class="nav-link px-4 py-3">最愛產品</router-link>
+                    <router-link to="/favorite" class="nav-link px-4 py-3">收藏產品</router-link>
                 </li>
                 <li class="d-block nav-item d-lg-none">
                     <router-link to="/cart" class="nav-link px-4 py-3">購物車</router-link>
@@ -135,13 +136,13 @@
         }
     }
     .favorite{
-        right: 165px;
+        right: 170px;
         background-color: #ff4d4d;
         padding: 0px 5px 0px 5px;
         border-radius: 50px;
     }
     .cart{
-        right: 90px;
+        right: 95px;
         background-color: #ff4d4d;
         padding: 0px 5px 0px 5px;
         border-radius: 50px;

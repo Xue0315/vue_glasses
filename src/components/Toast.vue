@@ -25,7 +25,7 @@
   }
   </script>
   
-  <style lang="scss">
+  <style lang="scss" scoped>
     .toast-header{
       i{
         color: #4DA0B0;

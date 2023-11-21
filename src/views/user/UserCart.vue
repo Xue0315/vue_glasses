@@ -34,8 +34,8 @@
                         <td class="text-center">
                             <span >{{ cart.qty }}</span>
                         </td>
-                        <td class="text-end" v-if="cart.final_total !== cart.total"><span class="text-warning ">${{ $filter.currency(carts.final_total) }}</span></td>
-                        <td class="text-end" v-else><span >NT${{ $filter.currency(cart.final_total) }}</span></td>
+                        <td class="text-end" v-if="!cart.coupon"><span >${{ $filter.currency(cart.total) }}</span></td>
+                        <td class="text-end" v-if="cart.coupon"><span class="text-warning">NT${{ $filter.currency(cart.final_total) }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -210,7 +210,6 @@ export default {
                 this.$http.get(api).then(res=>{
                     this.carts = res.data.data;
                     this.cartNum = res.data.data.carts.length;
-                    console.log(res);
                     this.isLoading = false;
                 })
         },
@@ -221,8 +220,8 @@ export default {
                     qty:item.qty
                 }
                 this.$http.put(api,{data:product}).then(res=>{
-                    this.getCart();
                     console.log(res);
+                    this.getCart();
                 })
         },
         deleteCart(id){
@@ -230,7 +229,6 @@ export default {
                 this.status.loadingItem = id;
                 this.$http.delete(api)
                     .then(res=>{
-                        console.log(res);
                         this.getCart();
                         this.$pushMessage(res,'刪除產品');
                         this.emitter.emit('update-cart');
@@ -273,7 +271,6 @@ export default {
                 this.$http.post(api,{data:coupon_code})
                     .then(res=>{
                         if(res.data.success){
-                            console.log(res);
                             this.$pushMessage(res,'套用優惠券')
                             this.code = '';
                             this.codeStatus = true;
@@ -286,13 +283,15 @@ export default {
         },
         addOrder(){
                 const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
-                this.isLoading = true;
                 const order = this.form
+                this.isLoading = true;
                 this.$http.post(api,{data:order}).then(res=>{
                     if(res.data.success){
                         this.tempOrderId = res.data.orderId;
                         this.emitter.emit('update-cart');
                         this.$router.push(`/order/${this.tempOrderId}`);
+                        this.isLoading = false;
+                    }else{
                         this.isLoading = false;
                     }
                 })

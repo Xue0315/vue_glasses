@@ -12,27 +12,32 @@ export default {
 
 <style lang="scss" scoped>
     .ig-btn{
-        bottom: 400px;
-        right: -320px;
+        bottom: 42%;
+        right: -17%;
         width: 20%;
         img{
             width: 10%;
         }
     }
     .fb-btn{
-        bottom: 460px;
-        right: -320px;
+        bottom: 48%;
+        right: -17%;
         width: 20%;
         img{
             width: 10%;
         }
     }
     .gh-btn{
-        bottom: 520px;
-        right: -320px;
+        bottom: 54%;
+        right: -17%;
         width: 20%;
         img{
             width: 10%;
+        }
+    }
+    @media (max-width:1200px) {
+        .gh-btn,.fb-btn,.ig-btn{
+            display: none;
         }
     }
 </style>

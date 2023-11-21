@@ -20,18 +20,20 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td class="text-start" style="width:400px;">商品名稱</td>
-                                            <td style="width:300px;">數量</td>
-                                            <td style="width:200px;">單價</td>
+                                            <td class="text-start" style="width:500px;">商品名稱</td>
+                                            <td style="width:200px;">數量</td>
+                                            <td style="width:100px;">單價</td>
                                         </tr>
-                                        <tr v-for="item in order.products" :key="item.id">
-                                            <td class="text-start">{{item.product.title}}</td>
+                                        <tr v-for="item in order.products" :key="item.id" class="product-title">
+                                            <td class="text-start ">{{item.product.title}}</td>
                                             <td>{{item.qty}} / {{ item.product.unit }}</td>
-                                            <td class="text-end">${{$filter.currency(item.product.price)}}</td>
+                                            <td class="text-end" v-if="!item.coupon">${{$filter.currency(item.product.price)}}</td>
+                                            <td class="text-end" v-if="item.coupon">${{$filter.currency(item.final_total)}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" style="width: 400px;" class="text-end">總金額</td>
                                             <td class="text-end">NT${{$filter.currency(order.total)}}</td>
+                                            
                                         </tr>
                                     </tbody>
                                 </table>
@@ -106,7 +108,7 @@ export default {
         return {
             id:'',
             order:{},
-            isLoading:false
+            isLoading:false,
         }
     },
     methods:{
@@ -117,6 +119,7 @@ export default {
                 console.log(res);
                 this.order = res.data.order;
                 this.isLoading = false;
+                console.log(res);
             })
         },
         pay(){
@@ -152,6 +155,11 @@ export default {
     padding: 160px 0px;
     @media (max-width:850px) {
         font-size: 12px;
+    }
+}
+.product-title{
+    @media (max-width:768px) {
+       font-size: 12px;
     }
 }
 </style>

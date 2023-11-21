@@ -4,26 +4,26 @@
         <router-view></router-view>
         <div class="container py-5">
             <div class="row position-relative">
-                <div class="col-6">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
+                <nav aria-label="breadcrumb ">
+                        <ol class="breadcrumb d-none d-md-flex">
                             <router-link to="/" class="breadcrumb-item text-primary">首頁</router-link>
                             <router-link to="/products" class="breadcrumb-item">產品列表</router-link>
                             <li class="breadcrumb-item active" aria-current="page"><strong>{{tempProduct.title}}</strong></li>
                         </ol>
-                    </nav>
+                </nav>
+                <div class="col-xl-6">
                     <div class="product-image mx-5">
-                        <div style="height:700px; background-size:cover; background-position: center;" 
+                        <div class="product-img" style="background-size:cover; background-position: center;" 
                             :style="{backgroundImage: `url(${productImg})`}">
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-xl-6">
                     <div class="product-caption h-100">
-                        <div class="product-title mb-5">
-                            <h1 class="h1 fw-bold ">{{ tempProduct.title }}</h1>
+                        <div class=" product-title mb-5">
+                            <h2 class="h2 fw-bold ">{{ tempProduct.title }}</h2>
                         </div>
-                        <div class="product-price w-75 mb-5 d-flex justify-content-between">
+                        <div class="product-price mb-5 d-flex">
                             <span><strong class="fs-5">{{ $filter.currency(tempProduct.price) }} </strong> 元  / {{ tempProduct.unit }}</span>
                             <button type="button" class="fa-solid z-2 fa-heart fs-3 border-0 bg-light " :class="isFavorite(tempProduct.id) ? 'favorite' : ''" @click.stop="favoriteBtn(tempProduct)">收藏</button>
                         </div>
@@ -35,16 +35,16 @@
                         </div>
                         <hr class="mt-5 w-100">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-5">
                                 <div class="control">
                                     <button class="btn ms-auto"><i class="fa-solid fa-minus " @click="changeAmount(-1)"></i></button>
-                                    <span class="mx-5">{{qty}}</span>
+                                    <span class="mx-3">{{qty}}</span>
                                     <button class="btn"><i class="fa-solid fa-plus "  @click="changeAmount(1)"></i></button>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-7">
                                 <div class="text-end">
-                                    <button type="button" class="btn btn-primary text-white fw-bold w-50" @click="addCart">
+                                    <button type="button" class="btn btn-primary text-white fw-bold " @click="addCart">
                                         <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === tempProduct.id"></span>
                                         <span class="visually-hidden" v-if="status.loadingItem === tempProduct.id">Loading...</span>加入購物車</button>   
                                 </div>
@@ -55,7 +55,6 @@
             </div> 
         </div>
         <div class="saleTitle text-center container my-5 py-5">
-            <h2 class="my-5 fw-bold">促銷商品</h2>
             <ProductOnsale/>
         </div>
         <Footer></Footer>
@@ -92,9 +91,6 @@ export default {
                     if (res.data.success) {
                         this.tempProduct = res.data.product;
                         this.productImg = res.data.product.imageUrl
-                        console.log(res);
-                    }else{
-                        console.log(res);
                     }
                 })
             },
@@ -144,6 +140,9 @@ export default {
                 this.qty += 1;
             }else{
                 this.qty -= 1;
+                if(this.qty < 1 ){
+                    this.qty = 1;
+                }
             }
         }
     },
@@ -165,17 +164,39 @@ export default {
 .product-caption{
     position: relative;
     top: 120px;
-
     hr{
         position: relative;
         top: 80px;
     }
     .product-content{
-    width: 480px;
+        width: 480px;
+        @media (max-width: 1200px) {
+            margin: auto;
+        }
+        @media (max-width: 768px) {
+            padding: 0 20px;
+            width: 400px;
+        }
+        @media (max-width: 391px) {
+            width: 310px;
+        }
     }   
+    .product-category{
+        @media (max-width:1200px) {
+            display: none;
+        }
+    }
 }
 .product-detail{
     top: 150px;
+}
+.product-img{
+    height: 500px;
+    @media (max-width:1200px) {
+    }
+    @media (max-width:768px) {
+        height: 300px;
+    }
 }
 .product-image{
     position: relative;
@@ -186,25 +207,21 @@ export default {
     top: 55px;
     transform: translateX(50px);
 }
-h2 {
-    position: relative;
-    &::after{
-        content:''; 
-        position: absolute;
-        display: inline-block;
-        width: 350px;
-        border-bottom: 3px solid #000;
-        bottom: 0;
-        top: 60px;
-        left: 36.5%;
+.product-title{
+    @media (max-width: 1200px) {
+        text-align: center;
     }
 }
 .product-price{
-        .fa-heart{
+    justify-content: space-between;
+    @media (max-width: 1200px) {
+        justify-content: space-around;
+    }
+    .fa-heart{
         color: #ccc;
         &.favorite,&:hover{
-        color: #ff4d4d;
-}
+            color: #ff4d4d;
+        }
     }
 }
 

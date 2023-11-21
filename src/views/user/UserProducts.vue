@@ -86,7 +86,6 @@ export default {
                 this.isLoading = true;
                 this.$http.get(api).then(res=>{
                 this.products = res.data.products;
-                console.log(res);
                 this.isLoading = false;
             })
             this.emitter.emit('update-cart');

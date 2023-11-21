@@ -8,10 +8,10 @@
     </div>  
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 d-flex flex-wrap justify-content-center ">
+            <div class="col-sm-12 d-flex flex-wrap justify-content-center">
                 <ul v-for="item in favorite" :key="item.id" class="list-unstyled ">
                     <li>
-                        <div class="card h-100 ms-2 " style="width: 21rem;" >
+                        <div class="card h-100 ms-3 " style="width: 21rem;" >
                             <a href="#" class="stretched-link" @click.prevent="productDetail(item.id)">
                                 <div class="control-img overflow-hidden ">
                                     <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 fw-bold">
@@ -63,7 +63,6 @@ export default {
         getFavorite(){
                 this.favorite = JSON.parse(localStorage.getItem('favorite')) || [];
                 this.favoriteNum = (JSON.parse(localStorage.getItem('favorite')) || []).length; 
-                console.log(this.favorite);
         },
         favoriteBtn(item){
                 const id = item.id;

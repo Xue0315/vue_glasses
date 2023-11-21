@@ -13,7 +13,6 @@ export default {
     methods:{
         scroll(){
             this.height = document.body.scrollTop || document.documentElement.scrollTop;
-            console.log(this.height);
         },
         gotoTopScroll(){
             document.body.scrollTop = 0;

@@ -4,29 +4,29 @@
             <img src="@/assets/images/glasses.png" width="80" height="80">
             <img src="@/assets/images/glasses-brand.png" width="120" height="80">    
         </a>
-        <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" 
+        <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" ref="navbartoggler"
         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <router-link to="/products" class="nav-link px-4 py-3">產品列表</router-link>
+                    <router-link to="/products" class="nav-link px-4 py-3" :class="{'active' : status === 'products'}" @click="navbarToggler">產品列表</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/articles" class="nav-link px-4 py-3">最新消息</router-link>
+                    <router-link to="/articles" class="nav-link px-4 py-3" @click="navbarToggler">最新消息</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/ordersearch" class="nav-link px-4 py-3">訂單查詢</router-link>
+                    <router-link to="/ordersearch" class="nav-link px-4 py-3" @click="navbarToggler">訂單查詢</router-link>
                 </li>
                 <li class="d-block nav-item d-lg-none">
-                    <router-link to="/favorite" class="nav-link px-4 py-3">收藏產品</router-link>
+                    <router-link to="/favorite" class="nav-link px-4 py-3 d-flex justify-content-between" @click="navbarToggler">收藏產品<span v-if="favoriteNum">{{ favoriteNum }}</span></router-link>
                 </li>
                 <li class="d-block nav-item d-lg-none">
-                    <router-link to="/cart" class="nav-link px-4 py-3">購物車</router-link>
+                    <router-link to="/cart" class="nav-link px-4 py-3 d-flex justify-content-between" @click="navbarToggler">購物車<span v-if="cartNum">{{ cartNum }}</span></router-link>
                 </li>
                 <li class="d-block nav-item d-lg-none">
-                    <router-link to="/login" class="nav-link px-4 py-3">管理員登入</router-link>
+                    <router-link to="/login" class="nav-link px-4 py-3" @click="navbarToggler">管理員登入</router-link>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto iconimg">
@@ -55,6 +55,7 @@
             return{
                 favoriteNum:0,
                 cartNum:0,
+                status:'',
             }
         },
         methods:{
@@ -68,6 +69,9 @@
                     this.cartNum = res.data.data.carts.length;
                 })
             },
+            navbarToggler(){
+                this.$refs.navbartoggler.click();
+            }
         },
         mounted(){
             this.getCart();
@@ -102,6 +106,12 @@
         position: absolute;
         transition: .7s;
         }
+        span{
+            border-radius: 50%;
+            padding: 0px 5px;
+            color: #fff;
+            background-color: #ff4d4d;
+        }
         &.active,&:hover{
             font-weight: bold;
             &::after{
@@ -122,9 +132,6 @@
         @media (max-width: 992px) {
             &.active,&:hover{
                 background-color: #4DA0B0;
-                a{
-                    color: #fff;
-                }
             }
         }
     }
@@ -132,7 +139,7 @@
         .nav-link,.favorite,.cart{
             @media (max-width: 992px) {
             display: none;
-                }
+            }
         }
     }
     .favorite{

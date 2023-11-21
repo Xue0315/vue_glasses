@@ -45,7 +45,6 @@ export default {
         this.$http.get(api).then(res=>{
           this.Articles = res.data.articles;
           this.isLoading = false;
-          console.log(res);
         })
       },
       articleDetail(id){

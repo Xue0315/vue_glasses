@@ -7,7 +7,7 @@
         </div>
     </div>  
     <div class="container">
-        <div class="row">
+        <div class="row w-100">
             <div class="col-sm-12 d-flex flex-wrap justify-content-center">
                 <ul v-for="item in favorite" :key="item.id" class="list-unstyled ">
                     <li>

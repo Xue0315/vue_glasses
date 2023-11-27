@@ -124,7 +124,7 @@ export default {
         this.height =  document.body.scrollTop || document.documentElement.scrollTop;
       },
       gotoScroll(){
-            document.body.scrollTop = 3000;
+            document.body.scrollTop = 2200;
             document.documentElement.scrollTop = 2280;
       }
     },

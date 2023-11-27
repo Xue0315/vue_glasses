@@ -23,7 +23,10 @@
                                 <span class="fa-solid text-end z-2 fa-heart fs-3" :class="{'favorite': isFavorite}" @click.stop="favoriteBtn(item)"></span>
                                 <h5 class="card-title ">{{ item.title }}</h5>
                                 <p class="card-text ">NT${{ $filter.currency(item.price) }}</p>
-                                <button type="button" class="btn btn-primary text-light w-75 position-relative z-2"  @click="addCart(item.id)">加入購物車</button>
+                                <button type="button" class="btn btn-primary text-light w-75 position-relative z-2"  @click="addCart(item.id)">
+                                    <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === item.id"></span>
+                                    <span class="visually-hidden" v-if="status.loadingItem === item.id">Loading...</span>加入購物車
+                                </button>
                             </div>
                         </div>
                     </li>
@@ -55,6 +58,9 @@ export default {
             favorite:[],
             favoriteNum:0,
             isFavorite:true,
+            status:{
+                loadingItem:''
+            }
         }
     },
     inject:['emitter'],
@@ -75,12 +81,26 @@ export default {
                 this.getFavorite(); 
                 this.emitter.emit('update-favorite');
         },
+        addCart(id){
+                const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+                this.status.loadingItem = id
+                const product = {
+                    product_id:id,
+                    qty:1
+                };
+                this.$http.post(api,{data:product}).then(res=>{
+                    this.$pushMessage(res,'加入購物車')
+                    this.emitter.emit('update-cart')
+                    this.status.loadingItem = '';
+                })
+        },
         productDetail(id){
             this.$router.push(`/products/${id}`)
         },
         proceedPage(){
             this.$router.push('/products')
-        }
+        },
+        
     },
     mounted(){
         this.getFavorite();

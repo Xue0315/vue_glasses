@@ -122,15 +122,6 @@
         }
         @media (max-width: 992px) {
             &.active,&:hover{
-                &::after{
-                    display: none;
-                }
-            }
-        }
-    }
-    .nav-item{
-        @media (max-width: 992px) {
-            &.active,&:hover{
                 background-color: #4DA0B0;
             }
         }
@@ -138,7 +129,7 @@
     .iconimg{
         .nav-link,.favorite,.cart{
             @media (max-width: 992px) {
-            display: none;
+                display: none;
             }
         }
     }

@@ -7,19 +7,18 @@
         </div>
     </div>  
     <div class="container">
-        <div class="row w-100">
-            <div class="col-sm-12 d-flex flex-wrap justify-content-center">
+        <div class="row">
+            <div class="col-12 d-flex flex-wrap justify-content-center">
                 <ul v-for="item in favorite" :key="item.id" class="list-unstyled ">
                     <li>
-                        <div class="card h-100 ms-3 " style="width: 21rem;" >
+                        <div class="card h-100 m-2" style="width: 21.5rem;" >
                             <a href="#" class="stretched-link" @click.prevent="productDetail(item.id)">
                                 <div class="control-img overflow-hidden ">
                                     <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 fw-bold">
                                         查看更多</button>
                                     <img :src="item.imageUrl" class="card-img-top favorite-img">
                                 </div>
-                                </a>
-                            
+                            </a>
                             <div class="card-body text-center">
                                 <span class="fa-solid text-end z-2 fa-heart fs-3" :class="{'favorite': isFavorite}" @click.stop="favoriteBtn(item)"></span>
                                 <h5 class="card-title ">{{ item.title }}</h5>

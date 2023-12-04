@@ -14,7 +14,7 @@
             <button class="btn btn-outline-secondary" @click="getOrder">搜尋</button>
         </div>
 
-        <div class="accordion accordion-flush w-50 mx-auto" id="accordionFlushExample" v-if="orders.id">
+        <div class="accordion accordion-flush w-75 mx-auto" id="accordionFlushExample" v-if="orders.id">
             <div class="accordion-item container">
                 <h2 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -24,7 +24,7 @@
                 <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                     <div class="row">
                         <div class="col">
-                            <table class="table container w-50 mt-3">
+                            <table class="table container w-75 mt-3">
                                 <tbody v-if="orders.user">
                                     <tr>
                                         <th>訂單編號</th>
@@ -114,5 +114,12 @@ export default {
         }
     }
 }
-
+.accordion{
+        @media (max-width: 768px) {
+            font-size: 12px;;
+        }
+        @media (max-width: 500px) {
+            font-size: 8px;;
+        }
+    }
 </style>

@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-12 col-md-6 ">
                     <div class="image" style="width: 100%; height: 100%;">
-                        <img src="@/assets/images/test.jpg" style=" max-height: 100%;max-width: 100%;height: 100%; object-fit: cover;">
+                        <img src="@/assets/images/test.jpg" style="width: 100%; max-height: 100%;max-width: 100%;height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>

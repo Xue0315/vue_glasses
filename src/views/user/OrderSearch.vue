@@ -66,6 +66,7 @@
             <ProductOnsale/>
         </div>
   </div>
+  <Section></Section>
   <Footer></Footer>
   <SocialMedia/>
 </template>
@@ -74,6 +75,7 @@
 import Footer from '@/components/Footer.vue' 
 import ProductOnsale from '@/components/ProductOnsale.vue'
 import SocialMedia from '@/components/SocialMedia.vue';
+import Section from '@/components/Section.vue';
 export default {
     data(){
         return {
@@ -93,7 +95,7 @@ export default {
             })
         },
     },
-    components:{ProductOnsale,Footer,SocialMedia},
+    components:{ProductOnsale,Footer,SocialMedia,Section},
     mounted(){
     }
 }

@@ -30,6 +30,6 @@ export default {
         bottom: 1%;
         right: 1%;
         border-radius: 50%;
-        background-color: rgba(0,0,0,.7);
+        background-color: rgba(0,0,0,.6);
     }
 </style>

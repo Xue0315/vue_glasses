@@ -1,5 +1,5 @@
 <template>
-  <div class="footer justify-content-center d-flex align-items-center flex-column w-100 mt-2">
+  <div class="footer justify-content-center d-flex align-items-center flex-column w-100">
     <span class="text-white">Copyright &copy; 2023 ZhongXun XUE</span>
     <span class="text-white">個人練習作品，非商業用途，素材來源：unsplash，參考資料來源：<a class="text-white" href="https://www.meganeichiba.com.tw/">JAPAN QUALITY</a>，<a class="text-white" href="https://www.pinkoi.com/">PINKOI</a></span>
   </div>

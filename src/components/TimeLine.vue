@@ -25,7 +25,7 @@ export default {
     top: 50px;
     .rounded-circle{
         background-color:#ccc;
-        padding: 1% 2%;
+        padding: 15px 20px;
         &.default{
             background-color: #ff4d4d;
             z-index: 2;
@@ -54,9 +54,9 @@ export default {
         &::after {
             content: '';
             position: absolute;
-            top: 25%;
-            transform: translateX(-110%);
-            width: 29%;
+            top: 30%;
+            transform: translateX(-108%);
+            width: 30%;
             height: 2px;
             background-color: #ccc;
             z-index: 0;

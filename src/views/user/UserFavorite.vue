@@ -8,30 +8,28 @@
     </div>  
     <div class="container">
         <div class="row">
-            <div class="col-12 d-flex flex-wrap justify-content-center">
-                <ul v-for="item in favorite" :key="item.id" class="list-unstyled ">
-                    <li>
-                        <div class="card h-100 m-2" style="width: 21.5rem;" >
-                            <a href="#" class="stretched-link" @click.prevent="productDetail(item.id)">
-                                <div class="control-img overflow-hidden ">
-                                    <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 fw-bold">
-                                        查看更多</button>
-                                    <img :src="item.imageUrl" class="card-img-top favorite-img">
-                                </div>
-                            </a>
-                            <div class="card-body text-center">
-                                <span class="fa-solid text-end z-2 fa-heart fs-3" :class="{'favorite': isFavorite}" @click.stop="favoriteBtn(item)"></span>
-                                <h5 class="card-title ">{{ item.title }}</h5>
-                                <p class="card-text ">NT${{ $filter.currency(item.price) }}</p>
-                                <button type="button" class="btn btn-primary text-light w-75 position-relative z-2"  @click="addCart(item.id)">
-                                    <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === item.id"></span>
-                                    <span class="visually-hidden" v-if="status.loadingItem === item.id">Loading...</span>加入購物車
-                                </button>
+            <ul class="col-12 d-flex flex-wrap justify-content-center">
+                <li v-for="item in favorite" :key="item.id" class="list-unstyled ">
+                    <div class="card h-100 m-2" style="width: 21.5rem;" >
+                        <a href="#" class="stretched-link" @click.prevent="productDetail(item.id)">
+                            <div class="control-img overflow-hidden ">
+                                <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 fw-bold">
+                                    查看更多</button>
+                                <img :src="item.imageUrl" class="card-img-top favorite-img">
                             </div>
+                        </a>
+                        <div class="card-body text-center">
+                            <span class="fa-solid text-end z-2 fa-heart fs-3" :class="{'favorite': isFavorite}" @click.stop="favoriteBtn(item)"></span>
+                            <h5 class="card-title ">{{ item.title }}</h5>
+                            <p class="card-text ">NT${{ $filter.currency(item.price) }}</p>
+                            <button type="button" class="btn btn-primary text-light w-75 position-relative z-2"  @click="addCart(item.id)">
+                                <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === item.id"></span>
+                                <span class="visually-hidden" v-if="status.loadingItem === item.id">Loading...</span>加入購物車
+                            </button>
                         </div>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="nothing text-center w-100 my-5 d-flex flex-column justify-content-center align-items-center" v-if="!favoriteNum">
             <img src="https://www.svgrepo.com//show/533045/cart-xmark.svg" alt="xmark" width="80" height="80">
@@ -42,6 +40,7 @@
             <ProductOnsale/>
         </div>
     </div>
+    <Section></Section>
     <Footer></Footer>
     <SocialMedia/>
 </div>
@@ -52,6 +51,7 @@
 import Footer from '@/components/Footer.vue'
 import ProductOnsale from '@/components/ProductOnsale.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
+import Section from '@/components/Section.vue'
 export default {
     data(){
         return {
@@ -105,7 +105,7 @@ export default {
     mounted(){
         this.getFavorite();
     },
-    components:{ProductOnsale,Footer,SocialMedia}
+    components:{ProductOnsale,Footer,SocialMedia,Section}
 }
 </script>
 

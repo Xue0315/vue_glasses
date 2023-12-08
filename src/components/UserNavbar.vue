@@ -10,13 +10,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <router-link to="/products" class="nav-link px-4 py-3" :class="{'active' : status === 'products'}" @click="navbarToggler">產品列表</router-link>
+                <li class="nav-item d-lg-none">
+                    <router-link to="/products" class="nav-link px-4 py-3" @click="navbarToggler">產品列表</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-lg-none">
                     <router-link to="/articles" class="nav-link px-4 py-3" @click="navbarToggler">最新消息</router-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-lg-none">
                     <router-link to="/ordersearch" class="nav-link px-4 py-3" @click="navbarToggler">訂單查詢</router-link>
                 </li>
                 <li class="d-block nav-item d-lg-none">
@@ -25,11 +25,19 @@
                 <li class="d-block nav-item d-lg-none">
                     <router-link to="/cart" class="nav-link px-4 py-3 d-flex justify-content-between" @click="navbarToggler">購物車<span v-if="cartNum">{{ cartNum }}</span></router-link>
                 </li>
-                <li class="d-block nav-item d-lg-none">
-                    <router-link to="/login" class="nav-link px-4 py-3" @click="navbarToggler">管理員登入</router-link>
+            </ul>
+            <ul class="navbar-nav iconimg">
+                <li class="nav-item ">
+                    <router-link to="/products" class="nav-link px-4 py-3">產品列表</router-link>
+                </li>
+                <li class="nav-item ">
+                    <router-link to="/articles" class="nav-link px-4 py-3" >最新消息</router-link>
+                </li>
+                <li class="nav-item ">
+                    <router-link to="/ordersearch" class="nav-link px-4 py-3" >訂單查詢</router-link>
                 </li>
             </ul>
-            <ul class="navbar-nav ms-auto iconimg">
+            <ul class="navbar-nav iconimg ms-auto">
                 <li class="nav-item">
                     <span class="position-absolute favorite text-white" v-if="favoriteNum" >{{ favoriteNum }}</span>
                     <router-link to="/favorite" class="nav-link px-4 py-3 position-relative"><i class="fa fa-heart fs-4" aria-hidden="true"></i></router-link>
@@ -38,9 +46,9 @@
                     <span class="position-absolute cart text-white" v-if="cartNum">{{ cartNum }}</span>
                     <router-link to="/cart" class="nav-link px-4 py-3"><i class="fa fa-shopping-cart fs-4" aria-hidden="true"></i></router-link>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <router-link to="/login" class="nav-link px-4 py-3"><i class="fa fa-users fs-4" aria-hidden="true"></i></router-link>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
@@ -134,15 +142,17 @@
         }
     }
     .favorite{
-        right: 170px;
-        background-color: #ff4d4d;
-        padding: 0px 5px 0px 5px;
-        border-radius: 50px;
-    }
-    .cart{
         right: 95px;
         background-color: #ff4d4d;
         padding: 0px 5px 0px 5px;
         border-radius: 50px;
+        z-index: 2;
+    }
+    .cart{
+        right: 20px;
+        background-color: #ff4d4d;
+        padding: 0px 5px 0px 5px;
+        border-radius: 50px;
+        z-index: 2;
     }
     </style>

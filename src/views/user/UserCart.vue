@@ -167,6 +167,7 @@
 </div>
 <ScrollTop/>
 <SocialMedia/>
+<Section></Section>
 <Footer></Footer>
     
 
@@ -178,6 +179,7 @@ import Footer from '@/components/Footer.vue'
 import ScrollTop from '@/components/ScrollTop.vue' 
 import TimeLine from '@/components/TimeLine.vue'
 import SocialMedia from '@/components/SocialMedia.vue';
+import Section from '@/components/Section.vue';
 export default {
     data(){
         return {
@@ -297,7 +299,7 @@ export default {
                 })
         }
     },
-    components:{TimeLine,Footer,ScrollTop,SocialMedia},
+    components:{TimeLine,Footer,ScrollTop,SocialMedia,Section},
     mounted(){
         this.getCart();
     },

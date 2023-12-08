@@ -1,7 +1,8 @@
 <template>
   <div class="homeBanner position-relative w-100 bg-light bg-opacity-25">
+        <h1 class="position-absolute w-100 d-flex justify-content-center align-items-center h-100 text-white z-1 fw-bold">XUE OPTICAL 老薛眼鏡館</h1>
         <div class="position-absolute h-100 w-100 d-flex align-items-center bg-dark bg-opacity-25">
-            <p class="text-center fw-bold mx-auto text-white">尊重每位客人的時間，享受配鏡過程的每一刻。</p>
+            <p class="text-center fw-bold mx-auto text-white">戴來一份亮麗精彩，帶出一片光明未來。</p>
         </div>
         <div class="readmore text-center w-100" v-if= "height < 10"  @click="gotoScroll()">
             <i class="fa fa-angle-double-down fs-1" aria-hidden="true"></i>
@@ -9,16 +10,17 @@
         </div>
   </div> 
   <div class="bg-light">
-    <div class="container">
-      <ProductOnsale  data-aos="fade-right"  data-aos-duration="2000"/>
-    </div>
-         
-      <div class="container recommend text-center bg-light" data-aos="fade-right" data-aos-duration="2000">
+    <Draw></Draw>
+    <div class="container recommend text-center bg-light" data-aos="fade-right" data-aos-duration="2000">
           <div class="title">
               <h1 class="fw-bold my-5">老薛為您推薦</h1>
           </div>
           <RecommendProduct/>
       </div>
+    <div class="container">
+      <ProductOnsale  data-aos="fade-right"  data-aos-duration="2000"/>
+    </div>
+      
       <CouponBanner :info="couponBanner" />
       <News/>
       <div class="problem container" data-aos="zoom-in" data-aos-duration="2000">
@@ -92,6 +94,7 @@
     </div>
       <SocialMedia></SocialMedia>
       <ScrollTop></ScrollTop>
+      <Section></Section>
     <Footer></Footer>
   </div>
 </template>
@@ -104,6 +107,9 @@ import RecommendProduct from '@/components/RecommendProduct.vue';
 import News from '@/components/News.vue'
 import CouponBanner from '@/components/CopuonBanner.vue';
 import SocialMedia from '@/components/SocialMedia.vue';
+import Section from '@/components/Section.vue';
+import Draw from '@/components/Draw.vue';
+
 
 export default {
     data(){
@@ -124,14 +130,14 @@ export default {
         this.height =  document.body.scrollTop || document.documentElement.scrollTop;
       },
       gotoScroll(){
-            document.body.scrollTop = 2200;
-            document.documentElement.scrollTop = 2280;
+            document.body.scrollTop = 1000;
+            document.documentElement.scrollTop = 800;
       }
     },
     mounted(){
       document.addEventListener('scroll',this.scroll)
     },
-    components:{CouponBanner,ProductOnsale,RecommendProduct,News,Footer,ScrollTop,SocialMedia}
+    components:{CouponBanner,ProductOnsale,RecommendProduct,News,Footer,ScrollTop,SocialMedia,Section,Draw}
 }
 </script>
 
@@ -145,13 +151,16 @@ export default {
         p{
           color:#55312b;
           width: 100%;
-          font-size: 25px;
+          font-size: 16px;
           white-space: nowrap;
           overflow: hidden;
-          animation: typing 4s steps(24);
+          animation: typing 8s steps(32);
           @media(max-width:576px){
-              font-size: 18px;;
+              font-size: 12px;;
           }
+        }
+        h1{
+          transform: translateY(-60px);
         }
     }   
     .readmore{

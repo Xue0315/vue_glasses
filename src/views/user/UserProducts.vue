@@ -25,9 +25,8 @@
                     </div>
                    
                 </div>
-                <div class="col-lg-9 d-flex product-list flex-wrap justify-content-center">
-                    <ul v-for="product in filterProducts" :key="product.id" class="list-unstyled">
-                        <li>
+                    <ul class="col-lg-9 d-flex product-list flex-wrap justify-content-center">
+                        <li v-for="product in filterProducts" :key="product.id" class="list-unstyled">
                             <div class="card h-100 m-1 " style="width: 19.5rem;">
                                 <a href="#" class="stretched-link " @click.prevent="productDetail(product.id)">
                                     <div class="card-img overflow-hidden">
@@ -52,12 +51,12 @@
                             </div>
                         </li>
                     </ul>
-                </div>
             </div>
         </div>
       </div>
       <ScrollTop/>
       <SocialMedia/>
+      <Section></Section>
       <Footer></Footer>
     </div>
 </template>
@@ -66,6 +65,7 @@
 import Footer from '@/components/Footer.vue'
 import ScrollTop from '@/components/ScrollTop.vue' 
 import SocialMedia from '@/components/SocialMedia.vue';
+import Section from '@/components/Section.vue';
 export default {
     data(){
         return {
@@ -140,7 +140,7 @@ export default {
             return this.products.filter(item=>item.category.match(this.category))
         }
     },
-    components:{Footer,ScrollTop,SocialMedia},
+    components:{Footer,ScrollTop,SocialMedia,Section},
     mounted(){
         this.getProducts();
         this.getFavorite();

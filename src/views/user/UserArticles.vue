@@ -22,6 +22,7 @@
       </div>
     </a>
   </div>
+  <Section></Section>
   <Footer></Footer>
   <SocialMedia/>
 </div>
@@ -30,6 +31,7 @@
 <script>
 import Footer from '@/components/Footer.vue'
 import SocialMedia from '@/components/SocialMedia.vue';
+import Section from '@/components/Section.vue';
 export default {
     data(){
       return {
@@ -51,7 +53,7 @@ export default {
         this.$router.push(`/articles/${id}`);
       }
     },
-    components:{Footer,SocialMedia},
+    components:{Footer,SocialMedia,Section},
     created(){
       this.getArticles();
     }

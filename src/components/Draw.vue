@@ -22,7 +22,7 @@
                 <div class="col-sm-12 col-md-6 d-flex align-items-center">
                     <div class="image" style="width: 100%;">
                         <img src="https://images.unsplash.com/photo-1614574762522-6ac2fbba2208?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        alt="矯正眼睛" style="max-height: 100%;max-width: 100%;height: auto;">
+                        alt="矯正眼睛" style="max-height: 100%;max-width: 100%;height: auto;" >
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -42,7 +42,7 @@
                     <div class="col-12 col-sm-6 col-md-6 ">
                         <div class="image overflow-hidden" style="width: 100%;">
                             <img :style="{backgroundImage:`url(${'https://images.unsplash.com/photo-1543984613-f55ca6a1ba35?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'})`}"
-                            style=" max-height: 100%;max-width: 100%;height: 220px; background-position: center; background-size: cover; background-repeat: no-repeat;" alt="">
+                            style=" max-height: 100%;max-width: 100%;height: 220px; background-position: center; background-size: cover; background-repeat: no-repeat;" alt="" @click="proceedPage">
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-6 px-2">
@@ -53,7 +53,7 @@
                             </div>
                             <div class="content">
                                 <p style="color: #5f5858;">大多是半自動或手工製作，其外觀和塑膠材質很像，板料質地較紮實且光澤，顏色多樣化且不退色。</p>
-                                <button class="btn btn-outline-info">選購去</button>
+                                <button class="btn btn-outline-info" @click="proceedPage">選購去</button>
                             </div>
                         </div>
                     </div>
@@ -65,21 +65,21 @@
                             </div>
                             <div class="content">
                                 <p style="color: #5f5858;">專為兒童設計的輕量材質眼鏡，優質彈性鏡架，一體成形舒適鼻托，不用擔心孩子在玩樂時因為碰撞而受傷。</p>
-                                <button class="btn btn-outline-info">選購去</button>
+                                <button class="btn btn-outline-info" @click="proceedPage">選購去</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-6">
                         <div class="image overflow-hidden product-image" >
                             <img :style="{backgroundImage:`url(${' https://plus.unsplash.com/premium_photo-1661288449344-0f5fd8c1e88b?auto=format&fit=crop&q=80&w=1942&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'})`}"
-                            style=" max-height: 100%;max-width: 100%;height: 220px; background-position: center; background-size: cover; background-repeat: no-repeat;" alt="" >
+                            style=" max-height: 100%;max-width: 100%;height: 220px; background-position: center; background-size: cover; background-repeat: no-repeat;" alt="" @click="proceedPage">
                         </div>
                     </div>
                 </div>
                 <div class="d-none col-sm-12 col-md-6 d-lg-flex">
                     <div class="image">
                         <img src="https://images.unsplash.com/photo-1599243439680-1af420953c23?q=80&w=2047&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                         style="height: 100%;background-position: center; background-size: cover; background-repeat: no-repeat;object-fit: cover;">
+                         style="width:100%;height: 100%;background-position: center; background-size: cover; background-repeat: no-repeat;object-fit: cover;">
                     </div>
                 </div>
         </div>
@@ -90,17 +90,20 @@
 
 <script>
 export default {
+    data(){
+        return{
 
+        }
+    },
+    methods:{
+        proceedPage(){
+            this.$router.push('/products')
+        },
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-    .image{
-        img{
-            width: 100%;
-            object-fit: cover;
-        }   
-    }
     .content{
         p{
             @media (max-width: 1200px) {
@@ -123,6 +126,9 @@ export default {
     }
     .newpost{
         .image{
+            &:hover{
+                cursor: pointer;
+            }
             img{
                 width: 100%;
                 height: 100%;

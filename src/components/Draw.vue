@@ -55,7 +55,7 @@
               </div>
               <div class="content">
                 <p style="color: #5f5858;">大多是半自動或手工製作，其外觀和塑膠材質很像，板料質地較紮實且光澤，顏色多樣化且不退色。</p>
-                <button class="btn btn-outline-info" @click="proceedPage">選購去</button>
+                <button type="button" class="btn btn-outline-info" @click="proceedPage">選購去</button>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@
               </div>
               <div class="content">
                 <p style="color: #5f5858;">專為兒童設計的輕量材質眼鏡，優質彈性鏡架，一體成形舒適鼻托，不用擔心孩子在玩樂時因為碰撞而受傷。</p>
-                <button class="btn btn-outline-info" @click="proceedPage">選購去</button>
+                <button type="button" class="btn btn-outline-info" @click="proceedPage">選購去</button>
               </div>
             </div>
           </div>
@@ -96,7 +96,6 @@ export default {
   name:'TheDraw',
   data(){
     return{
-
     }
   },
   methods:{

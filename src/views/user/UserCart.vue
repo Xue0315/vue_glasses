@@ -106,7 +106,7 @@
           <textarea type="text" id="message" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
         </div>
         <div class="text-end mt-3">
-          <button class="btn btn-info" @click.stop="addOrder">送出訂單</button>
+          <button type="button" class="btn btn-info" @click.stop="addOrder">送出訂單</button>
         </div>
       </Form>
     </div>
@@ -137,9 +137,9 @@
               <td class="d-none d-lg-table-cell text-center "><span>${{ $filter.currency(cart.product.price) }}</span></td>
               <td>
                 <div class="d-flex align-items-center">
-                  <button class="btn " @click="changeAmount(cart,-1)"><i class="fa-solid fa-minus"></i></button>
+                  <button type="button" class="btn" @click="changeAmount(cart,-1)"><i class="fa-solid fa-minus"></i></button>
                   <span>{{ cart.qty }}</span>
-                  <button class="btn " @click="changeAmount(cart,1)"><i class="fa-solid fa-plus"></i></button>
+                  <button type="button" class="btn" @click="changeAmount(cart,1)"><i class="fa-solid fa-plus"></i></button>
                 </div>
               </td>
               <td class="text-end d-none d-sm-table-cell"  v-if="!cart.coupon">
@@ -162,7 +162,7 @@
         </table>
         <div class="d-flex">
           <div class="clean-all">
-            <button class="btn btn-outline-danger d-none d-sm-block" @click="deleteAllCart">清空購物車</button>
+            <button type="button" class="btn btn-outline-danger d-none d-sm-block" @click="deleteAllCart">清空購物車</button>
           </div>
           <div class="input-group mb-3 ms-auto">
             <input type="text" class="form-control ms-auto" placeholder="請輸入您的優惠碼" v-model="code" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -177,7 +177,7 @@
     <div class="nothing text-center w-100 my-5 d-flex flex-column justify-content-center align-items-center" v-if="!cartNum">
       <img src="https://www.svgrepo.com//show/533045/cart-xmark.svg" alt="xmark" width="80" height="80">
       <p class="fw-bold fs-2 text-info ">購物車無商品</p>
-      <button class="btn btn-outline-info fw-bold my-3 p-2 fs-4" @click="proceedPage">前往商品頁面</button>
+      <button type="button" class="btn btn-outline-info fw-bold my-3 p-2 fs-4" @click="proceedPage">前往商品頁面</button>
     </div>
   </div>
 </div>

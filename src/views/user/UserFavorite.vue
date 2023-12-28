@@ -33,7 +33,7 @@
       <div class="nothing text-center w-100 my-5 d-flex flex-column justify-content-center align-items-center" v-if="!favoriteNum">
         <img src="https://www.svgrepo.com//show/533045/cart-xmark.svg" alt="xmark" width="80" height="80">
         <p class="fw-bold fs-2 text-info  ">目前沒有收藏商品</p>
-        <button class="btn btn-outline-info fw-bold my-3 p-2 fs-4" @click="proceedPage">前往商品頁面</button>
+        <button type="button" class="btn btn-outline-info fw-bold my-3 p-2 fs-4" @click="proceedPage">前往商品頁面</button>
       </div>
       <div class="saleTitle text-center" data-aos="fade-right" data-aos-duration="2000">
         <ProductOnsale/>

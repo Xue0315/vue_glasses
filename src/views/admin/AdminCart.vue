@@ -138,7 +138,7 @@
         <textarea type="text" id="message" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
       </div>
       <div class="text-end mt-3">
-        <button class="btn btn-danger">送出訂單</button>
+        <button type="button" class="btn btn-danger">送出訂單</button>
       </div>
     </Form>
   </div>

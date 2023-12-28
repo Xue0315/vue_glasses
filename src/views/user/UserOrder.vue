@@ -89,7 +89,7 @@
       <p>商品預計於三個工作天內寄送（不含週休及國定例假日）再請留意簡訊通知</p>
       <p >訂單建立於<strong >{{$filter.date(order.create_at)}}</strong></p>
     </div>
-    <button class="btn btn-outline-primary mt-3" @click="proceedPage">繼續購物</button>
+    <button type="button" class="btn btn-outline-primary mt-3" @click="proceedPage">繼續購物</button>
   </div>
 <Footer></Footer>
 

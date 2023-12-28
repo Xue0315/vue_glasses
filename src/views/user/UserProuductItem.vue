@@ -39,9 +39,9 @@
             <div class="row">
               <div class="col-5">
                 <div class="control">
-                  <button class="btn ms-auto"><i class="fa-solid fa-minus" @click="changeAmount(-1)"></i></button>
+                  <button type="button" class="btn ms-auto"><i class="fa-solid fa-minus" @click="changeAmount(-1)"></i></button>
                   <span class="mx-3">{{ qty }}</span>
-                  <button class="btn"><i class="fa-solid fa-plus" @click="changeAmount(1)"></i></button>
+                  <button type="button" class="btn"><i class="fa-solid fa-plus" @click="changeAmount(1)"></i></button>
                 </div>
               </div>
               <div class="col-7">

@@ -58,7 +58,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/articles?page=${page}`
       this.$http.get(api).then(res=>{
         this.articles = res.data.articles;
-        console.log(res);
+      })
+      .catch(()=>{
+
       })
     },
     articleDetail(id){

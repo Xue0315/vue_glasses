@@ -100,8 +100,10 @@ export default {
         if(res.data.success){
         this.tempArticle.imageUrl = res.data.imageUrl;
         document.getElementById(select).value = '';
-        console.log(res.data);
         }
+      })
+      .catch(()=>{
+
       })
     }
   },

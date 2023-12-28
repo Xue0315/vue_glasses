@@ -96,6 +96,9 @@ export default {
           this.productImg = res.data.product.imageUrl;
         }
       })
+      .catch(()=>{
+
+      })
     },
     addCart(){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
@@ -109,6 +112,9 @@ export default {
         this.$pushMessage(res,'加入購物車');
         this.emitter.emit('update-cart');
         this.status.loadingItem = '';
+      })
+      .catch(()=>{
+        
       })
     },
     getFavorite () {

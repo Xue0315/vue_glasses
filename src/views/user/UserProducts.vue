@@ -18,15 +18,15 @@
                   <i class="fa fa-bolt px-2" aria-hidden="true"></i>所有產品</a>
                 </li>
                 <li>
-                  <a href="#" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '一般眼鏡'" :class="{'active':category === '一般眼鏡'}">
+                  <a href="" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '一般眼鏡'" :class="{'active':category === '一般眼鏡'}">
                   <i class="fa fa-tint px-2" aria-hidden="true"></i>一般眼鏡</a>
                 </li>
                 <li>
-                  <a href="#" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '兒童眼鏡'" :class="{'active':category === '兒童眼鏡'}">
+                  <a href="" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '兒童眼鏡'" :class="{'active':category === '兒童眼鏡'}">
                   <i class="fa-solid fa-child-reaching px-2"></i>兒童眼鏡</a>
                 </li>
                 <li>
-                  <a href="#" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '太陽眼鏡'" :class="{'active':category === '太陽眼鏡'}">
+                  <a href="" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '太陽眼鏡'" :class="{'active':category === '太陽眼鏡'}">
                   <i class="fa fa-fire px-2" aria-hidden="true"></i>太陽眼鏡</a>
                 </li>
               </ul>
@@ -93,6 +93,9 @@ export default {
           this.products = res.data.products;
           this.isLoading = false;
         })
+        .catch(()=>{
+
+        })
         this.emitter.emit('update-cart');
       },
       getFavorite () {
@@ -113,6 +116,9 @@ export default {
           this.$pushMessage(res,'加入購物車');
           this.emitter.emit('update-cart');
           this.status.loadingItem = '';
+        })
+        .catch(()=>{
+
         })
       },
       productDetail(id){

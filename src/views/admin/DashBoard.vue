@@ -27,6 +27,9 @@
           this.$router.push('/')
         }
       })
+      .catch(()=>{
+
+      })
     },
     components:{AdminNavbar,ToastMessage},
   }

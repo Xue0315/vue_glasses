@@ -69,6 +69,9 @@ export default {
         this.pages = res.data.pagination;
         this.isLoading = false;
       })
+      .catch(()=>{
+
+      })
     },
     openModal(item){
       this.tempOrder = {...item}
@@ -86,6 +89,9 @@ export default {
       this.$http.post(api).then(res=>{
         this.$pushMessage(res,'付款')
       })
+      .catch(()=>{
+
+      })
       this.isLoading = false;
     },
     delOrder(id){
@@ -95,7 +101,10 @@ export default {
       this.$http.delete(api).then(()=>{
             this.getOrders();
             OrderDelModal.hideModal();
-        })
+      })
+      .catch(()=>{
+
+      })
       this.isLoading = false;
     }
   },

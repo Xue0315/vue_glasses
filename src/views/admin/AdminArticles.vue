@@ -55,6 +55,9 @@ export default {
       this.$http.get(api).then(res=>{
         this.articles = res.data.articles;
       })
+      .catch(()=>{
+
+      })
     },
     openArticlesModal(isNew,item){
       const articleModal = this.$refs.articlemodal;
@@ -91,6 +94,9 @@ export default {
             title:'更新失敗'
           })
         }
+      })
+      .catch(()=>{
+
       })
     },
     deleteArticle(id){

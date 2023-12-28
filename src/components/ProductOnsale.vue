@@ -85,6 +85,9 @@ export default {
           this.emitter.emit('update-cart')
           this.status.loadingItem = '';
       })
+      .catch(()=>{
+
+      })
     },
     productDetail(id){
       this.$router.push(`/products/${id}`);

@@ -81,7 +81,9 @@ export default {
         this.tempArticle = res.data.article;
         this.articleImage = res.data.article.imageUrl;
         this.isLoading = false;
-        console.log(res);
+      })
+      .catch(()=>{
+
       })
     }
   },

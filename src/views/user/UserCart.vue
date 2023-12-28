@@ -227,6 +227,9 @@ export default {
         this.cartNum = res.data.data.carts.length;
         this.isLoading = false;
       })
+      .catch(()=>{
+
+      })
     },
     updateCart(item){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
@@ -234,8 +237,7 @@ export default {
         product_id:item.id,
         qty:item.qty
       }
-      this.$http.put(api,{data:product}).then(res=>{
-        console.log(res);
+      this.$http.put(api,{data:product}).then(()=>{
         this.getCart();
       })
     },
@@ -247,12 +249,14 @@ export default {
         this.$pushMessage(res,'刪除產品');
         this.emitter.emit('update-cart');
       })
+      .catch(()=>{
+
+      })
     },
     deleteAllCart(){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`;
       this.$http.delete(api).then(res=>{
         if(res.success){
-          console.log(res);
           this.getCart();
           this.$pushMessage(res,'全部產品刪除');
         }else{
@@ -260,6 +264,9 @@ export default {
           this.$pushMessage(res,'刪除');
         }
         this.emitter.emit('update-cart');
+      })
+      .catch(()=>{
+
       })
     },
     proceedPage(){
@@ -291,6 +298,9 @@ export default {
           this.$pushMessage(res,'套用優惠券')
         }
       })
+      .catch(()=>{
+
+      })
     },
     addOrder(){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
@@ -305,6 +315,9 @@ export default {
         }else{
           this.isLoading = false;
         }
+      })
+      .catch(()=>{
+
       })
     }
   },

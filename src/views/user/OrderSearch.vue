@@ -90,7 +90,9 @@ export default {
       this.$http.get(api).then(res=>{
         this.orders = res.data.order;
         this.isLoading = false;
-        console.log(res.data);
+      })
+      .catch(()=>{
+
       })
     },
   },

@@ -173,6 +173,9 @@ export default {
       this.$http.get(api).then(res=>{
         this.products = res.data.products;
       })
+      .catch(()=>{
+
+      })
     },
     productDetail(id){
       this.$router.push(`/user/product/${id}`)
@@ -188,6 +191,9 @@ export default {
         this.getCart();
         this.$pushMessage(res,'加入購物車');
       })
+      .catch(()=>{
+
+      })
     },
     getCart(){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
@@ -195,18 +201,22 @@ export default {
       this.$http.get(api).then(res=>{
         if(res.data.success){
           this.cart = res.data.data
-          console.log(res);   
           this.isLoading = false;
         }
+      })
+      .catch(()=>{
+
       })
     },
     deleteCart(id){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`;
       this.status.loadingItem = id;
       this.$http.delete(api).then(res=>{
-        console.log(res);
         this.getCart();
         this.$pushMessage(res,'刪除');
+      })
+      .catch(()=>{
+
       })
     },
     updateCart(item){
@@ -215,9 +225,11 @@ export default {
         product_id:item.id,
         qty:item.qty
       }
-      this.$http.put(api,{data:product}).then(res=>{
+      this.$http.put(api,{data:product}).then(()=>{
         this.getCart();
-        console.log(res);
+      })
+      .catch(()=>{
+
       })
     },
     checkCode(){
@@ -226,19 +238,23 @@ export default {
         code:this.code
       }
       this.$http.post(api,{data:coupon_code}).then(res=>{
-        console.log(res);
         this.$pushMessage(res,'套用優惠券')
         this.getCart();
         this.code = '';
+      })
+      .catch(()=>{
+
       })
     },
     addOrder(){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
       const order = this.form
       this.$http.post(api,{data:order}).then(res=>{
-        console.log(res);
         this.tempOrderId = res.data.orderId;
         this.$router.push(`/user/checkout/${this.tempOrderId}`)
+      })
+      .catch(()=>{
+
       })
     },
   },

@@ -17,7 +17,7 @@
               <label for="imgUrl">或上傳圖片</label>
               <input type="file" id="imgUrl" class="form-control" @change="uploadFile" ref="fileInput"  >
             </div>
-            <img class="img-fluid" alt="" :src="tempProduct.imageUrl">
+            <img class="img-fluid" alt="上傳的照片" :src="tempProduct.imageUrl">
           </div>
           <div class="col-md-8">
               <div class="mb-3">
@@ -108,8 +108,10 @@ export default {
         if(res.data.success){
         this.tempProduct.imageUrl = res.data.imageUrl;
         document.getElementById(select).value = '';
-        console.log(res.data);
         }
+      })
+      .catch(()=>{
+
       })
     }
   }

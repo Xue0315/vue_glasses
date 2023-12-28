@@ -85,6 +85,9 @@ export default {
         this.pages = res.data.pagination;
         this.isLoading = false;
       })
+      .catch(()=>{
+
+      })
     },
     updateCoupon(item){
       let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`;
@@ -107,6 +110,9 @@ export default {
           this.getCoupons();
         }
       }) 
+      .catch(()=>{
+
+      })
     },
     deleteCoupon(id){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${id}`;

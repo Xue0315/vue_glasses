@@ -48,6 +48,9 @@ export default {
         this.Articles = res.data.articles;
         this.isLoading = false;
       })
+      .catch(()=>{
+
+      })
     },
     articleDetail(id){
       this.$router.push(`/articles/${id}`);

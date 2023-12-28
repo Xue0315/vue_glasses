@@ -65,6 +65,9 @@ export default {
         this.pagination = res.data.pagination;
         this.isLoading = false;
       })
+      .catch(()=>{
+
+      })
     },
     openProductModal(isNew,item){
       const productModal = this.$refs.productmodal;
@@ -107,6 +110,9 @@ export default {
         }
         this.isLoading = false;
       })
+      .catch(()=>{
+
+      })
     },
     deleteProduct(id){
       const DelModal = this.$refs.delmodal;
@@ -117,6 +123,9 @@ export default {
           DelModal.hideModal();
           this.getProducts();
         }
+      })
+      .catch(()=>{
+
       })
       this.isLoading = false;
     }

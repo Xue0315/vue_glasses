@@ -85,9 +85,9 @@
     <i class="fa-solid fa-circle-check fa-2xl fs-1 text-primary mb-5"></i>
     <h4 class="mb-5 fw-bold">付款成功</h4>
     <p>感謝您的訂購</p>
-    <div class="">
+    <div>
       <p>商品預計於三個工作天內寄送（不含週休及國定例假日）再請留意簡訊通知</p>
-      <p >訂單建立於<strong >{{$filter.date(order.create_at)}}</strong></p>
+      <p>訂單建立於<strong>{{$filter.date(order.create_at)}}</strong></p>
     </div>
     <button type="button" class="btn btn-outline-primary mt-3" @click="proceedPage">繼續購物</button>
   </div>
@@ -113,10 +113,11 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.id}`;
       this.isLoading = true;
       this.$http.get(api).then(res=>{
-        console.log(res);
         this.order = res.data.order;
         this.isLoading = false;
-        console.log(res);
+      })
+      .catch(()=>{
+
       })
     },
     pay(){
@@ -125,9 +126,11 @@ export default {
       this.$http.post(api).then(res=>{
         if(res.data.success){
           this.getOrder();
-          console.log(res);
           this.isLoading = false;
         }
+      })
+      .catch(()=>{
+
       })
     },
     proceedPage(){

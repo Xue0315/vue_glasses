@@ -11,33 +11,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .ig-btn{
-        bottom: 42%;
-        right: -17%;
-        width: 20%;
-        img{
-            width: 10%;
-        }
-    }
-    .fb-btn{
-        bottom: 48%;
-        right: -17%;
-        width: 20%;
-        img{
-            width: 10%;
-        }
-    }
-    .gh-btn{
-        bottom: 54%;
-        right: -17%;
-        width: 20%;
-        img{
-            width: 10%;
-        }
-    }
-    @media (max-width:1200px) {
-        .gh-btn,.fb-btn,.ig-btn{
-            display: none;
-        }
-    }
+.ig-btn{
+  bottom: 42%;
+  right: -17%;
+  width: 20%;
+  img{
+    width: 10%;
+  }
+}
+.fb-btn{
+  bottom: 48%;
+  right: -17%;
+  width: 20%;
+  img{
+    width: 10%;
+  }
+}
+.gh-btn{
+  bottom: 54%;
+  right: -17%;
+  width: 20%;
+  img{
+    width: 10%;
+  }
+}
+@media (max-width:1200px) {
+  .gh-btn,.fb-btn,.ig-btn{
+    display: none;
+  }
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="modal">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="modal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
@@ -22,17 +22,17 @@
   </template>
   
   <script>
-  import MixinModal from '../methods/MixinModal'
+  import MixinModal from '../methods/MixinModal';
   export default {
-      data(){
-        return{
-          modal:{}
-        }
-      },
-      props:{
-          product:{},
-      },
-      mixins:[MixinModal]
+    data(){
+      return{
+        modal:{}
+      }
+    },
+    props:{
+        product:{},
+    },
+    mixins:[MixinModal]
   }
   </script>
   

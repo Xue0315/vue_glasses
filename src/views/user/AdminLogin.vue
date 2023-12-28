@@ -1,5 +1,5 @@
 <template>
-<Loading :active="isLoading"></Loading>
+<Loading :active="isLoading"/>
 <div class="bg-light vh-100">
   <div class="container h-100">
     <form class="row justify-content-center h-100 align-items-center" @submit.prevent="signin">

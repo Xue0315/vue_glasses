@@ -19,8 +19,8 @@ defineRule('required', required)
 defineRule('email', email)
 defineRule('min', min)
 configure({
-    generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
-    validateOnInput: true, // 當輸入任何內容直接進行驗證
+  generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
+  validateOnInput: true, // 當輸入任何內容直接進行驗證
 });
 setLocale('zh_TW');
 
@@ -29,8 +29,8 @@ router.afterEach(() => {
 });
 const app = createApp(App)
 
-app.component('Form',Form)
-app.component('Field',Field)
+app.component('TheForm',Form)
+app.component('TheField',Field)
 app.component('ErrorMessage',ErrorMessage)
 app.component('PageLoading',PageLoading)
 app.config.globalProperties.$filter = {

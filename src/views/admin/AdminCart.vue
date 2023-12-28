@@ -232,15 +232,15 @@ export default {
         this.code = '';
       })
     },
-  addOrder(){
-    const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
-    const order = this.form
-    this.$http.post(api,{data:order}).then(res=>{
-      console.log(res);
-      this.tempOrderId = res.data.orderId;
-      this.$router.push(`/user/checkout/${this.tempOrderId}`)
-    })
-  },
+    addOrder(){
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
+      const order = this.form
+      this.$http.post(api,{data:order}).then(res=>{
+        console.log(res);
+        this.tempOrderId = res.data.orderId;
+        this.$router.push(`/user/checkout/${this.tempOrderId}`)
+      })
+    },
   },
   created(){
     this.getProducts();

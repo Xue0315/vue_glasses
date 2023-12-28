@@ -34,7 +34,7 @@
       </table>
     </div>
   </div>
-<ArticlesModal :article="tempArticle" ref="articlemodal" @update-article="updateArticle"></ArticlesModal>
+<ArticlesModal :article="tempArticle" ref="articlemodal" @update-article="updateArticle"/>
 </template>
 
 <script>
@@ -53,7 +53,6 @@ export default {
     getArticles(page=1){
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/articles?page=${page}`;
       this.$http.get(api).then(res=>{
-        console.log(res.data);
         this.articles = res.data.articles;
       })
     },
@@ -98,9 +97,8 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/article/${id}`;
       const articleModal = this.$refs.articlemodal;
       articleModal.hideModal();
-      this.$http.delete(api).then(res=>{
+      this.$http.delete(api).then(()=>{
         this.getArticles();
-        console.log(res);
       })
     },
   },

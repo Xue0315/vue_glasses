@@ -17,15 +17,15 @@
           </div>
           <div class="mb-3">
             <label for="due_date">到期日</label>
-            <input type="date" id="due_date" class="form-control"  v-model="due_date"> 
+            <input type="date" id="due_date" class="form-control"  v-model="due_date">
           </div>
           <div class="mb-3">
             <label for="price">折扣百分比</label>
             <input type="number" id="price" class="form-control" placeholder="請輸入折扣百分比" v-model="tempCoupon.percent">
           </div>
           <div class="mb-3">
-            <input type="checkbox" class="form-check-input" id="is_enabled" v-model="tempCoupon.is_enabled" :true-value="1" :false-value="0"> 
-            <label class="form-check-label" for="is_enabled"> 
+            <input type="checkbox" class="form-check-input" id="is_enabled" v-model="tempCoupon.is_enabled" :true-value="1" :false-value="0">
+            <label class="form-check-label" for="is_enabled">
                 是否啟用
             </label>
           </div>
@@ -38,31 +38,31 @@
     </div>
   </div>
   </template>
-  
+
 <script>
-import MixinModal from '@/methods/MixinModal';
+import MixinModal from '@/methods/MixinModal'
 export default {
-  data(){
+  data () {
     return {
-      modal:{},
-      tempCoupon:{},
-      due_date:''
+      modal: {},
+      tempCoupon: {},
+      due_date: ''
     }
   },
-  props:{
-    coupon:{}
+  props: {
+    coupon: {}
   },
   watch: {
-    coupon() {
-      this.tempCoupon = this.coupon;
+    coupon () {
+      this.tempCoupon = this.coupon
       const dateAndTime = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T');
-      [this.due_date] = dateAndTime;
+      [this.due_date] = dateAndTime
     },
-    due_date() {
-      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000);
+    due_date () {
+      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000)
     }
   },
-  mixins:[MixinModal]
+  mixins: [MixinModal]
 }
 </script>
 

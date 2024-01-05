@@ -28,16 +28,13 @@
           </li>
         </ol>
         <li>
-          <p>舊會員推薦之新顧客(成功完成配鏡)，本公司將統計前一個月份推薦成功的交易筆數與總金額後再進行贈點，並於隔月5日前計入舊會員(推薦人)帳戶。</p>
+          <p>舊會員推薦新顧客，統計前一個月份推薦的交易筆數與總金額後再進行贈點。</p>
         </li>
         <li>
-          <p>家族戶於112/1/1-12/31期間累計配鏡金額每滿30,000元，即可獲贈『配鏡購物金500元』抵用券乙張。每滿60,000元，即可獲贈『配鏡購物金500元』抵用券兩張，以此類推。每帳戶之回饋上限為1500元。</p>
+          <p>本券預計於113/3/15前寄至家族戶之戶長，請依現金抵用券使用說明。</p>
         </li>
         <li>
-          <p>本券預計於113/3/15前寄至家族戶之戶長(推薦人代表)，詳細內容及注意事項請依現金抵用券使用說明。</p>
-        </li>
-        <li>
-          <p>本券不得兌換現金、找零、或與其他優惠合併使用。本券僅限於全台老薛眼鏡館門市配鏡消費使用，含鏡架、太陽眼鏡、鏡片商品。</p>
+          <p>本券不得兌換現金、找零，僅限於全台老薛眼鏡館門市配鏡消費使用。</p>
         </li>
         <li>
           <p>配鏡消費後欲使用本券進行折抵時，一副不限一張，可多張數合併使用。</p>
@@ -46,10 +43,10 @@
           <p>老薛眼鏡館保留隨時修改、變更、終止本活動與替換其他等值贈品之權利。</p>
         </li>
         <li>
-          <p>老薛眼鏡館公司員工恕不得參加此活動。</p>
+          <p>對於相關內容有任何疑問，請致電老薛眼鏡館服務專線0800-321-654。</p>
         </li>
         <li>
-          <p>對於相關內容有任何疑問，請致電老薛眼鏡館服務專線0800-321-654。</p>
+          <p>老薛眼鏡館公司員工恕不得參加此活動。</p>
         </li>
       </ul>
     </div>
@@ -62,35 +59,35 @@
 
 <script>
 import Footer from '@/components/Footer.vue'
-import SocialMedia from '@/components/SocialMedia.vue';
-import Section from '@/components/Section.vue';
+import SocialMedia from '@/components/SocialMedia.vue'
+import Section from '@/components/Section.vue'
 export default {
-  data(){
-    return{
-      tempArticle:{},
-      articleImage:'',
-      isLoading:false,
-      id:'',
+  data () {
+    return {
+      tempArticle: {},
+      articleImage: '',
+      isLoading: false,
+      id: ''
     }
   },
-  methods:{
-    getArticle(){
+  methods: {
+    getArticle () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/article/${this.id}`
-      this.isLoading = true;
-      this.$http.get(api).then(res=>{
-        this.tempArticle = res.data.article;
-        this.articleImage = res.data.article.imageUrl;
-        this.isLoading = false;
+      this.isLoading = true
+      this.$http.get(api).then(res => {
+        this.tempArticle = res.data.article
+        this.articleImage = res.data.article.imageUrl
+        this.isLoading = false
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     }
   },
-  components:{Footer,SocialMedia,Section},
-  mounted(){
-    this.id = this.$route.params.articleId;
-    this.getArticle();
+  components: { Footer, SocialMedia, Section },
+  mounted () {
+    this.id = this.$route.params.articleId
+    this.getArticle()
   }
 }
 </script>

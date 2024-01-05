@@ -14,14 +14,14 @@
           </div>
           <div class="col-sm-12 col-md-6">
             <div class="image" style="width: 100%; height: 100%;">
-              <img src="@/assets/images/test.jpg" alt="檢查視力" style="width: 100%; max-height: 100%;max-width: 100%;height: 100%; object-fit: cover;">
+              <img src="https://raw.githubusercontent.com/xouoe/Pic/main/z-home-2.jpg" alt="檢查視力" style="width: 100%; max-height: 100%;max-width: 100%;height: 100%; object-fit: cover;">
             </div>
           </div>
         </div>
         <div class="row my-5">
           <div class="col-sm-12 col-md-6 d-flex align-items-center">
             <div class="image" style="width: 100%;">
-              <img src="https://images.unsplash.com/photo-1614574762522-6ac2fbba2208?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+              <img src="https://raw.githubusercontent.com/xouoe/Pic/main/z-home-3.jpg"
               alt="矯正眼睛" style="max-height: 100%;max-width: 100%;height: auto;" >
             </div>
           </div>
@@ -41,11 +41,11 @@
           <div class="col-sm-12 col-lg-6 d-flex flex-wrap newpost">
             <div class="col-12 col-sm-6 col-md-6 ">
               <div class="image overflow-hidden" style="width: 100%;">
-                <img :style="{backgroundImage:`url(${'https://images.unsplash.com/photo-1543984613-f55ca6a1ba35?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'})`}"
-                style=" max-height: 100%;max-width: 100%;height: 220px; background-position: center; background-size: cover; background-repeat: no-repeat;" alt="" @click="proceedPage">
+                <img :style="{backgroundImage:`url(${'https://raw.githubusercontent.com/xouoe/Pic/main/home-glasses.jpg'})`}"
+                style=" max-height: 100%;max-width: 100%;height: 220px; background-position: center; background-size: cover; background-repeat: no-repeat;" @click="proceedPage">
               </div>
             </div>
-          <div class="col-12 col-sm-6 col-md-6 px-2">
+          <div class="col-12 col-sm-6 col-md-6 px-2 py-3">
             <div class="tag newtag">
               <span class="px-1 fw-bold">全新推出</span>
             </div>
@@ -59,7 +59,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-md-6 px-2 product-detail">
+          <div class="col-12 col-sm-6 col-md-6 px-2 py-3 product-detail">
             <div class="tag py-1">
               <span class="px-1 fw-bold">高評價</span>
             </div>
@@ -75,15 +75,15 @@
           </div>
           <div class="col-12 col-sm-6 col-md-6">
             <div class="image overflow-hidden product-image" >
-              <img :style="{backgroundImage:`url(${' https://plus.unsplash.com/premium_photo-1661288449344-0f5fd8c1e88b?auto=format&fit=crop&q=80&w=1942&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'})`}"
-              style=" max-height: 100%;max-width: 100%;height: 220px; background-position: center; background-size: cover; background-repeat: no-repeat;" alt="" @click="proceedPage">
+              <img :style="{backgroundImage:`url(${'https://raw.githubusercontent.com/xouoe/Pic/main/kid-glasses-3.jpg'})`}"
+              style=" max-height: 100%;max-width: 100%;height: 220px; background-position: center; background-size: cover; background-repeat: no-repeat;" @click="proceedPage" >
             </div>
           </div>
         </div>
         <div class="d-none col-sm-12 col-md-6 d-lg-flex">
           <div class="image">
-            <img src="https://images.unsplash.com/photo-1599243439680-1af420953c23?q=80&w=2047&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-            style="width:100%;height: 100%;background-position: center; background-size: cover; background-repeat: no-repeat;object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/xouoe/Pic/main/z-home-1.jpg"
+            style="width:100%;height: 100%;background-position: center; background-size: cover; background-repeat: no-repeat;object-fit: cover;" alt="眼鏡插圖">
           </div>
         </div>
       </div>
@@ -93,15 +93,15 @@
 
 <script>
 export default {
-  name:'TheDraw',
-  data(){
-    return{
+  name: 'TheDraw',
+  data () {
+    return {
     }
   },
-  methods:{
-    proceedPage(){
+  methods: {
+    proceedPage () {
       this.$router.push('/products')
-    },
+    }
   }
 }
 </script>
@@ -139,7 +139,7 @@ export default {
       &:hover{
         transform: scale(1.1);
         transition: .4s;
-      } 
+      }
     }
   }
   .product{

@@ -1,5 +1,5 @@
 <template>
- <div class="row product-list justify-content-center">
+ <div class="row product-list justify-content-center py-5">
   <h1 class="my-5 fw-bold text-center w-100">促銷商品</h1>
     <div class="col-lg-12 product d-flex flex-wrap justify-content-center">
       <template v-for="product in products" :key="product.id">
@@ -9,8 +9,8 @@
               <button type="button" class="btn bg-dark bg-opacity-25 position-absolute start-0 w-100 text-white fs-3 fw-bold">查看更多</button>
               <div style=" height: 200px ;background-size: cover; background-repeat: no-repeat; background-position: center;"
               :style="{backgroundImage:`url(${product.imageUrl})`}" class="product-img"></div>
-              <span class="discount position-absolute d-flex justify-content-center align-items-center text-white fw-bold" 
-              v-if="product.price !== product.origin_price"> {{((1-(product.price/product.origin_price).toFixed(2)).toFixed(2))*100}}%OFF</span>
+              <span class="discount position-absolute d-flex justify-content-center align-items-center text-white fw-bold"
+              v-if="product.price !== product.origin_price"> {{ ((1-(product.price/product.origin_price).toFixed(2)).toFixed(2))*100 }}%OFF</span>
             </a>
           </div>
           <div class="card-body text-center">
@@ -19,7 +19,7 @@
               <div class="card-text fw-bold"><h5 class="mx-2">NT${{ $filter.currency(product.price) }}</h5></div>
               <del class="card-text fw-bold"><small >NT${{ $filter.currency(product.origin_price) }}</small></del>
             </div>
-            <button type="button" class="btn btn-primary text-light w-75 position-relative z-2"  @click="addCart(product.id)">
+            <button type="button" class="btn btn-primary text-white w-75 position-relative z-2"  @click="addCart(product.id)">
               <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === product.id"></span>
               <span class="visually-hidden" v-if="status.loadingItem === product.id">Loading...</span>加入購物車
             </button>
@@ -32,66 +32,66 @@
 
 <script>
 export default {
-  data(){
+  data () {
     return {
-      products:[
+      products: [
         {
-          title:'光子可換鏡片式太陽眼鏡',
-          imageUrl:'https://images.unsplash.com/photo-1594528866208-faefdb1b2e42?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          price:3650,
-          origin_price:4000,
-          id:'-NhVQcI9PH4V7yacTg7l'
+          title: '光子可換鏡片式太陽眼鏡',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/colpp61109/1704269247008.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=pz1J7PeIRvS9JPhyJcl%2BSmkBHAlZyYyEsmQ5HDrfJZACWY80WNQSASpWXA2Ovv0MWSKKk8fUkFggowoGY4WBla54eYxyyW1L8Vq5HkQ0j5q9in7llEskyw1yoMXZv18XyVPZQpAbzpX9T2KETLnos8njV%2BJoEBfb0I9EU1IeMqhl3s%2B%2F6yaShJpq4vSsw02VtwAD5tbukCZSrQPRMTvhVVP8YbZHyH5VV8kYK4j7WtTAG0nMaXvtPAw8UizNpVWa4rY8cWZvM1UHioystUn3aKWF%2FHdZYa3RFQryevgMi9QTwvhJi%2BVqYDg1nB8HyXMxh7P%2FphLtnfOXx3sU6M5uoA%3D%3D',
+          price: 3650,
+          origin_price: 4000,
+          id: '-NhVQcI9PH4V7yacTg7l'
         },
         {
-          title:'雷朋飛行員太陽眼鏡 金屬框',
-          imageUrl:'https://images.unsplash.com/photo-1555181126-6a405b667aab?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          price:3450,
-          origin_price:4200,
-          id:'-NhVNwR__QnXc0G6Aerx'
+          title: '雷朋飛行員太陽眼鏡 金屬框',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/colpp61109/1704269219308.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=fBVeNWOmOlrl3knOGyPa1dvFT6bppht85IRhsJEHpGxd9GXMYLJJK6AJCjMR6PR%2FKxXnoqQgCgLRiiDQmN1LW3g5wwm9cLnMCQpOLL%2FRPg3hDNjfXsxbPT4qTpEslHNw%2FFJuvVlb6zh9th45X0y4J0ZN1%2FMePj4%2BWNOAMgKUTzNmpny9eG%2FZ4YM0N4jJ20iCuyO%2F%2FfTO%2FIeday8QmDWEZ8T47jU%2FdDpD3QAbrkDk%2FVXKMOP%2F5SGtfLPG6XHb0rkUNeM0rHSBE7SYSr%2BBm%2BoRkIbQz98Y6vt9pioP%2BxB%2BSTX%2FIW9O%2BYABRPzyRyesJ0JD003dUTCyLUybVwH5OV4EjA%3D%3D',
+          price: 3450,
+          origin_price: 4200,
+          id: '-NhVNwR__QnXc0G6Aerx'
         },
         {
-          title:'好學生必備 文青風 眼鏡框',
-          imageUrl:'https://images.unsplash.com/photo-1580067644090-a03da9d1e360?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          price:2000,
-          origin_price:2450,
-          id:'-NhV9g5cQquFLSB-Rg51'
+          title: '好學生必備 文青風 眼鏡框',
+          imageUrl: 'https://storage.googleapis.com/vue-course-api.appspot.com/colpp61109/1704270704003.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=BEQgSDoIM3ZcSCCe2AJ1oC75AWQo8pX3%2FPZXLwcxs9AHt6F%2Fd1csLlHeSS2l7VlmaetkLLnYBZhgpHJLoxzsbsV0li8LhNkMsS98jcXOagmetagEN7lSDfGJ1ggIGfx7QX7ZbKFu34YywJFeKjefr0n6KIbzz3knJY%2FHPwlDHG50t4x%2FmcO%2BkfYlb%2FeYaqBS%2FmeMvI%2FJCKpBDdnV6rRddJoOo2auMCsoWyCC6PTWH33he0bvqPp58xwpb0DYXyHlE2nND%2By%2FpIi%2FlQFnWrEvwgQP4AW7d4InrwoMs3doctmYdw6eGJ27mAwdqF%2FlADCP1FpIDzlSoNDEtjvLMi8gsA%3D%3D',
+          price: 2000,
+          origin_price: 2450,
+          id: '-NhV9g5cQquFLSB-Rg51'
         },
         {
-          title:'兒童專用矽膠彈性橢圓框',
-          imageUrl:'https://images.unsplash.com/photo-1593194777536-e155e6d100b2?auto=format&fit=crop&q=80&w=2016&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-          price:2550,
-          origin_price:3000,
-          id:'-NhV2MDVx_E2pTkZKx6x'
-        },
+          title: '兒童專用矽膠彈性橢圓框',
+          imageUrl: 'https://raw.githubusercontent.com/xouoe/Pic/main/z-1.jpg',
+          price: 2550,
+          origin_price: 3000,
+          id: '-NhV2MDVx_E2pTkZKx6x'
+        }
       ],
-      tempProduct:{},
-      productImg:'',
-      status:{
-        loadingItem:''
+      tempProduct: {},
+      productImg: '',
+      status: {
+        loadingItem: ''
       }
     }
   },
-  inject:['emitter'],
-  methods:{
-    addCart(id){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+  inject: ['emitter'],
+  methods: {
+    addCart (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.status.loadingItem = id
       const product = {
-          product_id:id,
-          qty:1
-      };
-      this.$http.post(api,{data:product}).then(res=>{
-          this.$pushMessage(res,'加入購物車')
-          this.emitter.emit('update-cart')
-          this.status.loadingItem = '';
+        product_id: id,
+        qty: 1
+      }
+      this.$http.post(api, { data: product }).then(res => {
+        this.$pushMessage(res, '加入購物車')
+        this.emitter.emit('update-cart')
+        this.status.loadingItem = ''
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    productDetail(id){
-      this.$router.push(`/products/${id}`);
-    },
+    productDetail (id) {
+      this.$router.push(`/products/${id}`)
+    }
   }
 }
 </script>
@@ -103,7 +103,7 @@ export default {
   .btn.bg-dark{
     opacity: 0;
     z-index: 1;
-  }   
+  }
   &:hover{
     .btn.bg-dark{
       opacity: 1;
@@ -127,7 +127,7 @@ export default {
   h1 {
     position: relative;
     &::after{
-      content:''; 
+      content:'';
       position: absolute;
       display: inline-block;
       width: 350px;

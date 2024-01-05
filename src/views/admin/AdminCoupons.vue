@@ -39,95 +39,95 @@
   <DelModal :product="tempCoupons" ref="delmodal" @delete-product="deleteCoupon"/>
   <Pagination :pages="pages" @update-page="getCoupons"/>
  </template>
- 
+
 <script>
 import CouponModal from '@/components/CouponModal.vue'
-import DelModal from '@/components/DelModal.vue';
-import Pagination from '@/components/Pagination.vue';
+import DelModal from '@/components/DelModal.vue'
+import Pagination from '@/components/Pagination.vue'
 export default {
-  data(){
+  data () {
     return {
-      isNew:false,
-      coupons:[],
-      tempCoupons:{
-        title:'',
-        is_enabled:1,
-        percent:80,
-        code:''
+      isNew: false,
+      coupons: [],
+      tempCoupons: {
+        title: '',
+        is_enabled: 1,
+        percent: 80,
+        code: ''
       },
-      isLoading:false,
-      pages:{}
+      isLoading: false,
+      pages: {}
     }
   },
-  methods:{
-    openModal(isNew,item){
-      const CouponModal = this.$refs.couponmodal;
-      this.isNew = isNew;
-      if(isNew){
-        this.tempCoupons={
+  methods: {
+    openModal (isNew, item) {
+      const CouponModal = this.$refs.couponmodal
+      this.isNew = isNew
+      if (isNew) {
+        this.tempCoupons = {
           due_date: new Date().getTime() / 1000
         }
-      }else{
-        this.tempCoupons = {...item}
+      } else {
+        this.tempCoupons = { ...item }
       }
-      CouponModal.showModal();
+      CouponModal.showModal()
     },
-    openDelModel(item){
-      const DelModal = this.$refs.delmodal;
-      this.tempCoupons = {...item}
-      DelModal.showModal();
+    openDelModel (item) {
+      const DelModal = this.$refs.delmodal
+      this.tempCoupons = { ...item }
+      DelModal.showModal()
     },
-    getCoupons(page=1){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`;
-      this.isLoading = true;
-      this.$http.get(api).then(res=>{
-        this.coupons = res.data.coupons;
-        this.pages = res.data.pagination;
-        this.isLoading = false;
+    getCoupons (page = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`
+      this.isLoading = true
+      this.$http.get(api).then(res => {
+        this.coupons = res.data.coupons
+        this.pages = res.data.pagination
+        this.isLoading = false
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    updateCoupon(item){
-      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`;
-      let httpMethod = 'post';
-      this.isLoading = true;
-      const CouponModal = this.$refs.couponmodal;
-      if(!this.isNew){
-        httpMethod = 'put';
-        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${item.id}`;
+    updateCoupon (item) {
+      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`
+      let httpMethod = 'post'
+      this.isLoading = true
+      const CouponModal = this.$refs.couponmodal
+      if (!this.isNew) {
+        httpMethod = 'put'
+        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${item.id}`
       }
-      CouponModal.hideModal();
-      this.$http[httpMethod](api,{data:item}).then(res=>{
-        if(res.data.success){
-          if(httpMethod === 'put'){
-            this.$pushMessage(res,'優惠券更新');
-          }else{
-            this.$pushMessage(res,'優惠券建立');
-          }  
-          this.isLoading = false;
-          this.getCoupons();
+      CouponModal.hideModal()
+      this.$http[httpMethod](api, { data: item }).then(res => {
+        if (res.data.success) {
+          if (httpMethod === 'put') {
+            this.$pushMessage(res, '優惠券更新')
+          } else {
+            this.$pushMessage(res, '優惠券建立')
+          }
+          this.isLoading = false
+          this.getCoupons()
         }
-      }) 
-      .catch(()=>{
+      })
+        .catch(() => {
 
-      })
+        })
     },
-    deleteCoupon(id){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${id}`;
-      const DelModal = this.$refs.delmodal;
-      this.isLoading = true;
-      DelModal.hideModal();
-      this.$http.delete(api).then( () =>{
-        this.isLoading = false;
-        this.getCoupons();
+    deleteCoupon (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${id}`
+      const DelModal = this.$refs.delmodal
+      this.isLoading = true
+      DelModal.hideModal()
+      this.$http.delete(api).then(() => {
+        this.isLoading = false
+        this.getCoupons()
       })
-    },
+    }
   },
-  components: { CouponModal,DelModal,Pagination },
-  created(){
-    this.getCoupons();
+  components: { CouponModal, DelModal, Pagination },
+  created () {
+    this.getCoupons()
   }
 }
 </script>

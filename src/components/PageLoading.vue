@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import Loading from 'vue3-loading-overlay';
-import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
+import Loading from 'vue3-loading-overlay'
+import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
 export default {
-  components:{Loading}
+  components: { Loading }
 }
 </script>
 

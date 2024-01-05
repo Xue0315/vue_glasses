@@ -20,7 +20,7 @@
             <td>{{ $filter.date(item.create_at) }}</td>
             <td>{{ item.title }}</td>
             <td>{{ item.author }}</td>
-            <td>{{ item.tag}}</td>
+            <td>{{ item.tag }}</td>
             <td v-if="item.isPublic" class="text-success" >公開</td>
             <td v-else class="text-muted">未公開</td>
             <td>
@@ -38,81 +38,81 @@
 </template>
 
 <script>
-import ArticlesModal from '@/components/ArticlesModal.vue';
+import ArticlesModal from '@/components/ArticlesModal.vue'
 export default {
-  data(){
+  data () {
     return {
-      articles:[],
-      tempArticle:{},
-      isNew:false,
-      id:'',
+      articles: [],
+      tempArticle: {},
+      isNew: false,
+      id: ''
     }
   },
-  inject:['emitter'],
-  methods:{
-    getArticles(page=1){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/articles?page=${page}`;
-      this.$http.get(api).then(res=>{
-        this.articles = res.data.articles;
+  inject: ['emitter'],
+  methods: {
+    getArticles (page = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/articles?page=${page}`
+      this.$http.get(api).then(res => {
+        this.articles = res.data.articles
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    openArticlesModal(isNew,item){
-      const articleModal = this.$refs.articlemodal;
-      this.isNew = isNew;
-      if(isNew){
-        this.tempArticle={
-        create_at: new Date().getTime() / 1000
-      }
-      }else{
-        this.tempArticle = {...item}
+    openArticlesModal (isNew, item) {
+      const articleModal = this.$refs.articlemodal
+      this.isNew = isNew
+      if (isNew) {
+        this.tempArticle = {
+          create_at: new Date().getTime() / 1000
+        }
+      } else {
+        this.tempArticle = { ...item }
       }
       articleModal.showModal()
     },
-    updateArticle(item){
-      this.tempArticle = item;
-      const articleModal = this.$refs.articlemodal;
-      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/article`;
+    updateArticle (item) {
+      this.tempArticle = item
+      const articleModal = this.$refs.articlemodal
+      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/article`
       let httpmethod = 'post'
-      if(!this.isNew){
+      if (!this.isNew) {
         httpmethod = 'put'
-        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/article/${item.id}`;
+        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/article/${item.id}`
       }
-      articleModal.hideModal();
-      this.$http[httpmethod](api,{data:this.tempArticle}).then(res=>{
-        if(res.data.success){
-          this.getArticles();
-          this.emitter.emit('push-message',{
-              style:'success',
-              title:'更新成功'
+      articleModal.hideModal()
+      this.$http[httpmethod](api, { data: this.tempArticle }).then(res => {
+        if (res.data.success) {
+          this.getArticles()
+          this.emitter.emit('push-message', {
+            style: 'success',
+            title: '更新成功'
           })
-        }else{
-          this.emitter.emit('push-message',{
-            style:'danger',
-            title:'更新失敗'
+        } else {
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: '更新失敗'
           })
         }
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    deleteArticle(id){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/article/${id}`;
-      const articleModal = this.$refs.articlemodal;
-      articleModal.hideModal();
-      this.$http.delete(api).then(()=>{
-        this.getArticles();
+    deleteArticle (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/article/${id}`
+      const articleModal = this.$refs.articlemodal
+      articleModal.hideModal()
+      this.$http.delete(api).then(() => {
+        this.getArticles()
       })
-    },
+    }
   },
-  mounted(){
-    this.getArticles();
-    this.id = this.$route.params.articleId;
+  mounted () {
+    this.getArticles()
+    this.id = this.$route.params.articleId
   },
-  components:{ArticlesModal}
+  components: { ArticlesModal }
 }
 </script>
 

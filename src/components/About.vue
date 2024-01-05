@@ -8,7 +8,7 @@
 
 <script>
 export default {
-
+  name:'TheAbout'
 }
 </script>
 
@@ -17,7 +17,7 @@ export default {
   h1 {
   position: relative;
     &::after{
-      content:''; 
+      content:'';
       position: absolute;
       display: inline-block;
       width: 350px;

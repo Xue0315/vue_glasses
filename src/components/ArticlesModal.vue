@@ -17,7 +17,7 @@
               <label for="imgUrl">或上傳圖片</label>
               <input type="file" id="imgUrl" class="form-control" @change="uploadFile" ref="fileInput"  >
             </div>
-            <img class="img-fluid" alt="" :src="tempArticle.imageUrl">
+            <img class="img-fluid" alt="上傳的圖片" :src="tempArticle.imageUrl">
           </div>
           <div class="col-md-8">
               <div class="row gx-2 mb-3">
@@ -64,50 +64,50 @@
   </div>
 </template>
 <script>
-import MixinModal from '@/methods/MixinModal.js';
+import MixinModal from '@/methods/MixinModal.js'
 export default {
-  data(){
+  data () {
     return {
-      modal:{},
-      tempArticle:{},
-      create_at:''
+      modal: {},
+      tempArticle: {},
+      create_at: ''
     }
   },
-  props:{
-    article:{
-    type:Object,
-    default(){return{};}
-  }
+  props: {
+    article: {
+      type: Object,
+      default () { return {} }
+    }
   },
-  watch:{
-    article(){
-      this.tempArticle = this.article;
+  watch: {
+    article () {
+      this.tempArticle = this.article
       const dateAndTime = new Date(this.tempArticle.create_at * 1000).toISOString().split('T');
-      [this.create_at] = dateAndTime;
+      [this.create_at] = dateAndTime
     },
-    create_at(){
-      this.tempArticle.create_at = Math.floor(new Date(this.create_at) / 1000);
+    create_at () {
+      this.tempArticle.create_at = Math.floor(new Date(this.create_at) / 1000)
     }
   },
   methods: {
-    uploadFile(){
-      const fileInput = this.$refs.fileInput.files[0];
-      const select =  this.$refs.fileInput.id;
-      const formdata = new FormData();  
-      formdata.append('file-to-upload',fileInput);
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
-      this.axios.post(url,formdata).then((res)=>{
-        if(res.data.success){
-        this.tempArticle.imageUrl = res.data.imageUrl;
-        document.getElementById(select).value = '';
+    uploadFile () {
+      const fileInput = this.$refs.fileInput.files[0]
+      const select = this.$refs.fileInput.id
+      const formdata = new FormData()
+      formdata.append('file-to-upload', fileInput)
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`
+      this.axios.post(url, formdata).then((res) => {
+        if (res.data.success) {
+          this.tempArticle.imageUrl = res.data.imageUrl
+          document.getElementById(select).value = ''
         }
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     }
   },
-  mixins:[MixinModal]
+  mixins: [MixinModal]
 }
 </script>
 

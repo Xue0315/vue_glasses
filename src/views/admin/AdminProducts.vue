@@ -41,97 +41,97 @@
 </template>
 
 <script>
-import ProductModel from '@/components/ProductModal.vue';
-import Pagination from '@/components/Pagination.vue';
-import DelModal from '@/components/DelModal.vue';
+import ProductModel from '@/components/ProductModal.vue'
+import Pagination from '@/components/Pagination.vue'
+import DelModal from '@/components/DelModal.vue'
 export default {
-  data(){
+  data () {
     return {
-      products:[],
-      tempProduct:{},
-      pagination:{},
-      isNew:false,
-      isLoading:false
+      products: [],
+      tempProduct: {},
+      pagination: {},
+      isNew: false,
+      isLoading: false
     }
   },
-  components:{ProductModel,Pagination,DelModal},
-  inject:['emitter'],
-  methods:{
-    getProducts(page=1){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`;
-      this.isLoading = true;
-      this.$http.get(api).then(res=>{
-        this.products = res.data.products;
-        this.pagination = res.data.pagination;
-        this.isLoading = false;
+  components: { ProductModel, Pagination, DelModal },
+  inject: ['emitter'],
+  methods: {
+    getProducts (page = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`
+      this.isLoading = true
+      this.$http.get(api).then(res => {
+        this.products = res.data.products
+        this.pagination = res.data.pagination
+        this.isLoading = false
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    openProductModal(isNew,item){
-      const productModal = this.$refs.productmodal;
-      this.isNew = isNew;
-      if(isNew){
+    openProductModal (isNew, item) {
+      const productModal = this.$refs.productmodal
+      this.isNew = isNew
+      if (isNew) {
         this.tempProduct = {}
-      }else{
-        this.tempProduct = {...item}
+      } else {
+        this.tempProduct = { ...item }
       }
       productModal.showModal()
     },
-    openDelProductModal(item){
-      const DelModal = this.$refs.delmodal;
-      this.tempProduct = {...item}
-      DelModal.showModal();
+    openDelProductModal (item) {
+      const DelModal = this.$refs.delmodal
+      this.tempProduct = { ...item }
+      DelModal.showModal()
     },
-    updateProduct(item){
-      this.tempProduct = item;
-      const productModal = this.$refs.productmodal;
-      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
+    updateProduct (item) {
+      this.tempProduct = item
+      const productModal = this.$refs.productmodal
+      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
       let httpmethod = 'post'
-      if(!this.isNew){
-          httpmethod = 'put'
-          api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
+      if (!this.isNew) {
+        httpmethod = 'put'
+        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`
       }
-      this.isLoading = true;
-      productModal.hideModal();
-      this.$http[httpmethod](api,{data:this.tempProduct}).then(res=>{
-        if(res.data.success){
-          this.getProducts();
-          this.emitter.emit('push-message',{
-            style:'success',
-            title:'更新成功'
+      this.isLoading = true
+      productModal.hideModal()
+      this.$http[httpmethod](api, { data: this.tempProduct }).then(res => {
+        if (res.data.success) {
+          this.getProducts()
+          this.emitter.emit('push-message', {
+            style: 'success',
+            title: '更新成功'
           })
-        }else{
-          this.emitter.emit('push-message',{
-            style:'danger',
-            title:'更新失敗'
+        } else {
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: '更新失敗'
           })
         }
-        this.isLoading = false;
+        this.isLoading = false
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    deleteProduct(id){
-      const DelModal = this.$refs.delmodal;
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${id}`;
-      this.isLoading = true;
-      this.$http.delete(api).then(res=>{
-        if(res.data.success){
-          DelModal.hideModal();
-          this.getProducts();
+    deleteProduct (id) {
+      const DelModal = this.$refs.delmodal
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${id}`
+      this.isLoading = true
+      this.$http.delete(api).then(res => {
+        if (res.data.success) {
+          DelModal.hideModal()
+          this.getProducts()
         }
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
-      this.isLoading = false;
+        })
+      this.isLoading = false
     }
   },
-  created(){
-    this.getProducts();
+  created () {
+    this.getProducts()
   }
 }
 </script>

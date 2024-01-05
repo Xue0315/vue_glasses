@@ -36,13 +36,13 @@
 
 <script>
 export default {
-  name:'TheSection'
+  name: 'TheSection'
 }
 </script>
 
 <style lang="scss" scoped>
 .bg-section{
-  background-color: #6D6027;
+  background-color: #412621;
 }
 .section{
   justify-content: center;

@@ -14,19 +14,19 @@
                 <tbody v-if="tempOrders.user">
                   <tr>
                     <td><strong>姓名</strong></td>
-                    <td>{{ tempOrders.user.name}}</td>
+                    <td>{{ tempOrders.user.name }}</td>
                   </tr>
                   <tr>
                     <td><strong>Email</strong></td>
-                    <td>{{ tempOrders.user.email}}</td>
+                    <td>{{ tempOrders.user.email }}</td>
                   </tr>
                   <tr>
                     <td><strong>電話</strong></td>
-                    <td>{{ tempOrders.user.tel}}</td>
+                    <td>{{ tempOrders.user.tel }}</td>
                   </tr>
                   <tr>
                     <td><strong>地址</strong></td>
-                    <td>{{ tempOrders.user.address}}</td>
+                    <td>{{ tempOrders.user.address }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -45,7 +45,7 @@
                   </tr>
                   <tr>
                       <td><strong>付款時間</strong></td>
-                      <td v-if="tempOrders.paid_date">{{$filter.date(tempOrders.paid_date)}}</td>
+                      <td v-if="tempOrders.paid_date">{{ $filter.date(tempOrders.paid_date) }}</td>
                       <td v-else>時間不正確</td>
                   </tr>
                   <tr>
@@ -55,13 +55,13 @@
                   </tr>
                   <tr>
                       <td><strong>總金額</strong></td>
-                      <td>{{$filter.currency(tempOrders.total)}}</td>
+                      <td>{{ $filter.currency(tempOrders.total) }}</td>
                   </tr>
                   <h3 class="h3 mt-4">選購商品</h3>
                   <tr v-for="(item,i) in tempOrders.products" :key="i">
                     <td><strong>{{ item.product.title }}</strong></td>
                     <td>{{ item.qty }} / {{ item.product.unit }}</td>
-                    <td style="width: 200px;">{{$filter.currency(item.total)}}</td>
+                    <td style="width: 200px;">{{ $filter.currency(item.total) }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -75,31 +75,31 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 import MixinModal from '@/methods/MixinModal'
 export default {
-  props:{
-    orders:{
-      type:Object,
-      default(){return{};}
+  props: {
+    orders: {
+      type: Object,
+      default () { return {} }
     }
   },
-  data(){
+  data () {
     return {
-      modal:'',
-      tempOrders:{}
+      modal: '',
+      tempOrders: {}
     }
   },
-  watch:{
-    orders(){
+  watch: {
+    orders () {
       this.tempOrders = this.orders
     }
-  },  
-  mixins:[MixinModal]
+  },
+  mixins: [MixinModal]
 }
 </script>
-  
+
 <style>
-  
+
 </style>

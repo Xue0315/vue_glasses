@@ -29,34 +29,34 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer.vue' 
-import SocialMedia from '@/components/SocialMedia.vue' 
+import Footer from '@/components/Footer.vue'
+import SocialMedia from '@/components/SocialMedia.vue'
 export default {
-  data(){
-    return{
-      user:{
-        username:'',
-        password:'',
+  data () {
+    return {
+      user: {
+        username: '',
+        password: ''
       },
-      isLoading:false
+      isLoading: false
     }
   },
-  methods:{
-    signin(){
-      const api = `${process.env.VUE_APP_API}admin/signin`;
+  methods: {
+    signin () {
+      const api = `${process.env.VUE_APP_API}admin/signin`
       this.isLoading = true
-      this.axios.post(api,this.user).then(res=>{
-        this.isLoading = false;
-        const {token,expired} = res.data
+      this.axios.post(api, this.user).then(res => {
+        this.isLoading = false
+        const { token, expired } = res.data
         document.cookie = `hexToken=${token}; expires=${new Date(expired)} `
         this.$router.push('/dashboard/adminproducts')
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     }
   },
-  components:{Footer,SocialMedia}
+  components: { Footer, SocialMedia }
 }
 </script>
 

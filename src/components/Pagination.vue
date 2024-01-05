@@ -13,14 +13,14 @@
     </ul>
   </nav>
 </template>
-    
+
 <script>
 export default {
-  name:'ThePagination',
-  props:['pages'],
-  methods:{
-    updatePage(page){
-        this.$emit('update-page',page)
+  name: 'ThePagination',
+  props: ['pages'],
+  methods: {
+    updatePage (page) {
+      this.$emit('update-page', page)
     }
   }
 }

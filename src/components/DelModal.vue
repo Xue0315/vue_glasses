@@ -20,22 +20,22 @@
     </div>
   </div>
   </template>
-  
-  <script>
-  import MixinModal from '../methods/MixinModal';
-  export default {
-    data(){
-      return{
-        modal:{}
-      }
-    },
-    props:{
-        product:{},
-    },
-    mixins:[MixinModal]
-  }
-  </script>
-  
+
+<script>
+import MixinModal from '../methods/MixinModal'
+export default {
+  data () {
+    return {
+      modal: {}
+    }
+  },
+  props: {
+    product: {}
+  },
+  mixins: [MixinModal]
+}
+</script>
+
   <style>
-  
+
   </style>

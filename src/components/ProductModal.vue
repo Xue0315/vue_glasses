@@ -17,8 +17,22 @@
               <label for="imgUrl">或上傳圖片</label>
               <input type="file" id="imgUrl" class="form-control" @change="uploadFile" ref="fileInput"  >
             </div>
-            <img class="img-fluid" alt="上傳的照片" :src="tempProduct.imageUrl">
+            <img class="img-fluid" :alt="tempProduct.imagesUrl" :src="tempProduct.imageUrl">
           </div>
+          <div class="mt-4" v-if="Array.isArray(tempProduct.imagesUrl) && tempProduct.imagesUrl.length !== 0">
+            <span class="form-label mb-1">多圖新增</span>
+            <div class="input-group mb-3" v-for="(item,index) in tempProduct.imagesUrl" :key="item">
+              <input type="text" class="form-control" placeholder="請輸入圖片連結" v-model="tempProduct.imagesUrl[index]">
+              <button class="btn btn-outline-danger" type="button" @click="tempProduct.imagesUrl.splice(index,1)">刪除</button>
+              <img class="img-fluid mt-2" :src="item">
+            </div>
+            <div>
+              <button class="btn btn-outline-primary btn-sm d-block w-100" type="button" v-if="tempProduct.imagesUrl.length <= 4 && tempProduct.imagesUrl[tempProduct.imagesUrl.length-1]" @click="tempProduct.imagesUrl.push('')">新增圖片</button>
+            </div>
+          </div>
+          <button class="btn btn-outline-primary btn-sm d-block w-100 mt-3" type="button" v-else @click="createImages">
+              新增多圖
+          </button>
           <div class="col-md-8">
               <div class="mb-3">
                 <label for="titel">標題</label>
@@ -67,52 +81,55 @@
     </div>
   </div>
 </template>
-  
-  <script>
-import  Modal  from 'bootstrap/js/dist/modal';
+
+<script>
+import Modal from 'bootstrap/js/dist/modal'
 export default {
-    data(){
-      return {
-        modal:{},
-        tempProduct:{}
-      }
+  data () {
+    return {
+      modal: {},
+      tempProduct: {}
+    }
+  },
+  props: {
+    product: {
+      type: Object,
+      default () { return {} }
+    }
+  },
+  mounted () {
+    this.modal = new Modal(this.$refs.modal)
+  },
+  watch: {
+    product () {
+      this.tempProduct = this.product
+    }
+  },
+  methods: {
+    showModal () {
+      this.modal.show()
     },
-    props:{
-      product:{
-        type:Object,
-        default(){return{};}
-      }
+    hideModal () {
+      this.modal.hide()
     },
-    mounted(){
-      this.modal = new Modal(this.$refs.modal)
-    },
-    watch:{
-      product(){
-        this.tempProduct = this.product
-      }
-    },
-  methods:{
-    showModal(){
-      this.modal.show();
-    },
-    hideModal(){
-      this.modal.hide();
-    },
-    uploadFile(){
+    uploadFile () {
       const fileInput = this.$refs.fileInput.files[0]
-      const select =  this.$refs.fileInput.id
-      const formdata = new FormData();  
-      formdata.append('file-to-upload',fileInput);
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
-      this.axios.post(url,formdata).then((res)=>{
-        if(res.data.success){
-        this.tempProduct.imageUrl = res.data.imageUrl;
-        document.getElementById(select).value = '';
+      const select = this.$refs.fileInput.id
+      const formdata = new FormData()
+      formdata.append('file-to-upload', fileInput)
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`
+      this.axios.post(url, formdata).then((res) => {
+        if (res.data.success) {
+          this.tempProduct.imageUrl = res.data.imageUrl
+          document.getElementById(select).value = ''
         }
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
+    },
+    createImages () {
+      this.tempProduct.imagesUrl = ['']
     }
   }
 }

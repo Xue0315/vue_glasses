@@ -6,15 +6,15 @@
 </template>
 
 <script>
-import emitter from '@/methods/emitter';
-import UserNavbar from '@/components/UserNavbar.vue';
-export default { 
-  provide(){
+import emitter from '@/methods/emitter'
+import UserNavbar from '@/components/UserNavbar.vue'
+export default {
+  provide () {
     return {
       emitter
     }
   },
-  components:{UserNavbar}
+  components: { UserNavbar }
 }
 </script>
 

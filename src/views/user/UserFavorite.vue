@@ -5,26 +5,28 @@
       <div class="favorite-title bg-dark bg-opacity-50 w-100 position-absolute bottom-0 d-flex align-items-center h-100">
         <h1 class="text-white fw-bold mx-auto ">收藏商品</h1>
       </div>
-    </div>  
+    </div>
     <div class="container">
       <div class="row">
-        <ul class="col-12 d-flex flex-wrap justify-content-center">
-          <li v-for="item in favorite" :key="item.id" class="list-unstyled ">
-            <div class="card h-100 m-2" style="width: 21.5rem;" >
+        <ul class="col-12 d-flex flex-wrap control-center">
+          <li v-for="item in favorite" :key="item.id" class="list-unstyled col-md-6 col-lg-4 col-xl-3 my-2">
+            <div class="card h-100 m-2">
               <a href="#" class="stretched-link" @click.prevent="productDetail(item.id)">
                 <div class="control-img overflow-hidden ">
                   <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 fw-bold">查看更多</button>
-                  <img :src="item.imageUrl" class="card-img-top favorite-img">
+                  <img :src="item.imageUrl" class="card-img-top favorite-img" :alt="item.title">
                 </div>
               </a>
               <div class="card-body text-center">
-                <span class="fa-solid text-end z-2 fa-heart fs-3" :class="{'favorite': isFavorite}" @click.stop="favoriteBtn(item)"></span>
-                <h5 class="card-title ">{{ item.title }}</h5>
-                <p class="card-text ">NT${{ $filter.currency(item.price) }}</p>
-                <button type="button" class="btn btn-primary text-light w-75 position-relative z-2"  @click="addCart(item.id)">
-                  <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === item.id"></span>
-                  <span class="visually-hidden" v-if="status.loadingItem === item.id">Loading...</span>加入購物車
-                </button>
+                <span class="fa-solid text-end z-2 fa-heart" :class="{'favorite': isFavorite}" @click.stop="favoriteBtn(item)"></span>
+                <span class="card-title fw-bold">{{ item.title }}</span>
+                <p class="card-text fw-bold">NT${{ $filter.currency(item.price) }}</p>
+                <div class="text-start">
+                  <button type="button" class="btn btn-primary text-white position-relative z-2 addbtn"  @click="addCart(item.id)">
+                    <span class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true" v-if="status.loadingItem === item.id"></span>
+                    <span class="visually-hidden" v-if="status.loadingItem === item.id">Loading...</span>加入購物車
+                  </button>
+                </div>
               </div>
             </div>
           </li>
@@ -43,7 +45,7 @@
   <Footer></Footer>
   <SocialMedia/>
 </div>
- 
+
 </template>
 
 <script>
@@ -52,61 +54,61 @@ import ProductOnsale from '@/components/ProductOnsale.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
 import Section from '@/components/Section.vue'
 export default {
-  data(){
-      return {
-          favorite:[],
-          favoriteNum:0,
-          isFavorite:true,
-          status:{
-              loadingItem:''
-          }
+  data () {
+    return {
+      favorite: [],
+      favoriteNum: 0,
+      isFavorite: true,
+      status: {
+        loadingItem: ''
       }
+    }
   },
-  inject:['emitter'],
-  methods:{
-    getFavorite(){
-      this.favorite = JSON.parse(localStorage.getItem('favorite')) || [];
-      this.favoriteNum = (JSON.parse(localStorage.getItem('favorite')) || []).length; 
+  inject: ['emitter'],
+  methods: {
+    getFavorite () {
+      this.favorite = JSON.parse(localStorage.getItem('favorite')) || []
+      this.favoriteNum = (JSON.parse(localStorage.getItem('favorite')) || []).length
     },
-    favoriteBtn(item){
-      const id = item.id;
+    favoriteBtn (item) {
+      const id = item.id
       const hasFavorite = this.favorite.some((item) => item.id === id)
-      if(hasFavorite){
-        const delFavorite = this.favorite.find(item=> item.id === id);
+      if (hasFavorite) {
+        const delFavorite = this.favorite.find(item => item.id === id)
         this.favorite.splice(this.favorite.indexOf(delFavorite), 1)
-        localStorage.setItem('favorite',JSON.stringify(this.favorite));
-        this.$pushMessage(true,'移除收藏');
+        localStorage.setItem('favorite', JSON.stringify(this.favorite))
+        this.$pushMessage(true, '移除收藏')
       }
-      this.getFavorite(); 
-      this.emitter.emit('update-favorite');
+      this.getFavorite()
+      this.emitter.emit('update-favorite')
     },
-    addCart(id){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+    addCart (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.status.loadingItem = id
       const product = {
-        product_id:id,
-        qty:1
-      };
-      this.$http.post(api,{data:product}).then(res=>{
-        this.$pushMessage(res,'加入購物車')
+        product_id: id,
+        qty: 1
+      }
+      this.$http.post(api, { data: product }).then(res => {
+        this.$pushMessage(res, '加入購物車')
         this.emitter.emit('update-cart')
-        this.status.loadingItem = '';
+        this.status.loadingItem = ''
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    productDetail(id){
+    productDetail (id) {
       this.$router.push(`/products/${id}`)
     },
-    proceedPage(){
+    proceedPage () {
       this.$router.push('/products')
-    },
+    }
   },
-  mounted(){
-    this.getFavorite();
+  mounted () {
+    this.getFavorite()
   },
-  components:{ProductOnsale,Footer,SocialMedia,Section}
+  components: { ProductOnsale, Footer, SocialMedia, Section }
 }
 </script>
 
@@ -124,13 +126,28 @@ export default {
     }
   }
 }
+.control-center{
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
 .card{
+  width: 19.5rem;
+  @media (max-width: 1400px) {
+    width: 16.5rem;
+  }
+  @media (max-width: 1200px) {
+    width: 18.5rem;
+  }
+  @media (max-width: 1000px) {
+    width: 21rem;
+  }
   cursor: pointer;
   &:hover{
     .btn.bg-dark{
       opacity: 1;
       width: 100%;
-      height: 350px;
+      height: 300px;
     }
     img{
       transform: scale(1.1);
@@ -139,7 +156,7 @@ export default {
   }
   .favorite-img{
     width: 100%;
-    height: 350px;
+    height: 300px;
     object-fit: cover;
     position: relative;
   }
@@ -148,11 +165,22 @@ export default {
     z-index: 1;
   }
   .card-body{
+    .addbtn{
+      width: 85%;
+    }
+    height: 120px;
+      .card-title{
+        font-size: 20px;
+        @media (max-width: 1400px) {
+          font-size: 16px;
+        }
+      }
     .fa-heart{
+      font-size: 30px;
       color: #ccc;
       position:absolute;
       bottom: 15px;
-      right: 10px;
+      right: 12px;
       &.favorite{
         color: #ff4d4d;
       }

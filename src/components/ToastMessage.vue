@@ -7,19 +7,19 @@
 <script>
 import Toast from './Toast.vue'
 export default {
-  data(){
+  data () {
     return {
-      messages:[],
+      messages: []
     }
   },
-  components:{Toast},
-  inject:['emitter'],
-  mounted(){
-    this.emitter.on('push-message',(message)=>{
-      const {style = 'success',title,content} = message
-      this.messages.push({style,title,content});
+  components: { Toast },
+  inject: ['emitter'],
+  mounted () {
+    this.emitter.on('push-message', (message) => {
+      const { style = 'success', title, content } = message
+      this.messages.push({ style, title, content })
     })
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>

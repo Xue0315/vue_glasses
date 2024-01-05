@@ -1,7 +1,12 @@
 <template>
-    <div class="toast bg-light" role="alert" aria-live="assertive" aria-atomic="true" ref="toastmsg">
-      <div class="toast-header">
+    <div class="toast bg-white" role="alert" aria-live="assertive" aria-atomic="true" ref="toastmsg">
+      <div class="toast-header" v-if="msg.style === 'success'">
         <span class="border border-primary border border-4 p-1 rounded-circle"><i class="fa-solid fa-check fa-beat fa fs-4"></i></span>
+        <strong class="me-auto fs-6 text-primary">{{ msg.title }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-header" v-else>
+        <span class="border border-primary border border-4 p-1 rounded-circle"><i class="fa-solid fa-xmark fs-4"></i></span>
         <strong class="me-auto fs-6 text-primary">{{ msg.title }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
@@ -10,22 +15,22 @@
       </div>
     </div>
   </template>
-  
-  <script>
-  import Toast from 'bootstrap/js/dist/toast'
-  export default {
-    name:'TheToast',
-    props:['msg'],
-    mounted(){
-      const Toastel = this.$refs.toastmsg;
-      const toast = new Toast(Toastel,{
-          delay:5000  
-      });
-      toast.show();
-    }
+
+<script>
+import Toast from 'bootstrap/js/dist/toast'
+export default {
+  name: 'TheToast',
+  props: ['msg'],
+  mounted () {
+    const Toastel = this.$refs.toastmsg
+    const toast = new Toast(Toastel, {
+      delay: 5000
+    })
+    toast.show()
   }
-  </script>
-  
+}
+</script>
+
   <style lang="scss" scoped>
   .toast-header{
     i{

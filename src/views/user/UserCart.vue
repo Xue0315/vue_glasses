@@ -14,20 +14,20 @@
           <span class="mb-5 fs-3">清單明細</span>
         </div>
         <hr>
-        <table class="table  table-borderless">
+        <table class="table table-borderless table-light">
           <thead>
             <th class="text-center" width="1000">商品</th>
             <th class="text-center d-none d-sm-table-ceil" width="120">單價</th>
             <th class="text-center" width="100">數量</th>
-            <th width="200" class="text-end">總計</th>   
+            <th width="200" class="text-end">總計</th>
           </thead>
           <tbody>
             <tr v-for="cart in carts.carts" :key="cart.id" class="align-middle">
               <td class="d-flex align-items-center">
-                <div class="d-none d-xxl-flex" style="height:120px; width: 100px; background-size:cover; background-position: center;" 
+                <div class="d-none d-xxl-flex" style="height:120px; width: 100px; background-size:cover; background-position: center;"
                     :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
                 </div>
-                <span class="text-center mx-3 ">{{ cart.product.title }}</span>
+                <span class="text-center mx-2">{{ cart.product.title }}</span>
               </td>
               <td class="text-center d-none d-sm-table-ceil">
                 <span>${{ $filter.currency(cart.product.price) }}</span>
@@ -44,7 +44,7 @@
             </tr>
           </tbody>
         </table>
-        <table class="table table-borderless">
+        <table class="table table-borderless table-light">
           <tr>
             <td colspan="3" class="text-start fs-5">
               總金額
@@ -58,45 +58,45 @@
           </tr>
         </table>
       </div>
-      <Form class="col-xl-6 mb-5 customer-data" v-slot="{ errors }" @submit="addOrder">
+      <TheForm class="col-xl-6 mb-5 customer-data" v-slot="{ errors }" @submit="addOrder">
         <div class="text-center">
           <span class="mb-5 fs-3">顧客資訊</span>
         </div>
         <hr>
         <div class="mb-3">
           <div class="mb-1">
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label">Email<span class="text-danger"> *</span></label>
           </div>
-          <Field type="email" id="email" name="email"  class="form-control" placeholder="請輸入Email" rules="email|required" 
+          <TheField type="email" id="email" name="email"  class="form-control" placeholder="請輸入Email" rules="email|required"
             :class="{ 'is-invalid': errors['email'] }" v-model="form.user.email">
-          </Field>
+          </TheField>
           <ErrorMessage name="email" class="invalid-feedback" ></ErrorMessage>
         </div>
         <div class="mb-3">
           <div class="mb-1">
-            <label for="name" class="form-label">收件人姓名</label>
+            <label for="name" class="form-label">收件人姓名<span class="text-danger"> *</span></label>
           </div>
-          <Field type="text" id="name" name="姓名"  class="form-control" placeholder="請輸入姓名" rules="required"
+          <TheField type="text" id="name" name="姓名"  class="form-control" placeholder="請輸入姓名" rules="required"
             :class="{ 'is-invalid': errors['姓名'] }" v-model="form.user.name">
-          </Field>
+          </TheField>
           <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
           <div class="mb-1">
-            <label for="tel" class="form-label">收件人電話</label>
+            <label for="tel" class="form-label">收件人電話<span class="text-danger"> *</span></label>
           </div>
-          <Field type="text" id="tel" name="電話" class="form-control" placeholder="請輸入電話" rules="required"
+          <TheField type="text" id="tel" name="電話" class="form-control" placeholder="請輸入電話" rules="required"
             :class="{ 'is-invalid': errors['電話'] }" v-model="form.user.tel">
-          </Field>
+          </TheField>
           <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
           <div class="mb-1">
-            <label for="address" class="form-label">收件人地址</label>
+            <label for="address" class="form-label">收件人地址<span class="text-danger"> *</span></label>
           </div>
-          <Field type="text" id="address" name="地址"  class="form-control" placeholder="請輸入地址" rules="required"
+          <TheField type="text" id="address" name="地址"  class="form-control" placeholder="請輸入地址" rules="required"
             :class="{ 'is-invalid': errors['地址'] }" v-model="form.user.address">
-          </Field>
+          </TheField>
           <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
@@ -108,20 +108,20 @@
         <div class="text-end mt-3">
           <button type="button" class="btn btn-info" @click.stop="addOrder">送出訂單</button>
         </div>
-      </Form>
+      </TheForm>
     </div>
   </div>
   <div class="container cart-list" v-if="!checkOutstatus" >
     <h3 class="fw-bold text-center my-5" v-if="cartNum>=1">購物清單</h3>
-    <div class="row w-100" v-if="cartNum>=1">
-      <div class="col-lg-12 bg-light mx-auto">
-        <table class="table table-light table-borderless align-middle ">
+    <div class="row" v-if="cartNum>=1">
+      <div class="col-lg-12 bg-light justify-content-center">
+        <table class="table table-light table-borderless align-middle justify-content-center">
           <thead>
-            <th class="text-center" width="60">刪除</th>
+            <th class="text-center" width="40">刪除</th>
             <th class="text-center">商品</th>
             <th class="text-center d-none d-lg-table-cell">單價</th>
-            <th class="text-center" width="20">數量</th>
-            <th class="text-end px-0 d-none d-sm-table-cell" width="120">總計</th>
+            <th class="text-center" width="40">數量</th>
+            <th class="text-end px-0 d-none d-sm-table-cell" width="100">總計</th>
           </thead>
           <tbody>
             <tr v-for="cart in carts.carts" :key="cart.id">
@@ -129,15 +129,15 @@
                 <button type="button" class="btn btn-outline-danger" @click="deleteCart(cart.id)"><i class="fa-solid fa-trash"></i></button>
               </td>
               <td class="d-xl-flex align-items-center px-0">
-                <div class="product-img" style="height:100px; width: 100px; background-size:cover; background-position: center;" 
+                <div class="product-img" style="height:100px; width: 100px; background-size:cover; background-position: center;"
                   :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
                 </div>
-                <span class="product-title text-center align-items-center">{{ cart.product.title }}</span>
+                <span class="product-title text-center align-items-center mx-2">{{ cart.product.title }}</span>
               </td>
               <td class="d-none d-lg-table-cell text-center "><span>${{ $filter.currency(cart.product.price) }}</span></td>
               <td>
-                <div class="d-flex align-items-center">
-                  <button type="button" class="btn" @click="changeAmount(cart,-1)"><i class="fa-solid fa-minus"></i></button>
+                <div class="d-flex align-items-center numbtn">
+                  <button type="button" class="btn" @click="changeAmount(cart,-1)" :disabled="cart.qty === 1"><i class="fa-solid fa-minus"></i></button>
                   <span>{{ cart.qty }}</span>
                   <button type="button" class="btn" @click="changeAmount(cart,1)"><i class="fa-solid fa-plus"></i></button>
                 </div>
@@ -188,143 +188,143 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer.vue';
-import ScrollTop from '@/components/ScrollTop.vue';
-import TimeLine from '@/components/TimeLine.vue';
-import SocialMedia from '@/components/SocialMedia.vue';
-import Section from '@/components/Section.vue';
+import Footer from '@/components/Footer.vue'
+import ScrollTop from '@/components/ScrollTop.vue'
+import TimeLine from '@/components/TimeLine.vue'
+import SocialMedia from '@/components/SocialMedia.vue'
+import Section from '@/components/Section.vue'
 export default {
-  data(){
+  data () {
     return {
-      carts:[],
-      cartNum:0,
-      checkOutstatus:false,
-      status:{
-        loadingItem:''
+      carts: [],
+      cartNum: 0,
+      checkOutstatus: false,
+      status: {
+        loadingItem: ''
       },
-      form:{
-        user:{
-          email:'',
-          name:'',
-          tel:'',
-          address:''
+      form: {
+        user: {
+          email: '',
+          name: '',
+          tel: '',
+          address: ''
         },
-        message:''
+        message: ''
       },
-      isLoading:false,
-      code:'',
-      codeStatus:false,
-      tempOrderId:''
+      isLoading: false,
+      code: '',
+      codeStatus: false,
+      tempOrderId: ''
     }
   },
-  inject:['emitter'],
-  methods:{
-    getCart(){
+  inject: ['emitter'],
+  methods: {
+    getCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-      this.isLoading = true;
-      this.$http.get(api).then(res=>{
-        this.carts = res.data.data;
-        this.cartNum = res.data.data.carts.length;
-        this.isLoading = false;
+      this.isLoading = true
+      this.$http.get(api).then(res => {
+        this.carts = res.data.data
+        this.cartNum = res.data.data.carts.length
+        this.isLoading = false
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    updateCart(item){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+    updateCart (item) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
       const product = {
-        product_id:item.id,
-        qty:item.qty
+        product_id: item.id,
+        qty: item.qty
       }
-      this.$http.put(api,{data:product}).then(()=>{
-        this.getCart();
+      this.$http.put(api, { data: product }).then(() => {
+        this.getCart()
       })
     },
-    deleteCart(id){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`;
-      this.status.loadingItem = id;
-      this.$http.delete(api).then(res=>{
-        this.getCart();
-        this.$pushMessage(res,'刪除產品');
-        this.emitter.emit('update-cart');
+    deleteCart (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`
+      this.status.loadingItem = id
+      this.$http.delete(api).then(res => {
+        this.getCart()
+        this.$pushMessage(res, '刪除產品')
+        this.emitter.emit('update-cart')
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    deleteAllCart(){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`;
-      this.$http.delete(api).then(res=>{
-        if(res.success){
-          this.getCart();
-          this.$pushMessage(res,'全部產品刪除');
-        }else{
-          this.getCart();
-          this.$pushMessage(res,'刪除');
+    deleteAllCart () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`
+      this.$http.delete(api).then(res => {
+        if (res.success) {
+          this.getCart()
+          this.$pushMessage(res, '全部產品刪除')
+        } else {
+          this.getCart()
+          this.$pushMessage(res, '刪除')
         }
-        this.emitter.emit('update-cart');
+        this.emitter.emit('update-cart')
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    proceedPage(){
-      this.$router.push('/products');
+    proceedPage () {
+      this.$router.push('/products')
     },
-    changeStatus(){
-      this.checkOutstatus = true;
+    changeStatus () {
+      this.checkOutstatus = true
     },
-    changeAmount(item,num){
-      if(num > 0){
+    changeAmount (item, num) {
+      if (num > 0) {
         item.qty += 1
-      }else{
+      } else {
         item.qty -= 1
       }
-      this.updateCart(item);
+      this.updateCart(item)
     },
-    checkCode(){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
-      const coupon_code ={
-          code:this.code
+    checkCode () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
+      const CouponCode = {
+        code: this.code
       }
-      this.$http.post(api,{data:coupon_code}).then(res=>{
-        if(res.data.success){
-          this.$pushMessage(res,'套用優惠券')
-          this.code = '';
-          this.codeStatus = true;
-          this.getCart();
-        }else{
-          this.$pushMessage(res,'套用優惠券')
+      this.$http.post(api, { data: CouponCode }).then(res => {
+        if (res.data.success) {
+          this.$pushMessage(res, '套用優惠券')
+          this.code = ''
+          this.codeStatus = true
+          this.getCart()
+        } else {
+          this.$pushMessage(res, '套用優惠券')
         }
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    addOrder(){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
-      const order = this.form;
-      this.isLoading = true;
-      this.$http.post(api,{data:order}).then(res=>{
-        if(res.data.success){
-          this.tempOrderId = res.data.orderId;
-          this.emitter.emit('update-cart');
-          this.$router.push(`/order/${this.tempOrderId}`);
-          this.isLoading = false;
-        }else{
-          this.isLoading = false;
+    addOrder () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
+      const order = this.form
+      this.isLoading = true
+      this.$http.post(api, { data: order }).then(res => {
+        if (res.data.success) {
+          this.tempOrderId = res.data.orderId
+          this.emitter.emit('update-cart')
+          this.$router.push(`/order/${this.tempOrderId}`)
+          this.isLoading = false
+        } else {
+          this.isLoading = false
         }
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     }
   },
-  components:{TimeLine,Footer,ScrollTop,SocialMedia,Section},
-  mounted(){
-    this.getCart();
-  },
+  components: { TimeLine, Footer, ScrollTop, SocialMedia, Section },
+  mounted () {
+    this.getCart()
+  }
 }
 </script>
 
@@ -353,7 +353,7 @@ export default {
   }
 }
 .cart-list{
-  padding: 100px 0 100px 0;
+  padding: 40px 0 40px 0;
   .product-title{
     @media(max-width:405px){
       font-size: 12px;
@@ -369,6 +369,13 @@ export default {
 .product-img{
   @media (max-width:1200px) {
     display: none;
+  }
+}
+.numbtn{
+  .btn{
+    @media (max-width: 576px) {
+      padding: 0px;
+    }
   }
 }
 .checklist{

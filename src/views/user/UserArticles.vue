@@ -30,35 +30,35 @@
 
 <script>
 import Footer from '@/components/Footer.vue'
-import SocialMedia from '@/components/SocialMedia.vue';
-import Section from '@/components/Section.vue';
+import SocialMedia from '@/components/SocialMedia.vue'
+import Section from '@/components/Section.vue'
 export default {
-  data(){
+  data () {
     return {
-      Articles:[],
-      isLoading:true,
-      id:''
+      Articles: [],
+      isLoading: true,
+      id: ''
     }
   },
-  methods:{
-    getArticles(page=1){
+  methods: {
+    getArticles (page = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/articles?page=${page}`
-      this.isLoading = true;
-      this.$http.get(api).then(res=>{
-        this.Articles = res.data.articles;
-        this.isLoading = false;
+      this.isLoading = true
+      this.$http.get(api).then(res => {
+        this.Articles = res.data.articles
+        this.isLoading = false
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    articleDetail(id){
-      this.$router.push(`/articles/${id}`);
+    articleDetail (id) {
+      this.$router.push(`/articles/${id}`)
     }
   },
-  components:{Footer,SocialMedia,Section},
-  created(){
-    this.getArticles();
+  components: { Footer, SocialMedia, Section },
+  created () {
+    this.getArticles()
   }
 }
 </script>

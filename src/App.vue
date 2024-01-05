@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import AOS from "aos";
-import "aos/dist/aos.css";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 export default {
   mounted () {
@@ -17,4 +17,3 @@ export default {
 <style lang="scss">
 @import './assets/scss/all.scss';
 </style>
-

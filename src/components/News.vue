@@ -1,33 +1,33 @@
 <template>
-  <div class="news container w-100" data-aos="flip-left" data-aos-duration="2000">
+  <div class="news container w-100 my-5 py-5" data-aos="flip-left" data-aos-duration="2000">
     <h1 class="text-center my-5 fw-bold" >最新消息</h1>
     <div class="row">
       <div class="col-6">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" ref="Carousel" >
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;" 
-                :style="{backgroundImage: `url('https://plus.unsplash.com/premium_photo-1664475764570-c7e67c1dbb91?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`}">
+              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
+                :style="{backgroundImage: `url('https://storage.googleapis.com/vue-course-api.appspot.com/colpp61109/1704331375703.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=NLqhb2gE%2BXtWHVp80gutNIlHlZsSCggcNaZTs79kOHpv4jKvhegNOZbHnaqdg7E6euouE8gtxolV8fUHTtqhwcWPb%2B5OhUkDRPb1P0UzwEyT5GynphvVaSeJW7H2PsmpfhFll8MI%2Bw7sJ%2BMmhfnGSmMNm7HYDW9b8S8f5%2BzkKVg%2Fq706dfdWx7P4QXqTo%2FyrumUlvf1pAhyKeZN3FlkMrjd%2BLrOglV7yIjO%2FdQuD8JZxMYPQp%2F1jp0rGiPotfEahkkCu%2FEZKzufPKmITpFI%2FyAeV7YSAcTdKcZxCBt1S%2FArNFQNrXPsBVd6TVkv8xgQHsTMPYTNb%2FVrK1GtSquUMfg%3D%3D')`}">
               </div>
             </div>
             <div class="carousel-item">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;" 
-                :style="{backgroundImage: `url('https://images.unsplash.com/photo-1543837173-6c26bc89937b?auto=format&fit=crop&q=80&w=1965&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`}">
+              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
+                :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/fall.jpg')`}">
               </div>
             </div>
             <div class="carousel-item">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;" 
-                :style="{backgroundImage: `url('https://images.unsplash.com/photo-1602846555964-639a430df77a?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`}">
+              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
+                :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/spring.jpg')`}">
               </div>
             </div>
             <div class="carousel-item">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;" 
-                :style="{backgroundImage: `url('https://images.unsplash.com/photo-1594608661623-aa0bd3a69d98?auto=format&fit=crop&q=80&w=2148&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`}">
+              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
+                :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/school-start.jpg')`}">
               </div>
             </div>
             <div class="carousel-item">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;" 
-                :style="{backgroundImage: `url('https://plus.unsplash.com/premium_photo-1682535210542-21dceae4530c?auto=format&fit=crop&q=80&w=1976&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`}">
+              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
+                :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/summer.jpg')`}">
               </div>
             </div>
           </div>
@@ -43,34 +43,34 @@
 </template>
 
 <script>
-import Carousel from 'bootstrap/js/dist/carousel';
+import Carousel from 'bootstrap/js/dist/carousel'
 export default {
-  name:'TheNews',
-  data(){
-    return{
-      carousel:{},
-      articles:[],
-      id:''
+  name: 'TheNews',
+  data () {
+    return {
+      carousel: {},
+      articles: [],
+      id: ''
     }
   },
-  methods:{
-    getArticles(page=1){
+  methods: {
+    getArticles (page = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/articles?page=${page}`
-      this.$http.get(api).then(res=>{
-        this.articles = res.data.articles;
+      this.$http.get(api).then(res => {
+        this.articles = res.data.articles
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    articleDetail(id){
-        this.$router.push(`/articles/${id}`)
+    articleDetail (id) {
+      this.$router.push(`/articles/${id}`)
     }
   },
-  mounted(){
-    this.carousel = new Carousel(this.$refs.Carousel,{interval: 6000});
-    this.getArticles();
-  },
+  mounted () {
+    this.carousel = new Carousel(this.$refs.Carousel, { interval: 6000 })
+    this.getArticles()
+  }
 }
 </script>
 
@@ -79,7 +79,7 @@ export default {
   h1 {
     position: relative;
     &::after{
-      content:''; 
+      content:'';
       position: absolute;
       display: inline-block;
       width: 350px;
@@ -100,5 +100,5 @@ export default {
     }
   }
  }
- 
+
 </style>

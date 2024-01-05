@@ -1,8 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light p-0 bg-light position-fixed top-0 w-100 z-3 px-2">
     <a class="navbar-brand p-0" href="#">
-      <img src="@/assets/images/glasses.png" width="80" height="80" alt="眼鏡行">
-      <img src="@/assets/images/glasses-brand.png" width="120" height="80" alt="老薛眼鏡館">    
+      <img src="@/assets/images/glasses-brand.png" class="bg-light" width="120" height="80" alt="老薛眼鏡館">
     </a>
     <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" ref="navbartoggler"
     data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,48 +52,48 @@
 </template>
 
 <script>
-import emitter from '@/methods/emitter';
+import emitter from '@/methods/emitter'
 import ToastMessage from '@/components/ToastMessage.vue'
 export default {
-  data(){
-    return{
-      favoriteNum:0,
-      cartNum:0,
-      status:'',
+  data () {
+    return {
+      favoriteNum: 0,
+      cartNum: 0,
+      status: ''
     }
   },
-  methods:{
-    getFavorite(){
-      this.favoriteNum = (JSON.parse(localStorage.getItem('favorite')) || []).length; 
+  methods: {
+    getFavorite () {
+      this.favoriteNum = (JSON.parse(localStorage.getItem('favorite')) || []).length
     },
-    getCart(){
+    getCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-      this.$http.get(api).then(res=>{
-        this.carts = res.data.data;
-        this.cartNum = res.data.data.carts.length;
+      this.$http.get(api).then(res => {
+        this.carts = res.data.data
+        this.cartNum = res.data.data.carts.length
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    navbarToggler(){
-      this.$refs.navbartoggler.click();
+    navbarToggler () {
+      this.$refs.navbartoggler.click()
     }
   },
-  mounted(){
-    this.getCart();
-    emitter.on('update-favorite',()=>{
-      this.getFavorite();
-    }),
-    emitter.on('update-cart',()=>{
-      this.getCart();
+  mounted () {
+    this.getCart()
+    emitter.on('update-favorite', () => {
+      this.getFavorite()
+    })
+    emitter.on('update-cart', () => {
+      this.getCart()
     })
   },
-  created(){
-    this.getCart();
-    this.getFavorite(); 
+  created () {
+    this.getCart()
+    this.getFavorite()
   },
-  components:{ToastMessage}
+  components: { ToastMessage }
 }
 </script>
 

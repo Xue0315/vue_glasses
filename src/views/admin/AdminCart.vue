@@ -15,7 +15,7 @@
           <tbody>
             <tr v-for="item in products" :key="item.id">
               <td style="width:200px">
-                <div style="height:100px; background-size:cover; background-position: center;" 
+                <div style="height:100px; background-size:cover; background-position: center;"
                 :style="{backgroundImage: `url(${item.imageUrl})`}">
                 </div>
               </td>
@@ -23,9 +23,9 @@
                 {{ item.title }}
               </td>
               <td>
-                  <div class="h5" v-if="!item.origin_price">{{ item.origin_price }}</div> 
-                  <del class="h6" v-if="item.price">原價{{ $filter.currency(item.origin_price) }}元</del> 
-                  <div class="h5" v-if="item.price">現在只要{{ $filter.currency(item.price) }}元</div> 
+                  <div class="h5" v-if="!item.origin_price">{{ item.origin_price }}</div>
+                  <del class="h6" v-if="item.price">原價{{ $filter.currency(item.origin_price) }}元</del>
+                  <div class="h5" v-if="item.price">現在只要{{ $filter.currency(item.price) }}元</div>
               </td>
               <td>
                 <div class="btn-group btn-group-sm">
@@ -87,7 +87,7 @@
           <div class="mt-3 input-group ">
             <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="code">
             <button type="button" class="btn btn-outline-secondary" @click="checkCode">套用優惠碼</button>
-          </div>    
+          </div>
           </template>
         </div>
       </div>
@@ -99,7 +99,7 @@
         <div class="mb-1">
           <label for="email" class="form-label">Email</label>
         </div>
-        <Field type="email" id="email" name="email"  class="form-control" placeholder="請輸入Email" rules="email|required" 
+        <Field type="email" id="email" name="email"  class="form-control" placeholder="請輸入Email" rules="email|required"
           :class="{ 'is-invalid': errors['email'] }" v-model="form.user.email">
         </Field>
         <ErrorMessage name="email" class="invalid-feedback" ></ErrorMessage>
@@ -145,122 +145,122 @@
 </template>
 <script>
 export default {
-  data(){
+  data () {
     return {
-      products:[],
-      cart:[],
-      isLoading:false,
-      status:{
-        loadingItem:''
+      products: [],
+      cart: [],
+      isLoading: false,
+      status: {
+        loadingItem: ''
       },
-      form:{
-        user:{
-          email:'',
-          name:'',
-          tel:'',
-          address:''
+      form: {
+        user: {
+          email: '',
+          name: '',
+          tel: '',
+          address: ''
         },
-        message:''
+        message: ''
       },
-      tempOrderId:'',
-      code:''
+      tempOrderId: '',
+      code: ''
     }
   },
-  inject:['emitter'],
-  methods:{
-    getProducts(){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/all`;
-      this.$http.get(api).then(res=>{
-        this.products = res.data.products;
+  inject: ['emitter'],
+  methods: {
+    getProducts () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/all`
+      this.$http.get(api).then(res => {
+        this.products = res.data.products
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    productDetail(id){
+    productDetail (id) {
       this.$router.push(`/user/product/${id}`)
     },
-    addCart(id){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+    addCart (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.status.loadingItem = id
       const product = {
-        product_id:id,
-        qty:1
-      };
-      this.$http.post(api,{data:product}).then(res=>{
-        this.getCart();
-        this.$pushMessage(res,'加入購物車');
+        product_id: id,
+        qty: 1
+      }
+      this.$http.post(api, { data: product }).then(res => {
+        this.getCart()
+        this.$pushMessage(res, '加入購物車')
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    getCart(){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      this.isLoading = true;
-      this.$http.get(api).then(res=>{
-        if(res.data.success){
+    getCart () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+      this.isLoading = true
+      this.$http.get(api).then(res => {
+        if (res.data.success) {
           this.cart = res.data.data
-          this.isLoading = false;
+          this.isLoading = false
         }
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    deleteCart(id){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`;
-      this.status.loadingItem = id;
-      this.$http.delete(api).then(res=>{
-        this.getCart();
-        this.$pushMessage(res,'刪除');
+    deleteCart (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`
+      this.status.loadingItem = id
+      this.$http.delete(api).then(res => {
+        this.getCart()
+        this.$pushMessage(res, '刪除')
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    updateCart(item){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+    updateCart (item) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
       const product = {
-        product_id:item.id,
-        qty:item.qty
+        product_id: item.id,
+        qty: item.qty
       }
-      this.$http.put(api,{data:product}).then(()=>{
-        this.getCart();
+      this.$http.put(api, { data: product }).then(() => {
+        this.getCart()
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    checkCode(){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
-      const coupon_code ={
-        code:this.code
+    checkCode () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
+      const CouponCode = {
+        code: this.code
       }
-      this.$http.post(api,{data:coupon_code}).then(res=>{
-        this.$pushMessage(res,'套用優惠券')
-        this.getCart();
-        this.code = '';
+      this.$http.post(api, { data: CouponCode }).then(res => {
+        this.$pushMessage(res, '套用優惠券')
+        this.getCart()
+        this.code = ''
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
+        })
     },
-    addOrder(){
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
+    addOrder () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
       const order = this.form
-      this.$http.post(api,{data:order}).then(res=>{
-        this.tempOrderId = res.data.orderId;
+      this.$http.post(api, { data: order }).then(res => {
+        this.tempOrderId = res.data.orderId
         this.$router.push(`/user/checkout/${this.tempOrderId}`)
       })
-      .catch(()=>{
+        .catch(() => {
 
-      })
-    },
+        })
+    }
   },
-  created(){
-    this.getProducts();
-    this.getCart();
+  created () {
+    this.getProducts()
+    this.getCart()
   }
 }
 </script>

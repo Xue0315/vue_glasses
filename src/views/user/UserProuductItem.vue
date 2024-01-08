@@ -218,6 +218,9 @@ export default {
 }
 .product-img{
   height: 600px;
+  @media (max-width: 768px) {
+      height: 400px;
+  }
 }
 .product-image{
   position: relative;
@@ -240,10 +243,6 @@ export default {
     }
     @media (max-width: 500px) {
       font-size: 14px;;
-    }
-  }
-  button{
-    @media (max-width: 992px) {
     }
   }
   .fa-heart{

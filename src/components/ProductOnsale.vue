@@ -84,10 +84,9 @@ export default {
         this.$pushMessage(res, '加入購物車')
         this.emitter.emit('update-cart')
         this.status.loadingItem = ''
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     productDetail (id) {
       this.$router.push(`/products/${id}`)

@@ -5,8 +5,8 @@
       <p class="text-center fw-bold mx-auto text-white">戴來一份亮麗精彩，帶出一片光明未來。</p>
     </div>
     <div class="readmore text-center w-100" v-if= "height < 10" >
-      <i class="fa fa-angle-double-down fs-1 text-primary" aria-hidden="true"></i>
-      <h6 class="my-3 fw-bold text-primary">往下閱讀更多</h6>
+      <i class="fa fa-angle-double-down fs-1 text-white" aria-hidden="true"></i>
+      <h6 class="my-3 fw-bold text-white">往下閱讀更多</h6>
     </div>
   </div>
   <div class="bg-light">
@@ -137,7 +137,7 @@ export default {
 <style lang="scss" scoped>
 .homeBanner{
   height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1534844978-b859e5a09ad6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80");
+  background-image: url("https://raw.githubusercontent.com/xouoe/Pic/main/z-home-banner.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

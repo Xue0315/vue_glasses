@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <router-view/>
   <PageLoading :active="isLoading"/>
   <div class="bg-light article-purpose">
     <div class="article-title container">
@@ -78,10 +78,9 @@ export default {
         this.tempArticle = res.data.article
         this.articleImage = res.data.article.imageUrl
         this.isLoading = false
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     }
   },
   components: { Footer, SocialMedia, Section },

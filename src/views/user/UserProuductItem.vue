@@ -1,11 +1,11 @@
 <template>
   <div class="bg-light">
     <PageLoading :active="isLoading"/>
-    <router-view></router-view>
+    <router-view/>
     <div class="container py-5">
       <div class="row position-relative">
-        <nav aria-label="breadcrumb ">
-          <ol class="breadcrumb d-none d-md-flex">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb d-none d-md-flex text-start">
             <router-link to="/" class="breadcrumb-item text-primary">首頁</router-link>
             <router-link to="/products" class="breadcrumb-item">產品列表</router-link>
             <li class="breadcrumb-item active" aria-current="page">
@@ -44,11 +44,11 @@
           </div>
         </div>
         <div class="col-xl-6">
-          <div class="product-caption h-100 ">
+          <div class="product-caption h-100">
             <div class="product-title mb-5 d-flex">
               <span class="title-name fw-bold ">{{ tempProduct.title }}</span>
               <div>
-                <button type="button" class="fa-solid z-2 fa-heart fs-3 border-0 bg-light" :class="isFavorite(tempProduct.id) ? 'favorite' : ''" @click.stop="favoriteBtn(tempProduct)">收藏</button>
+                <button type="button" class="fa-solid z-2 fa-heart fs-3 border-0 bg-light" :class="isFavorite(tempProduct.id) ? 'favorite' : ''" @click.stop="favoriteBtn(tempProduct)">已收藏</button>
               </div>
             </div>
             <div class="product-price mb-5 d-flex">
@@ -85,11 +85,12 @@
     <div class="saleTitle text-center container my-5 py-5">
       <ProductOnsale/>
     </div>
-    <Footer></Footer>
+    <Footer/>
     <SocialMedia/>
   </div>
 </template>
 <script>
+import LocalStorage from '@/utils/localStorage.js'
 import ProductOnsale from '@/components/ProductOnsale.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
 import Footer from '@/components/Footer.vue'
@@ -120,7 +121,9 @@ export default {
           this.tempProduct = res.data.product
           this.productImg = res.data.product.imageUrl
         }
-      }).catch(() => {})
+      }).catch((err) => {
+        console.log(err)
+      })
     },
     addCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -134,10 +137,12 @@ export default {
         this.$pushMessage(res, '加入購物車')
         this.emitter.emit('update-cart')
         this.status.loadingItem = ''
-      }).catch(() => {})
+      }).catch((err) => {
+        console.log(err)
+      })
     },
     getFavorite () {
-      this.favorite = JSON.parse(localStorage.getItem('favorite')) || []
+      this.favorite = LocalStorage.get('favorite') || []
       this.favoriteIds = []
       this.favorite.forEach((item) => { this.favoriteIds.push(item.id) })
     },
@@ -149,12 +154,12 @@ export default {
       const hasFavorite = this.favorite.some((item) => item.id === id)
       if (!hasFavorite) {
         this.favorite.push(this.tempProduct)
-        localStorage.setItem('favorite', JSON.stringify(this.favorite))
+        LocalStorage.set('favorite', this.favorite)
         this.$pushMessage(true, '加入收藏')
       } else {
         const delFavorite = this.favorite.find(item => item.id === id)
         this.favorite.splice(this.favorite.indexOf(delFavorite), 1)
-        localStorage.setItem('favorite', JSON.stringify(this.favorite))
+        LocalStorage.set('favorite', this.favorite)
         this.$pushMessage(true, '移除收藏')
       }
       this.getFavorite()
@@ -190,6 +195,9 @@ export default {
 .product-caption{
   position: relative;
   top: 120px;
+  @media (max-width: 1200px) {
+    margin-top: 30px;
+  }
   hr{
     position: relative;
     top: 80px;
@@ -229,7 +237,6 @@ export default {
 .breadcrumb{
   position: absolute;
   top: 55px;
-  transform: translateX(50px);
 }
 .product-title{
   justify-content: space-between;
@@ -242,7 +249,7 @@ export default {
       font-size: 22px;;
     }
     @media (max-width: 500px) {
-      font-size: 14px;;
+      font-size: 20px;;
     }
   }
   .fa-heart{
@@ -251,6 +258,10 @@ export default {
       color: #ff4d4d;
     }
   }
+}
+button:disabled{
+  background-color: #ccc;
+  border: none;
 }
 .product-price{
   justify-content: space-between;

@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <router-view/>
   <PageLoading :active="isLoading" />
   <div class="checkout-page container position-relative">
     <TimeLine :order="order"></TimeLine>
@@ -116,7 +116,7 @@
             <th colspan="4">備註</th>
           </tr>
           <tr v-if="order.message">
-            <td colspan="2">{{ order.message}}</td>
+            <td colspan="2">{{ order.message }}</td>
           </tr>
           <tr>
             <th colspan="4">付款狀態</th>
@@ -144,8 +144,7 @@
     </div>
     <button type="button" class="btn btn-outline-primary mt-3" @click="proceedPage">繼續購物</button>
   </div>
-<Footer></Footer>
-
+  <Footer/>
 </template>
 
 <script>
@@ -169,10 +168,9 @@ export default {
       this.$http.get(api).then(res => {
         this.order = res.data.order
         this.isLoading = false
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     pay () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.id}`
@@ -182,10 +180,9 @@ export default {
           this.getOrder()
           this.isLoading = false
         }
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     proceedPage () {
       this.$router.push('/products')

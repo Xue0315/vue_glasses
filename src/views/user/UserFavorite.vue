@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <router-view/>
   <div class="bg-light">
     <div class="favorite-banner position-relative mb-5">
       <div class="favorite-title bg-dark bg-opacity-50 w-100 position-absolute bottom-0 d-flex align-items-center h-100">
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import LocalStorage from '@/utils/localStorage.js'
 import Footer from '@/components/Footer.vue'
 import ProductOnsale from '@/components/ProductOnsale.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
@@ -67,8 +68,8 @@ export default {
   inject: ['emitter'],
   methods: {
     getFavorite () {
-      this.favorite = JSON.parse(localStorage.getItem('favorite')) || []
-      this.favoriteNum = (JSON.parse(localStorage.getItem('favorite')) || []).length
+      this.favorite = LocalStorage.get('favorite') || []
+      this.favoriteNum = (LocalStorage.get('favorite') || []).length
     },
     favoriteBtn (item) {
       const id = item.id
@@ -76,7 +77,7 @@ export default {
       if (hasFavorite) {
         const delFavorite = this.favorite.find(item => item.id === id)
         this.favorite.splice(this.favorite.indexOf(delFavorite), 1)
-        localStorage.setItem('favorite', JSON.stringify(this.favorite))
+        LocalStorage.set('favorite', this.favorite)
         this.$pushMessage(true, '移除收藏')
       }
       this.getFavorite()
@@ -93,10 +94,9 @@ export default {
         this.$pushMessage(res, '加入購物車')
         this.emitter.emit('update-cart')
         this.status.loadingItem = ''
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     productDetail (id) {
       this.$router.push(`/products/${id}`)

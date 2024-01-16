@@ -1,7 +1,7 @@
 <template>
   <div class="footer justify-content-center d-flex align-items-center flex-column w-100">
     <span class="text-white">Copyright &copy; 2023 ZhongXun XUE</span>
-    <span class="text-white">非商業用途，素材來源：unsplash，參考資料來源：<a class="text-white text-decoration-none" href="#">JAPAN QUALITY</a>，<a class="text-white text-decoration-none" href="#">PINKOI</a></span>
+    <span class="text-white">非商業用途，素材來源：unsplash，參考資料來源：<a class="text-white text-decoration-none" href="#"  @click.prevent>JAPAN QUALITY</a>，<a class="text-white text-decoration-none" href="#"  @click.prevent>PINKOI</a></span>
   </div>
 </template>
 

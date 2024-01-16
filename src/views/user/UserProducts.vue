@@ -1,7 +1,7 @@
 <template>
   <div class="bg-light">
     <PageLoading :active="isLoading"/>
-    <router-view></router-view>
+    <router-view/>
     <div class="products-banner position-relative">
       <div class="products-title position-absolute bg-opacity-50  bg-black w-100 d-flex align-items-center h-100">
         <h1 class="text-white mx-auto h1 fw-bold">產品列表</h1>
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import LocalStorage from '@/utils/localStorage.js'
 import Footer from '@/components/Footer.vue'
 import ScrollTop from '@/components/ScrollTop.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
@@ -94,14 +95,13 @@ export default {
       this.$http.get(api).then(res => {
         this.products = res.data.products
         this.isLoading = false
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
       this.emitter.emit('update-cart')
     },
     getFavorite () {
-      this.favorite = JSON.parse(localStorage.getItem('favorite')) || []
+      this.favorite = LocalStorage.get('favorite') || []
       this.favoriteIds = []
       this.favorite.forEach((item) => {
         this.favoriteIds.push(item.id)
@@ -118,10 +118,9 @@ export default {
         this.$pushMessage(res, '加入購物車')
         this.emitter.emit('update-cart')
         this.status.loadingItem = ''
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     productDetail (id) {
       this.$router.push(`/products/${id}`)
@@ -134,12 +133,12 @@ export default {
       const hasFavorite = this.favorite.some((item) => item.id === id)
       if (!hasFavorite) {
         this.favorite.push(item)
-        localStorage.setItem('favorite', JSON.stringify(this.favorite))
+        LocalStorage.set('favorite', this.favorite)
         this.$pushMessage(true, '加入收藏')
       } else {
         const delFavorite = this.favorite.find(item => item.id === id)
         this.favorite.splice(this.favorite.indexOf(delFavorite), 1)
-        localStorage.setItem('favorite', JSON.stringify(this.favorite))
+        LocalStorage.set('favorite', this.favorite)
         this.$pushMessage(true, '移除收藏')
       }
       this.getFavorite()

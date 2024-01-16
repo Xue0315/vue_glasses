@@ -1,6 +1,6 @@
 <template>
 <div class="bg-light">
-  <pageLoading :active="isLoading"/>
+  <PageLoading :active="isLoading"/>
   <div class="cartBanner position-relative" v-if="!checkOutstatus">
     <div class="cart-title bg-dark bg-opacity-50 w-100 position-absolute bottom-0 d-flex align-items-center h-100">
       <h1 class="text-white fw-bold mx-auto">購物車</h1>
@@ -9,9 +9,9 @@
   <div class="checkout-page container position-relative w-100" v-if="checkOutstatus">
     <TimeLine></TimeLine>
     <div class="row">
-      <div class="col-xl-6 mb-5 checklist">
+      <div class="col-xl-6 my-5 checklist">
         <div class="text-center">
-          <span class="mb-5 fs-3">清單明細</span>
+          <span class="my-5 fs-3">清單明細</span>
         </div>
         <hr>
         <table class="table table-borderless table-light">
@@ -106,7 +106,7 @@
           <textarea type="text" id="message" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
         </div>
         <div class="text-end mt-3">
-          <button type="button" class="btn btn-info" @click.stop="addOrder">送出訂單</button>
+          <button type="button" class="btn btn-primary text-white" @click.stop="addOrder">送出訂單</button>
         </div>
       </TheForm>
     </div>
@@ -166,11 +166,11 @@
           </div>
           <div class="input-group mb-3 ms-auto">
             <input type="text" class="form-control ms-auto" placeholder="請輸入您的優惠碼" v-model="code" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="checkCode">套用優惠碼</button>
+            <button class="btn btn-outline-primary" type="button" id="button-addon2" @click="checkCode">套用優惠碼</button>
           </div>
         </div>
         <div class="checkout w-100 text-end">
-          <button type="button" class="btn btn-secondary" @click="changeStatus">結帳</button>
+          <button type="button" class="btn btn-primary text-white" @click="changeStatus">結帳</button>
         </div>
       </div>
     </div>
@@ -226,10 +226,9 @@ export default {
         this.carts = res.data.data
         this.cartNum = res.data.data.carts.length
         this.isLoading = false
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     updateCart (item) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
@@ -248,10 +247,9 @@ export default {
         this.getCart()
         this.$pushMessage(res, '刪除產品')
         this.emitter.emit('update-cart')
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     deleteAllCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`
@@ -264,10 +262,9 @@ export default {
           this.$pushMessage(res, '刪除')
         }
         this.emitter.emit('update-cart')
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     proceedPage () {
       this.$router.push('/products')
@@ -297,10 +294,9 @@ export default {
         } else {
           this.$pushMessage(res, '套用優惠券')
         }
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     addOrder () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
@@ -315,10 +311,9 @@ export default {
         } else {
           this.isLoading = false
         }
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     }
   },
   components: { TimeLine, Footer, ScrollTop, SocialMedia, Section },
@@ -377,6 +372,10 @@ export default {
       padding: 0px;
     }
   }
+}
+button:disabled{
+  background-color: #ccc;
+  border: none;
 }
 .checklist{
   @media (max-width: 576px) {

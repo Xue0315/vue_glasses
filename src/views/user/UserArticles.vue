@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <router-view/>
   <PageLoading :active="isLoading"/>
   <div class="articles-banner position-relative mb-5">
     <div class="articles-title bg-dark bg-opacity-50 w-100 position-absolute bottom-0 d-flex align-items-center h-100">
@@ -16,7 +16,7 @@
         <div class="col-md-8 ">
           <div class="d-flex justify-content-between">
             <h5 class="w-50 mx-auto rwd-fs">{{ item.description }}</h5>
-            <span class="align-items-end d-flex date">{{ $filter.date(item.create_at) }}</span>
+            <span class="align-items-center d-flex date">{{ $filter.date(item.create_at) }}</span>
           </div>
         </div>
       </div>
@@ -47,10 +47,9 @@ export default {
       this.$http.get(api).then(res => {
         this.Articles = res.data.articles
         this.isLoading = false
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     articleDetail (id) {
       this.$router.push(`/articles/${id}`)

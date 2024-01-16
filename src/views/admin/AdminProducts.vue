@@ -64,10 +64,9 @@ export default {
         this.products = res.data.products
         this.pagination = res.data.pagination
         this.isLoading = false
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     openProductModal (isNew, item) {
       const productModal = this.$refs.productmodal
@@ -109,10 +108,9 @@ export default {
           })
         }
         this.isLoading = false
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     deleteProduct (id) {
       const DelModal = this.$refs.delmodal
@@ -123,10 +121,9 @@ export default {
           DelModal.hideModal()
           this.getProducts()
         }
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
       this.isLoading = false
     }
   },

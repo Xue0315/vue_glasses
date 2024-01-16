@@ -101,10 +101,9 @@ export default {
           this.tempArticle.imageUrl = res.data.imageUrl
           document.getElementById(select).value = ''
         }
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     }
   },
   mixins: [MixinModal]

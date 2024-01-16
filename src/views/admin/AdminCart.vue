@@ -172,10 +172,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/all`
       this.$http.get(api).then(res => {
         this.products = res.data.products
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     productDetail (id) {
       this.$router.push(`/user/product/${id}`)
@@ -190,10 +189,9 @@ export default {
       this.$http.post(api, { data: product }).then(res => {
         this.getCart()
         this.$pushMessage(res, '加入購物車')
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     getCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -203,10 +201,9 @@ export default {
           this.cart = res.data.data
           this.isLoading = false
         }
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     deleteCart (id) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`
@@ -214,10 +211,9 @@ export default {
       this.$http.delete(api).then(res => {
         this.getCart()
         this.$pushMessage(res, '刪除')
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     updateCart (item) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
@@ -227,10 +223,9 @@ export default {
       }
       this.$http.put(api, { data: product }).then(() => {
         this.getCart()
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     checkCode () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
@@ -241,10 +236,9 @@ export default {
         this.$pushMessage(res, '套用優惠券')
         this.getCart()
         this.code = ''
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     addOrder () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
@@ -252,10 +246,9 @@ export default {
       this.$http.post(api, { data: order }).then(res => {
         this.tempOrderId = res.data.orderId
         this.$router.push(`/user/checkout/${this.tempOrderId}`)
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     }
   },
   created () {

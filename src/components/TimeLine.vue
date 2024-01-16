@@ -1,8 +1,8 @@
 <template>
   <div class="checkoutstatus-image my-5">
     <ul class="list-unstyled d-flex justify-content-around align-middle">
-      <li class="fs-5 rounded-circle text-white default"><span >1</span></li>
-      <li class="fs-5 rounded-circle text-white " :class="order?.id ? 'active' : ''"><span>2</span></li>
+      <li class="fs-5 rounded-circle text-white default"><span>1</span></li>
+      <li class="fs-5 rounded-circle text-white" :class="order?.id ? 'active' : ''"><span>2</span></li>
       <li class="fs-5 rounded-circle text-white" :class="order?.is_paid ? 'active' : ''"><span>3</span></li>
     </ul>
     <ul class="checkoutstatus-title list-unstyled justify-content-around d-flex">
@@ -25,7 +25,7 @@ export default {
   top: 50px;
   .rounded-circle{
     background-color:#ccc;
-    padding: 4px 18px;
+    padding: 4px 12px;
     &.default{
       background-color: #ff4d4d;
       z-index: 2;
@@ -52,8 +52,8 @@ export default {
       content: '';
       position: absolute;
       top: 25%;
-      transform: translateX(-107.8%);
-      width: 29.6%;
+      transform: translateX(-106.2%);
+      width: 30.5%;
       height: 2px;
       background-color: #ccc;
       z-index: 0;

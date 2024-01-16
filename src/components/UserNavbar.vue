@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import LocalStorage from '@/utils/localStorage.js'
 import emitter from '@/methods/emitter'
 import ToastMessage from '@/components/ToastMessage.vue'
 export default {
@@ -64,17 +65,16 @@ export default {
   },
   methods: {
     getFavorite () {
-      this.favoriteNum = (JSON.parse(localStorage.getItem('favorite')) || []).length
+      this.favoriteNum = (LocalStorage.get('favorite') || []).length
     },
     getCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(api).then(res => {
         this.carts = res.data.data
         this.cartNum = res.data.data.carts.length
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     navbarToggler () {
       this.$refs.navbartoggler.click()

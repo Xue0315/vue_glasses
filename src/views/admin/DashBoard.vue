@@ -26,10 +26,9 @@ export default {
       if (!res.data.success) {
         this.$router.push('/')
       }
+    }).catch((err) => {
+      console.log(err)
     })
-      .catch(() => {
-
-      })
   },
   components: { AdminNavbar, ToastMessage }
 }

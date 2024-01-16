@@ -54,10 +54,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/articles?page=${page}`
       this.$http.get(api).then(res => {
         this.articles = res.data.articles
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     openArticlesModal (isNew, item) {
       const articleModal = this.$refs.articlemodal
@@ -94,10 +93,9 @@ export default {
             title: '更新失敗'
           })
         }
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     deleteArticle (id) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/article/${id}`

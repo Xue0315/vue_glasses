@@ -26,7 +26,7 @@
           <td>{{ $filter.currency(order.total) }}</td>
           <td>
             <div class="form-check form-switch">
-              <input type="checkbox" class="form-check-input" :id="`${order.id}`" v-model="order.is_paid" @change="updatePaid(order)">
+              <input type="checkbox" class="form-check-input" v-model="order.is_paid" @change="updatePaid(order)">
               <label v-if="order.is_paid" :for="`${order.id}`" class="form-label">已付款</label>
               <label v-else :for="`${order.id}`" class="form-label">未付款</label>
             </div>

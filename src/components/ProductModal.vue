@@ -123,10 +123,9 @@ export default {
           this.tempProduct.imageUrl = res.data.imageUrl
           document.getElementById(select).value = ''
         }
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     createImages () {
       this.tempProduct.imagesUrl = ['']

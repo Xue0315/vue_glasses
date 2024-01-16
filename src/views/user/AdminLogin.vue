@@ -50,10 +50,9 @@ export default {
         const { token, expired } = res.data
         document.cookie = `hexToken=${token}; expires=${new Date(expired)} `
         this.$router.push('/dashboard/adminproducts')
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     }
   },
   components: { Footer, SocialMedia }

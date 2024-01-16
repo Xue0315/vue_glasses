@@ -58,10 +58,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/articles?page=${page}`
       this.$http.get(api).then(res => {
         this.articles = res.data.articles
+      }).catch((err) => {
+        console.log(err)
       })
-        .catch(() => {
-
-        })
     },
     articleDetail (id) {
       this.$router.push(`/articles/${id}`)

@@ -39,6 +39,7 @@
 
 <script>
 import ArticlesModal from '@/components/ArticlesModal.vue'
+
 export default {
   data () {
     return {

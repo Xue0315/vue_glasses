@@ -74,6 +74,7 @@ import Footer from '@/components/Footer.vue'
 import ScrollTop from '@/components/ScrollTop.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
 import Section from '@/components/Section.vue'
+
 export default {
   data () {
     return {

@@ -65,6 +65,7 @@
 </template>
 <script>
 import MixinModal from '@/methods/MixinModal.js'
+
 export default {
   data () {
     return {

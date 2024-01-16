@@ -78,6 +78,7 @@
 
 <script>
 import MixinModal from '@/methods/MixinModal'
+
 export default {
   props: {
     orders: {

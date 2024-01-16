@@ -8,6 +8,7 @@
 <script>
 import emitter from '@/methods/emitter'
 import UserNavbar from '@/components/UserNavbar.vue'
+
 export default {
   provide () {
     return {

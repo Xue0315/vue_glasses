@@ -151,6 +151,7 @@
 import TimeLine from '@/components/TimeLine.vue'
 import Footer from '@/components/Footer.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
+
 export default {
   data () {
     return {

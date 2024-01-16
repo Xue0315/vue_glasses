@@ -95,6 +95,7 @@ import ProductOnsale from '@/components/ProductOnsale.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
 import Footer from '@/components/Footer.vue'
 import Carousel from 'bootstrap/js/dist/carousel'
+
 export default {
   data () {
     return {

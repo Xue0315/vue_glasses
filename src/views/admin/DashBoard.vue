@@ -12,6 +12,7 @@
 import AdminNavbar from '@/components/AdminNavbar.vue'
 import emitter from '@/methods/emitter'
 import ToastMessage from '@/components/ToastMessage.vue'
+
 export default {
   provide () {
     return {

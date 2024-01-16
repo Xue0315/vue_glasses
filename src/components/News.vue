@@ -44,6 +44,7 @@
 
 <script>
 import Carousel from 'bootstrap/js/dist/carousel'
+
 export default {
   name: 'TheNews',
   data () {

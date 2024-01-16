@@ -41,6 +41,7 @@
 
 <script>
 import MixinModal from '@/methods/MixinModal'
+
 export default {
   data () {
     return {

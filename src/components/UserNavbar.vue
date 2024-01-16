@@ -55,6 +55,7 @@
 import LocalStorage from '@/utils/localStorage.js'
 import emitter from '@/methods/emitter'
 import ToastMessage from '@/components/ToastMessage.vue'
+
 export default {
   data () {
     return {

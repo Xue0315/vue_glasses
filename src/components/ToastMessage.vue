@@ -6,6 +6,7 @@
 
 <script>
 import Toast from './Toast.vue'
+
 export default {
   data () {
     return {

@@ -108,6 +108,7 @@ import CouponBanner from '@/components/CopuonBanner.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
 import Section from '@/components/Section.vue'
 import Draw from '@/components/Draw.vue'
+
 export default {
   data () {
     return {

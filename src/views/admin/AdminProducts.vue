@@ -44,6 +44,7 @@
 import ProductModel from '@/components/ProductModal.vue'
 import Pagination from '@/components/Pagination.vue'
 import DelModal from '@/components/DelModal.vue'
+
 export default {
   data () {
     return {

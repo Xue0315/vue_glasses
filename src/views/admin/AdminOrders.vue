@@ -50,6 +50,7 @@
 import OrderModal from '@/components/OrderModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import Pagination from '@/components/Pagination.vue'
+
 export default {
   data () {
     return {

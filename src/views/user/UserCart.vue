@@ -193,6 +193,7 @@ import ScrollTop from '@/components/ScrollTop.vue'
 import TimeLine from '@/components/TimeLine.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
 import Section from '@/components/Section.vue'
+
 export default {
   data () {
     return {

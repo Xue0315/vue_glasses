@@ -220,7 +220,7 @@ export default {
   margin-top: 100px;
 }
 .success-message{
-  padding: 160px 0px;
+  padding: 170px 0px;
   @media (max-width:850px) {
     font-size: 12px;
   }

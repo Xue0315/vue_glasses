@@ -34,7 +34,7 @@
           </div>
           <ul class="col-lg-9 d-flex product-list flex-wrap justify-content-center">
             <li v-for="product in filterProducts" :key="product.id" class="list-unstyled my-2">
-              <div class="card h-100 m-1 " style="width: 19.5rem;">
+              <div class="card h-100 m-1">
                 <a href="#" class="stretched-link " @click.prevent="productDetail(product.id)">
                   <div class="card-img overflow-hidden">
                       <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 w-100 fw-bold">查看更多</button>
@@ -162,7 +162,7 @@ export default {
 <style lang="scss" scoped>
 .products-banner{
   height: 300px;
-  background-image: url('https://images.unsplash.com/photo-1534078477103-9f6a18b3a5e2?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-image: url('https://raw.githubusercontent.com/xouoe/Pic/main/glasses-products.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -187,6 +187,7 @@ export default {
   }
 }
 .card{
+  width: 19.5rem;
   cursor: pointer;
   &:hover{
     .btn.bg-dark{

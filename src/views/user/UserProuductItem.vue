@@ -22,14 +22,12 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div>
-                  <div class="product-img w-100" style="background-size:cover; background-position: center;"
-                    :style="{backgroundImage: `url(${productImg})`}">
+                  <div class="product-img w-100" :style="{backgroundImage: `url(${productImg})`}">
                   </div>
                 </div>
               </div>
               <div class="carousel-item" v-for="item in tempProduct.imagesUrl" :key="item">
-                <div class="product-img w-100" style="background-size:cover; background-position: center;"
-                  :style="{backgroundImage: `url(${item})`}">
+                <div class="product-img w-100" :style="{backgroundImage: `url(${item})`}">
                 </div>
               </div>
             </div>
@@ -226,6 +224,8 @@ export default {
   top: 150px;
 }
 .product-img{
+  background-size:cover;
+  background-position: center;
   height: 600px;
   @media (max-width: 768px) {
       height: 400px;

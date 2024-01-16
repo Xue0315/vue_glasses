@@ -6,28 +6,23 @@
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" ref="Carousel" >
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
-                :style="{backgroundImage: `url('https://storage.googleapis.com/vue-course-api.appspot.com/colpp61109/1704331375703.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=NLqhb2gE%2BXtWHVp80gutNIlHlZsSCggcNaZTs79kOHpv4jKvhegNOZbHnaqdg7E6euouE8gtxolV8fUHTtqhwcWPb%2B5OhUkDRPb1P0UzwEyT5GynphvVaSeJW7H2PsmpfhFll8MI%2Bw7sJ%2BMmhfnGSmMNm7HYDW9b8S8f5%2BzkKVg%2Fq706dfdWx7P4QXqTo%2FyrumUlvf1pAhyKeZN3FlkMrjd%2BLrOglV7yIjO%2FdQuD8JZxMYPQp%2F1jp0rGiPotfEahkkCu%2FEZKzufPKmITpFI%2FyAeV7YSAcTdKcZxCBt1S%2FArNFQNrXPsBVd6TVkv8xgQHsTMPYTNb%2FVrK1GtSquUMfg%3D%3D')`}">
+              <div class="carousel-img" :style="{backgroundImage: `url('https://storage.googleapis.com/vue-course-api.appspot.com/colpp61109/1704331375703.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=NLqhb2gE%2BXtWHVp80gutNIlHlZsSCggcNaZTs79kOHpv4jKvhegNOZbHnaqdg7E6euouE8gtxolV8fUHTtqhwcWPb%2B5OhUkDRPb1P0UzwEyT5GynphvVaSeJW7H2PsmpfhFll8MI%2Bw7sJ%2BMmhfnGSmMNm7HYDW9b8S8f5%2BzkKVg%2Fq706dfdWx7P4QXqTo%2FyrumUlvf1pAhyKeZN3FlkMrjd%2BLrOglV7yIjO%2FdQuD8JZxMYPQp%2F1jp0rGiPotfEahkkCu%2FEZKzufPKmITpFI%2FyAeV7YSAcTdKcZxCBt1S%2FArNFQNrXPsBVd6TVkv8xgQHsTMPYTNb%2FVrK1GtSquUMfg%3D%3D')`}">
               </div>
             </div>
             <div class="carousel-item">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
-                :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/fall.jpg')`}">
+              <div class="carousel-img" :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/fall.jpg')`}">
               </div>
             </div>
             <div class="carousel-item">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
-                :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/spring.jpg')`}">
+              <div class="carousel-img" :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/spring.jpg')`}">
               </div>
             </div>
             <div class="carousel-item">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
-                :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/school-start.jpg')`}">
+              <div class="carousel-img" :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/school-start.jpg')`}">
               </div>
             </div>
             <div class="carousel-item">
-              <div style="height:400px; width: 100%; background-size:cover; background-position: center;"
-                :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/summer.jpg')`}">
+              <div class="carousel-img" :style="{backgroundImage: `url('https://raw.githubusercontent.com/xouoe/Pic/main/summer.jpg')`}">
               </div>
             </div>
           </div>
@@ -99,6 +94,12 @@ export default {
       display: none;
     }
   }
- }
+  .carousel-img{
+    height: 400px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+}
 
 </style>

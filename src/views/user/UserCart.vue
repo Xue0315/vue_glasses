@@ -24,8 +24,7 @@
           <tbody>
             <tr v-for="cart in carts.carts" :key="cart.id" class="align-middle">
               <td class="d-flex align-items-center">
-                <div class="d-none d-xxl-flex" style="height:120px; width: 100px; background-size:cover; background-position: center;"
-                    :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
+                <div class="d-none d-xxl-flex product-img" :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
                 </div>
                 <span class="text-center mx-2">{{ cart.product.title }}</span>
               </td>
@@ -129,8 +128,7 @@
                 <button type="button" class="btn btn-outline-danger" @click="deleteCart(cart.id)"><i class="fa-solid fa-trash"></i></button>
               </td>
               <td class="d-xl-flex align-items-center px-0">
-                <div class="product-img" style="height:100px; width: 100px; background-size:cover; background-position: center;"
-                  :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
+                <div class="product-img" :style="{backgroundImage: `url(${cart.product.imageUrl})`}">
                 </div>
                 <span class="product-title text-center align-items-center mx-2">{{ cart.product.title }}</span>
               </td>
@@ -326,7 +324,7 @@ export default {
 
 <style lang="scss" scoped>
 .cartBanner{
-  background-image: url('https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-image: url('https://raw.githubusercontent.com/xouoe/Pic/main/glasses-cart.jpg');
   background-position: center ;
   background-repeat: no-repeat;
   background-size: cover;
@@ -363,6 +361,10 @@ export default {
   }
 }
 .product-img{
+  height:120px;
+  width: 100px;
+  background-size:cover;
+  background-position: center;
   @media (max-width:1200px) {
     display: none;
   }

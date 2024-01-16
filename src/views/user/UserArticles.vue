@@ -65,7 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 .articles-banner{
-  background-image: url('https://images.unsplash.com/photo-1560177112-fbfd5fde9566?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-image: url('https://raw.githubusercontent.com/xouoe/Pic/main/glasses-news.jpg');
   height: 300px;
   background-position: center;
   background-repeat: no-repeat;

@@ -116,7 +116,7 @@ export default {
 <style lang="scss" scoped>
 .favorite-banner{
   height: 300px;
-  background-image: url('https://images.unsplash.com/photo-1581022295087-35e593704911?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-image: url('https://raw.githubusercontent.com/xouoe/Pic/main/glasses-favorite.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position:center;

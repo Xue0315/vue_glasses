@@ -6,8 +6,8 @@
       <h3 class="mb-3">{{ tempArticle.title }}</h3>
     </div>
     <div class="container position-relative article-item d-flex flex-column justify-content-center">
-    <div class="image" style="width: 100%; height: 100%;">
-        <img :src="articleImage" style=" max-height: 100%;max-width: 100%;height: auto;background-position: center; background-size: cover; background-repeat: no-repeat;">
+    <div class="image">
+        <img class="img" :src="articleImage">
     </div>
     <div class="article-content">
       <p class="lh-lg text-secondary">{{ tempArticle.content }}</p>
@@ -96,6 +96,18 @@ export default {
 .article-purpose{
   position: relative;
   top: 150px;
+  .image{
+    width: 100%;
+    height: 100%;
+    .img{
+      max-height: 100%;
+      max-width: 100%;
+      height: auto;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
   .article-item{
     .article-img{
       width: 100%;

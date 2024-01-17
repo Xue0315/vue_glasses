@@ -27,6 +27,13 @@ class LocalStorage {
       return
     }
     window.localStorage.setItem(key, JSON.stringify(value))
+    const data = this.get(key)
+    if (!data) {
+      console.error('設定 localStorage 失敗')
+      return false
+    } else {
+      return true
+    }
   }
 }
 export default new LocalStorage()

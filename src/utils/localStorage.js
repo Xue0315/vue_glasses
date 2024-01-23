@@ -11,10 +11,9 @@ class LocalStorage {
       return
     }
     const data = window.localStorage.getItem(key)
-    if (!data) {
-      return {}
+    if (data) {
+      return JSON.parse(data)
     }
-    return JSON.parse(data)
   }
 
   set (key, value) {

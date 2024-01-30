@@ -7,7 +7,7 @@
     </div>
     <div class="container position-relative article-item d-flex flex-column justify-content-center">
     <div class="image">
-        <img class="img" :src="articleImage">
+        <img class="img" :src="articleImage" alt="最新消息">
     </div>
     <div class="article-content">
       <p class="lh-lg text-secondary">{{ tempArticle.content }}</p>
@@ -51,8 +51,8 @@
       </ul>
     </div>
     </div>
-    <Section></Section>
-    <Footer class="position-relative end-0 bottom-0"></Footer>
+    <Section/>
+    <Footer class="position-relative end-0 bottom-0"/>
   </div>
   <SocialMedia/>
 </template>
@@ -80,7 +80,7 @@ export default {
         this.articleImage = res.data.article.imageUrl
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     }
   },

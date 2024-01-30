@@ -97,7 +97,7 @@
                     <th colspan="4">備註</th>
                   </tr>
                   <tr v-if="orders.message">
-                    <td colspan="2">{{ orders.message}}</td>
+                    <td colspan="2">{{ orders.message }}</td>
                   </tr>
                   <tr>
                     <th colspan="4">付款狀態</th>
@@ -118,8 +118,8 @@
       <ProductOnsale/>
     </div>
   </div>
-  <Section></Section>
-  <Footer></Footer>
+  <Section/>
+  <Footer/>
   <SocialMedia/>
 </template>
 
@@ -147,7 +147,7 @@ export default {
         this.orders = res.data.order
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     }
   },

@@ -8,10 +8,10 @@
       <table class="table mt-4">
         <thead>
           <tr>
-            <th style="width: 400px;">名稱</th>
-            <th style="width: 400px;">折扣百分比</th>
-            <th style="width: 400px;">到期日</th>
-            <th style="width: 400px;">是否啟用</th>
+            <th>名稱</th>
+            <th>折扣百分比</th>
+            <th>到期日</th>
+            <th>是否啟用</th>
             <th>編輯</th>
           </tr>
         </thead>
@@ -86,7 +86,7 @@ export default {
         this.pages = res.data.pagination
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     updateCoupon (item) {
@@ -110,7 +110,7 @@ export default {
           this.getCoupons()
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     deleteCoupon (id) {
@@ -131,6 +131,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+  .table{
+    th{
+      width: 400px;
+    }
+  }
 </style>

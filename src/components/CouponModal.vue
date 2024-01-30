@@ -37,7 +37,7 @@
       </div>
     </div>
   </div>
-  </template>
+</template>
 
 <script>
 import MixinModal from '@/methods/MixinModal'

@@ -125,7 +125,7 @@ export default {
           document.getElementById(select).value = ''
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     createImages () {

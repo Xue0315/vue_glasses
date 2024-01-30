@@ -41,8 +41,8 @@
         <ProductOnsale/>
       </div>
     </div>
-  <Section></Section>
-  <Footer></Footer>
+  <Section/>
+  <Footer/>
   <SocialMedia/>
 </div>
 
@@ -69,8 +69,8 @@ export default {
   inject: ['emitter'],
   methods: {
     getFavorite () {
-      this.favorite = LocalStorage.get('favorite') || []
-      this.favoriteNum = (LocalStorage.get('favorite') || []).length
+      this.favorite = LocalStorage.get('favorite')
+      this.favoriteNum = (LocalStorage.get('favorite')).length
     },
     favoriteBtn (item) {
       const id = item.id
@@ -96,7 +96,7 @@ export default {
         this.emitter.emit('update-cart')
         this.status.loadingItem = ''
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     productDetail (id) {

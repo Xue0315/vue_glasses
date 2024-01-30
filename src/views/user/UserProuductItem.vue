@@ -43,7 +43,7 @@
         </div>
         <div class="col-xl-6">
           <div class="product-caption h-100">
-            <div class="product-title mb-5 d-flex">
+            <div class="product-title mb-5">
               <span class="title-name fw-bold ">{{ tempProduct.title }}</span>
               <div>
                 <button type="button" class="fa-solid z-2 fa-heart fs-3 border-0 bg-light" :class="isFavorite(tempProduct.id) ? 'favorite' : ''" @click.stop="favoriteBtn(tempProduct)">已收藏</button>
@@ -121,7 +121,7 @@ export default {
           this.productImg = res.data.product.imageUrl
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     addCart () {
@@ -137,11 +137,11 @@ export default {
         this.emitter.emit('update-cart')
         this.status.loadingItem = ''
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     getFavorite () {
-      this.favorite = LocalStorage.get('favorite') || []
+      this.favorite = LocalStorage.get('favorite')
       this.favoriteIds = []
       this.favorite.forEach((item) => { this.favoriteIds.push(item.id) })
     },
@@ -240,17 +240,22 @@ export default {
   top: 55px;
 }
 .product-title{
+  display: flex;
   justify-content: space-between;
   @media (max-width: 1200px) {
     justify-content: space-around;
   }
+  @media (max-width: 400px) {
+    display: block;
+    text-align: center;
+  }
   .title-name{
     font-size: 26px;
     @media (max-width: 992px) {
-      font-size: 22px;;
+      font-size: 22px;
     }
     @media (max-width: 500px) {
-      font-size: 20px;;
+      font-size: 20px;
     }
   }
   .fa-heart{
@@ -261,8 +266,10 @@ export default {
   }
 }
 button:disabled{
-  background-color: #ccc;
   border: none;
+  .fa-minus{
+    color: #D3D3D3;
+  }
 }
 .product-price{
   justify-content: space-between;

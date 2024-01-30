@@ -173,7 +173,7 @@ export default {
       this.$http.get(api).then(res => {
         this.products = res.data.products
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     productDetail (id) {
@@ -190,7 +190,7 @@ export default {
         this.getCart()
         this.$pushMessage(res, '加入購物車')
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     getCart () {
@@ -202,7 +202,7 @@ export default {
           this.isLoading = false
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     deleteCart (id) {
@@ -212,7 +212,7 @@ export default {
         this.getCart()
         this.$pushMessage(res, '刪除')
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     updateCart (item) {
@@ -224,7 +224,7 @@ export default {
       this.$http.put(api, { data: product }).then(() => {
         this.getCart()
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     checkCode () {
@@ -237,7 +237,7 @@ export default {
         this.getCart()
         this.code = ''
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     addOrder () {
@@ -247,7 +247,7 @@ export default {
         this.tempOrderId = res.data.orderId
         this.$router.push(`/user/checkout/${this.tempOrderId}`)
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     }
   },

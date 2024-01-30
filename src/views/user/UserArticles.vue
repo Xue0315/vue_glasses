@@ -7,13 +7,13 @@
     </div>
   </div>
 <div class="bg-light">
-  <div class="articles-Purpose mx-auto w-75 "  data-aos="fade-up" data-aos-duration="2000">
+  <div class="articles-Purpose mx-auto w-75"  data-aos="fade-up" data-aos-duration="2000">
     <a href="#" v-for="item in Articles" :key="item.id" class="text-decoration-none" @click.prevent="articleDetail(item.id)">
       <div class="row align-items-center border-bottom mb-5">
         <div class="col-md-4 ">
             <h3 class="rwd-fs my-3 fw-bold">{{ item.title }}</h3>
         </div>
-        <div class="col-md-8 ">
+        <div class="col-md-8">
           <div class="d-flex justify-content-between">
             <h5 class="w-50 mx-auto rwd-fs">{{ item.description }}</h5>
             <span class="align-items-center d-flex date">{{ $filter.date(item.create_at) }}</span>
@@ -22,8 +22,8 @@
       </div>
     </a>
   </div>
-  <Section></Section>
-  <Footer></Footer>
+  <Section/>
+  <Footer/>
   <SocialMedia/>
 </div>
 </template>
@@ -49,7 +49,7 @@ export default {
         this.Articles = res.data.articles
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     articleDetail (id) {

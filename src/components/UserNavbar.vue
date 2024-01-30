@@ -48,7 +48,7 @@
       </ul>
     </div>
   </nav>
-  <ToastMessage></ToastMessage>
+  <ToastMessage/>
 </template>
 
 <script>
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     getFavorite () {
-      this.favoriteNum = (LocalStorage.get('favorite') || []).length
+      this.favoriteNum = (LocalStorage.get('favorite')).length
     },
     getCart () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -74,7 +74,7 @@ export default {
         this.carts = res.data.data
         this.cartNum = res.data.data.carts.length
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     navbarToggler () {

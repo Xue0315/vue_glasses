@@ -1,31 +1,31 @@
 <template>
-<Loading :active="isLoading"/>
-<div class="bg-light vh-100">
-  <div class="container h-100">
-    <form class="row justify-content-center h-100 align-items-center" @submit.prevent="signin">
-      <div class="col-md-12">
-        <h1 class="h1 text-center">
+  <Loading :active="isLoading"/>
+  <div class="bg-light vh-100">
+    <div class="container h-100">
+      <form class="row justify-content-center h-100 align-items-center" @submit.prevent="signin">
+        <div class="col-md-12">
+          <h1 class="h1 text-center">
             管理員登入
-        </h1>
-        <div class="mx-auto col-10 col-sm-8 col-md-6 col-xl-5 mt-3">
-          <div class="form-floating">
-            <input type="email" id="floatingEmail" class="form-control" placeholder="Email address" v-model="user.username"/>
-            <label for="floatingEmail">Email address</label>
-          </div>
-          <div class="form-floating">
-            <input type="password" id="floatingPassword" class="form-control" required placeholder="Password" v-model="user.password" />
-            <label for="floatingPassword">Password</label>
-          </div>
-          <div class="text-end mt-2">
-            <button type="submit" class="btn btn-primary w-100 fs-4 text-white">登入</button>
+          </h1>
+          <div class="mx-auto col-10 col-sm-8 col-md-6 col-xl-5 mt-3">
+            <div class="form-floating">
+              <input type="email" id="floatingEmail" class="form-control" placeholder="Email address" v-model="user.username"/>
+              <label for="floatingEmail">Email address</label>
+            </div>
+            <div class="form-floating">
+              <input type="password" id="floatingPassword" class="form-control" required placeholder="Password" v-model="user.password" />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="text-end mt-2">
+              <button type="submit" class="btn btn-primary w-100 fs-4 text-white">登入</button>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-<Footer></Footer>
-<SocialMedia/>
+  <Footer/>
+  <SocialMedia/>
 </template>
 
 <script>
@@ -52,7 +52,7 @@ export default {
         document.cookie = `hexToken=${token}; expires=${new Date(expired)} `
         this.$router.push('/dashboard/adminproducts')
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     }
   },

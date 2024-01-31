@@ -14,19 +14,19 @@
             <div class="col-sm-12 d-flex justify-content-center align-items-center">
               <ul class="list-unstyled w-100 product-category">
                 <li>
-                  <a href="" class="d-block list text-decoration-none fs-5 py-2 " @click.prevent="category = ''" :class="{'active' :category === ''}">
+                  <a href="#" class="d-block list text-decoration-none fs-5 py-2 " @click.prevent="category = ''" :class="{'active' :category === ''}">
                   <i class="fa fa-bolt px-2" aria-hidden="true"></i>所有產品</a>
                 </li>
                 <li>
-                  <a href="" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '一般眼鏡'" :class="{'active':category === '一般眼鏡'}">
+                  <a href="#" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '一般眼鏡'" :class="{'active':category === '一般眼鏡'}">
                   <i class="fa fa-tint px-2" aria-hidden="true"></i>一般眼鏡</a>
                 </li>
                 <li>
-                  <a href="" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '兒童眼鏡'" :class="{'active':category === '兒童眼鏡'}">
+                  <a href="#" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '兒童眼鏡'" :class="{'active':category === '兒童眼鏡'}">
                   <i class="fa-solid fa-child-reaching px-2"></i>兒童眼鏡</a>
                 </li>
                 <li>
-                  <a href="" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '太陽眼鏡'" :class="{'active':category === '太陽眼鏡'}">
+                  <a href="#" class="d-block list text-decoration-none fs-5 py-2" @click.prevent="category = '太陽眼鏡'" :class="{'active':category === '太陽眼鏡'}">
                   <i class="fa fa-fire px-2" aria-hidden="true"></i>太陽眼鏡</a>
                 </li>
               </ul>
@@ -63,8 +63,8 @@
     </div>
   <ScrollTop/>
   <SocialMedia/>
-  <Section></Section>
-  <Footer></Footer>
+  <Section/>
+  <Footer/>
   </div>
 </template>
 
@@ -97,12 +97,12 @@ export default {
         this.products = res.data.products
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
       this.emitter.emit('update-cart')
     },
     getFavorite () {
-      this.favorite = LocalStorage.get('favorite') || []
+      this.favorite = LocalStorage.get('favorite')
       this.favoriteIds = []
       this.favorite.forEach((item) => {
         this.favoriteIds.push(item.id)
@@ -120,7 +120,7 @@ export default {
         this.emitter.emit('update-cart')
         this.status.loadingItem = ''
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     productDetail (id) {

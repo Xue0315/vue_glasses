@@ -66,7 +66,7 @@ export default {
         this.pagination = res.data.pagination
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     openProductModal (isNew, item) {
@@ -110,7 +110,7 @@ export default {
         }
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     deleteProduct (id) {
@@ -123,7 +123,7 @@ export default {
           this.getProducts()
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
       this.isLoading = false
     }

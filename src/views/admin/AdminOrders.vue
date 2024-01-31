@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(order,key) in orderList" :key="key">
+        <tr v-for="order in orderList" :key="order">
           <td>{{ $filter.date(order.create_at) }}</td>
           <td>{{ order.user.email }}</td>
           <td>
@@ -69,10 +69,9 @@ export default {
         this.orderList = res.data.orders
         this.pages = res.data.pagination
         this.isLoading = false
+      }).catch((err) => {
+        this.$pushMessage(err.response)
       })
-        .catch(() => {
-
-        })
     },
     openModal (item) {
       this.tempOrder = { ...item }
@@ -89,10 +88,9 @@ export default {
       this.isLoading = true
       this.$http.post(api).then(res => {
         this.$pushMessage(res, '付款')
+      }).catch((err) => {
+        this.$pushMessage(err.response)
       })
-        .catch(() => {
-
-        })
       this.isLoading = false
     },
     delOrder (id) {
@@ -102,10 +100,9 @@ export default {
       this.$http.delete(api).then(() => {
         this.getOrders()
         OrderDelModal.hideModal()
+      }).catch((err) => {
+        this.$pushMessage(err.response)
       })
-        .catch(() => {
-
-        })
       this.isLoading = false
     }
   },

@@ -170,7 +170,7 @@ export default {
         this.order = res.data.order
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     pay () {
@@ -182,7 +182,7 @@ export default {
           this.isLoading = false
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     proceedPage () {

@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="checkout-page container position-relative w-100" v-if="checkOutstatus">
-    <TimeLine></TimeLine>
+    <TimeLine/>
     <div class="row">
       <div class="col-xl-6 my-5 checklist">
         <div class="text-center">
@@ -57,7 +57,7 @@
           </tr>
         </table>
       </div>
-      <TheForm class="col-xl-6 mb-5 customer-data" v-slot="{ errors }" @submit="addOrder">
+      <TheForm class="col-xl-6 my-5 customer-data" v-slot="{ errors }" @submit="addOrder">
         <div class="text-center">
           <span class="mb-5 fs-3">顧客資訊</span>
         </div>
@@ -105,7 +105,7 @@
           <textarea type="text" id="message" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
         </div>
         <div class="text-end mt-3">
-          <button type="button" class="btn btn-primary text-white" @click.stop="addOrder">送出訂單</button>
+          <button type="submit" class="btn btn-primary text-white">送出訂單</button>
         </div>
       </TheForm>
     </div>
@@ -181,8 +181,8 @@
 </div>
 <ScrollTop/>
 <SocialMedia/>
-<Section></Section>
-<Footer></Footer>
+<Section/>
+<Footer/>
 </template>
 
 <script>
@@ -226,7 +226,7 @@ export default {
         this.cartNum = res.data.data.carts.length
         this.isLoading = false
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     updateCart (item) {
@@ -247,7 +247,7 @@ export default {
         this.$pushMessage(res, '刪除產品')
         this.emitter.emit('update-cart')
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     deleteAllCart () {
@@ -262,7 +262,7 @@ export default {
         }
         this.emitter.emit('update-cart')
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     proceedPage () {
@@ -294,7 +294,7 @@ export default {
           this.$pushMessage(res, '套用優惠券')
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response, '套用優惠券')
       })
     },
     addOrder () {
@@ -311,7 +311,7 @@ export default {
           this.isLoading = false
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     }
   },
@@ -377,8 +377,10 @@ export default {
   }
 }
 button:disabled{
-  background-color: #ccc;
   border: none;
+  .fa-minus{
+    color: #D3D3D3;
+  }
 }
 .checklist{
   @media (max-width: 576px) {

@@ -56,7 +56,7 @@ export default {
       this.$http.get(api).then(res => {
         this.articles = res.data.articles
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     openArticlesModal (isNew, item) {
@@ -95,7 +95,7 @@ export default {
           })
         }
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     deleteArticle (id) {

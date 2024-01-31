@@ -10,7 +10,7 @@ class LocalStorage {
       console.error('缺少取得localstorage 的 key')
       return
     }
-    const data = window.localStorage.getItem(key)
+    const data = window.localStorage.getItem(key) || []
     if (data) {
       return JSON.parse(data)
     }

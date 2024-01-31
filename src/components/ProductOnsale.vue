@@ -85,7 +85,7 @@ export default {
         this.emitter.emit('update-cart')
         this.status.loadingItem = ''
       }).catch((err) => {
-        console.log(err)
+        this.$pushMessage(err.response)
       })
     },
     productDetail (id) {

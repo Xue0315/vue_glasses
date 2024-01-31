@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
-
+import bootstrapjs from '../node_modules/bootstrap/dist/js/bootstrap.bundle'
 import PageLoading from '@/components/PageLoading.vue'
 import { currency, date } from './methods/filter'
 import pushMessage from './methods/pushMessage'
@@ -38,5 +38,6 @@ app.config.globalProperties.$filter = {
 }
 app.config.globalProperties.$pushMessage = pushMessage
 app.use(VueAxios, axios)
+app.use(bootstrapjs)
 app.use(router)
 app.mount('#app')

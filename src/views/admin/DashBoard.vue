@@ -1,12 +1,12 @@
-  <template>
-    <div class="container-fluid">
-      <div class="position-relative">
-        <AdminNavbar/>
-        <router-view/>
-        <ToastMessage/>
-      </div>
+<template>
+  <div class="container-fluid">
+    <div class="position-relative">
+      <AdminNavbar/>
+      <router-view/>
+      <ToastMessage/>
     </div>
-  </template>
+  </div>
+</template>
 
 <script>
 import AdminNavbar from '@/components/AdminNavbar.vue'
@@ -28,13 +28,13 @@ export default {
         this.$router.push('/')
       }
     }).catch((err) => {
-      console.log(err)
+      this.$pushMessage(err.response)
     })
   },
   components: { AdminNavbar, ToastMessage }
 }
 </script>
 
-  <style>
+<style>
 
-  </style>
+</style>

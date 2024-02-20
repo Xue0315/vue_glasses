@@ -112,7 +112,7 @@
   </div>
   <div class="container cart-list" v-if="!checkOutstatus" >
     <h3 class="fw-bold text-center my-5" v-if="cartNum>=1">購物清單</h3>
-    <div class="row" v-if="cartNum>=1">
+    <div class="row" v-if="cartNum >= 1">
       <div class="col-lg-12 bg-light justify-content-center">
         <table class="table table-light table-borderless align-middle justify-content-center">
           <thead>

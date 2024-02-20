@@ -12,7 +12,7 @@
           <li v-for="item in favorite" :key="item.id" class="list-unstyled col-md-6 col-lg-4 col-xl-3 my-2">
             <div class="card h-100 m-2">
               <a href="#" class="stretched-link" @click.prevent="productDetail(item.id)">
-                <div class="control-img overflow-hidden ">
+                <div class="control-img overflow-hidden">
                   <button type="button" class="btn bg-dark bg-opacity-25 position-absolute text-white fs-3 fw-bold">查看更多</button>
                   <img :src="item.imageUrl" class="card-img-top favorite-img" :alt="item.title">
                 </div>

@@ -15,7 +15,6 @@
       </div>
     </div>
   </template>
-
 <script>
 import Toast from 'bootstrap/js/dist/toast'
 

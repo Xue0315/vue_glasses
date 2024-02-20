@@ -190,10 +190,10 @@ export default {
 }
 .accordion{
   @media (max-width: 768px) {
-    font-size: 12px;;
+    font-size: 12px;
   }
   @media (max-width: 500px) {
-    font-size: 8px;;
+    font-size: 8px;
   }
 }
 </style>

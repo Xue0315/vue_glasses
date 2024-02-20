@@ -42,7 +42,7 @@
           <router-link to="/favorite" class="nav-link px-4 py-3 position-relative"><i class="fa fa-heart fs-4" aria-hidden="true"></i></router-link>
         </li>
         <li class="nav-item">
-            <span class="position-absolute cart text-white" v-if="cartNum">{{ cartNum }}</span>
+          <span class="position-absolute cart text-white" v-if="cartNum">{{ cartNum }}</span>
           <router-link to="/cart" class="nav-link px-4 py-3"><i class="fa fa-shopping-cart fs-4" aria-hidden="true"></i></router-link>
         </li>
       </ul>

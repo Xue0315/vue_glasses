@@ -179,9 +179,9 @@ export default {
   }
 }
 @keyframes typing{
-    0%{
+  0%{
     width:0;
-    }
+  }
 }
 .problem{
   height: 420px;

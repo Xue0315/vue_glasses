@@ -13,6 +13,8 @@ class LocalStorage {
     const data = window.localStorage.getItem(key) || []
     if (data) {
       return JSON.parse(data)
+    } else {
+      return []
     }
   }
 

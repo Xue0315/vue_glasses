@@ -347,7 +347,7 @@ export default {
   }
 }
 .cart-list{
-  padding: 40px 0 40px 0;
+  padding: 70px 0 70px 0;
   .product-title{
     @media(max-width:405px){
       font-size: 12px;
